@@ -1,37 +1,72 @@
-// src/components/Header.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import { SunIcon, MoonIcon, MenuIcon } from '../icons';
+import PillButton from './PillButton';
+import Logo from './Logo';
 
 export default function Header({ onOpenSidebar }) {
   const { theme, toggleTheme } = useTheme();
-  const [scrolled, setScrolled] = useState(false);
+  
+  const [isVisible, setIsVisible] = useState(true);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [atTop, setAtTop] = useState(true);
+  
+  const { scrollY } = useScroll();
+  const idleTimeout = useRef(null);
+  
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setAtTop(latest < 10);
+    
+    // We are actively scrolling
+    setIsScrolling(true);
+    setIsVisible(true); // Bring header back immediately if hidden
+    
+    // Reset the 5s idle timer
+    if (idleTimeout.current) clearTimeout(idleTimeout.current);
+    
+    idleTimeout.current = setTimeout(() => {
+      setIsScrolling(false);
+      // If we are not at the top, hide the header after 5s idle
+      if (scrollY.get() > 100) {
+        setIsVisible(false);
+      }
+    }, 5000);
+  });
 
+  // Cleanup timeout on unmount
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      if (idleTimeout.current) clearTimeout(idleTimeout.current);
+    };
   }, []);
 
   const navLinks = [
+    { to: '/',          label: 'Home' },
     { to: '/services',  label: 'Services' },
     { to: '/projects',  label: 'Projects' },
-    { to: '/pricing',   label: 'Pricing' },
     { to: '/about',     label: 'About' },
-    { to: '/process',   label: 'Process' },
+    { to: '/contact',   label: 'Contact' },
   ];
 
+  // Dynamic curve based on scroll state
+  const currentCurve = atTop ? '48px' : isScrolling ? '64px' : '48px';
+
   return (
-    <header
+    <motion.header
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : '-100%' }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       style={{ position: 'sticky', top: 0, zIndex: 50 }}
-      className={`transition-shadow duration-300 ${scrolled ? 'shadow-md' : ''}`}
+      className={`transition-shadow duration-300 ${!atTop ? 'shadow-md' : ''}`}
     >
       {/* Lime color-block bar with curved bottom */}
-      <div
+      <motion.div
+        animate={{ borderBottomLeftRadius: currentCurve, borderBottomRightRadius: currentCurve }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
         style={{
           background: 'var(--lime)',
-          borderRadius: '0 0 var(--radius-curve) var(--radius-curve)',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -40,16 +75,11 @@ export default function Header({ onOpenSidebar }) {
         <div className="noise-overlay" style={{ mixBlendMode: 'multiply' }} />
 
         <div className="section-container" style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ height: '72px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div className="h-[80px] md:h-[96px] flex items-center justify-between">
 
             {/* Logo */}
-            <Link to="/" style={{ textDecoration: 'none' }}>
-              <span
-                className="font-display"
-                style={{ fontSize: '1.25rem', color: 'var(--header-text-locked)', letterSpacing: '-0.02em' }}
-              >
-                NORTHSTAR<span style={{ opacity: 0.45 }}>DEVS</span>
-              </span>
+            <Link to="/" style={{ textDecoration: 'none' }} className="flex-shrink-0">
+              <Logo variant="header" />
             </Link>
 
             {/* Nav — desktop */}
@@ -66,7 +96,7 @@ export default function Header({ onOpenSidebar }) {
                     fontWeight: 700,
                     color: isActive ? 'var(--header-text-locked)' : 'var(--header-text-locked-muted)',
                     textDecoration: 'none',
-                    transition: 'opacity 0.2s',
+                    transition: 'color 0.2s',
                   })}
                   onMouseEnter={e => e.target.style.color = 'var(--header-text-locked)'}
                   onMouseLeave={e => e.target.style.color = 'var(--header-text-locked-muted)'}
@@ -101,25 +131,11 @@ export default function Header({ onOpenSidebar }) {
               </button>
 
               {/* CTA — desktop */}
-              <Link
-                to="/contact"
-                className="btn-liquid hidden-mobile"
-                style={{
-                  background: 'var(--orange)',
-                  color: 'var(--white-locked)',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '10px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  fontWeight: 700,
-                  textDecoration: 'none',
-                  padding: '0.6rem 1.5rem',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                }}
-              >
-                Get Started
-              </Link>
+              <div className="hidden-mobile">
+                <PillButton as="link" to="/contact" variant="orange">
+                  Get Started
+                </PillButton>
+              </div>
 
               {/* Hamburger — mobile */}
               <button
@@ -140,7 +156,7 @@ export default function Header({ onOpenSidebar }) {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <style>{`
         @media (max-width: 768px) {
@@ -148,6 +164,6 @@ export default function Header({ onOpenSidebar }) {
           .show-mobile   { display: flex !important; }
         }
       `}</style>
-    </header>
+    </motion.header>
   );
 }

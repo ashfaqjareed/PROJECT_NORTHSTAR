@@ -7,6 +7,7 @@
   --font-display: "Montserrat", sans-serif;
   --font-sans:    "Poppins", sans-serif;
   --font-mono:    "JetBrains Mono", monospace;
+  --font-accent:  "Caveat", cursive;
 
   --color-bg:           var(--bg);
   --color-bg-alt:       var(--bg-alt);
@@ -127,6 +128,7 @@ body {
 }
 .font-sans  { font-family: var(--font-sans); }
 .font-mono  { font-family: var(--font-mono); }
+.font-accent { font-family: var(--font-accent); }
 
 h1, h2, h3 { font-family: var(--font-display); font-weight: 900; letter-spacing: -0.02em; }
 
