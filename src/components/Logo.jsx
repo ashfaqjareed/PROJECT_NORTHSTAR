@@ -1,57 +1,30 @@
+// src/components/Logo.jsx — variant-based logo with swappable SVG assets
 import React from 'react';
+import logoHeader from '../assets/logo-header.svg';
+import logoFooter from '../assets/logo-footer.svg';
 
 export default function Logo({ variant = 'header', className = '' }) {
-  // If we had actual assets, we'd import them here like:
-  // import HeaderLogo from '../assets/logo-header.svg';
-  // ...
-  
   if (variant === 'favicon') {
+    // Favicon is referenced directly via <link> in index.html — /public/favicon.svg
+    // This render is for in-app usage if ever needed
     return (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 64 64" 
-        className={className} 
+      <img
+        src="/favicon.svg"
+        alt="NorthStarDevs"
+        className={className}
         style={{ width: '1em', height: '1em' }}
-      >
-        <rect width="64" height="64" rx="16" fill="var(--lime)" />
-        <text 
-          x="50%" y="55%" 
-          fontFamily="var(--font-display)" 
-          fontSize="40" 
-          fontWeight="900" 
-          fill="var(--header-text-locked)" 
-          textAnchor="middle" 
-          alignmentBaseline="middle"
-        >
-          N
-        </text>
-      </svg>
+      />
     );
   }
 
-  const isFooter = variant === 'footer';
-  const textColor = isFooter ? 'var(--footer-text-locked)' : 'var(--header-text-locked)';
+  const src = variant === 'footer' ? logoFooter : logoHeader;
 
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 300 48" 
-      className={className} 
+    <img
+      src={src}
+      alt="NorthStarDevs"
+      className={className}
       style={{ height: '24px', width: 'auto' }}
-    >
-      <text 
-        x="0" y="32" 
-        fontFamily="var(--font-display)" 
-        fontSize="24" 
-        fontWeight="900" 
-        fill={textColor} 
-        letterSpacing="-0.02em"
-      >
-        NORTHSTAR
-        <tspan fill={textColor} fillOpacity={isFooter ? "0.7" : "0.45"}>
-          DEVS
-        </tspan>
-      </text>
-    </svg>
+    />
   );
 }

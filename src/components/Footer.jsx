@@ -1,23 +1,17 @@
 // src/components/Footer.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { WhatsAppIcon, MailIcon } from '../icons';
+import { motion } from 'framer-motion';
+import { FaXTwitter, FaInstagram, FaLinkedin, FaGithub, FaWhatsapp } from 'react-icons/fa6';
 
 const SITEMAP = [
-  { to: '/services',     label: 'Services' },
-  { to: '/projects',     label: 'Projects' },
   { to: '/pricing',      label: 'Pricing' },
-  { to: '/about',        label: 'About' },
+  { to: '/faq',          label: 'FAQ' },
   { to: '/process',      label: 'Process' },
-  { to: '/contact',      label: 'Contact' },
-  { to: '/testimonials', label: 'Testimonials' },
+  { to: '/support',      label: 'Support' },
 ];
 
 const LEGAL = [
-  { to: '/faq',     label: 'FAQ' },
-  { to: '/support', label: 'Support SLA' },
-  { to: '/careers', label: 'Careers' },
-  { to: '/blog',    label: 'Blog' },
   { to: '/privacy', label: 'Privacy Policy' },
   { to: '/terms',   label: 'Terms of Service' },
 ];
@@ -32,6 +26,26 @@ export default function Footer() {
     transition: 'color 0.2s',
   };
 
+  const SocialIcon = ({ Icon, href }) => (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        width: '40px', height: '40px',
+        background: 'var(--white-locked-10)',
+        borderRadius: '12px',
+        color: 'var(--footer-text-locked)',
+        textDecoration: 'none'
+      }}
+      whileHover={{ scale: 1.1, rotate: -4 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+    >
+      <Icon size={20} />
+    </motion.a>
+  );
+
   return (
     <footer
       style={{
@@ -45,17 +59,18 @@ export default function Footer() {
       {/* Noise texture */}
       <div className="noise-overlay" />
 
-      <div className="section-container" style={{ position: 'relative', zIndex: 2, paddingTop: '4rem', paddingBottom: '4rem' }}>
+      <div className="section-container" style={{ position: 'relative', zIndex: 2, paddingTop: '4rem', paddingBottom: '2rem' }}>
 
-        {/* Three-column grid */}
+        {/* Row 1 — main footer */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '3rem',
+          marginBottom: '4rem'
         }}>
 
-          {/* Col 1: Brand + contact */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          {/* Left column: Brand + Contact */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <Link to="/" style={{ textDecoration: 'none' }}>
               <span
                 className="font-display"
@@ -70,145 +85,150 @@ export default function Footer() {
               fontSize: '0.875rem',
               color: 'var(--footer-text-locked-75)',
               lineHeight: 1.7,
-              maxWidth: '280px',
+              maxWidth: '320px',
             }}>
               Elite creative engineering — Swiss-modern interfaces, performance-first React ecosystems, brand identities that endure.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <a
-                href="mailto:northstardevs1@gmail.com"
-                style={{
-                  display: 'flex', alignItems: 'center', gap: '0.5rem',
-                  color: 'var(--footer-text-locked)', textDecoration: 'none',
-                  fontFamily: 'var(--font-mono)', fontSize: '11px',
-                  textTransform: 'uppercase', letterSpacing: '0.06em',
-                  transition: 'opacity 0.2s',
-                }}
-                onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
-                onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-              >
-                <MailIcon className="w-4 h-4" />
+            {/* Social Icons row */}
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <SocialIcon Icon={FaXTwitter} href="#" />
+              <SocialIcon Icon={FaInstagram} href="#" />
+              <SocialIcon Icon={FaLinkedin} href="#" />
+              <SocialIcon Icon={FaGithub} href="#" />
+            </div>
+            
+            {/* Contact Pills */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              <a href="mailto:northstardevs1@gmail.com" style={{
+                display: 'inline-flex', alignItems: 'center', padding: '0.5rem 1rem',
+                background: 'var(--white-locked-10)', borderRadius: '999px',
+                color: 'var(--footer-text-locked)', textDecoration: 'none',
+                fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700,
+                transition: 'background 0.2s'
+              }} onMouseEnter={e => e.currentTarget.style.background = 'var(--white-locked-20)'} onMouseLeave={e => e.currentTarget.style.background = 'var(--white-locked-10)'}>
                 northstardevs1@gmail.com
               </a>
-              <a
-                href="https://wa.me/94768325949"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'flex', alignItems: 'center', gap: '0.5rem',
-                  color: 'var(--footer-text-locked)', textDecoration: 'none',
-                  fontFamily: 'var(--font-mono)', fontSize: '11px',
-                  textTransform: 'uppercase', letterSpacing: '0.06em',
-                  transition: 'opacity 0.2s',
-                }}
-                onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
-                onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-              >
-                <WhatsAppIcon className="w-4 h-4" />
+              <a href="tel:+94768325949" style={{
+                display: 'inline-flex', alignItems: 'center', padding: '0.5rem 1rem',
+                background: 'var(--white-locked-10)', borderRadius: '999px',
+                color: 'var(--footer-text-locked)', textDecoration: 'none',
+                fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700,
+                transition: 'background 0.2s'
+              }} onMouseEnter={e => e.currentTarget.style.background = 'var(--white-locked-20)'} onMouseLeave={e => e.currentTarget.style.background = 'var(--white-locked-10)'}>
                 +94 76 832 5949
               </a>
             </div>
           </div>
 
-          {/* Col 2: Sitemap */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <span style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '10px',
-              textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-              fontWeight: 700,
-              color: 'var(--footer-charcoal-locked)',
-            }}>
-              Pages
-            </span>
-            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {SITEMAP.map(({ to, label }) => (
-                <li key={to}>
-                  <Link
-                    to={to}
-                    style={linkStyle}
-                    onMouseEnter={e => e.target.style.color = 'var(--white-locked)'}
-                    onMouseLeave={e => e.target.style.color = 'var(--footer-text-locked-70)'}
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Right column: WhatsApp Pulse + Sitemap */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'flex-start' }}>
+            <motion.a
+              href="https://wa.me/94768325949"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem',
+                background: 'var(--whatsapp-brand)', color: 'white',
+                padding: '1rem 2rem', borderRadius: '16px',
+                textDecoration: 'none', fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '1rem',
+                boxShadow: '0 8px 24px rgba(37,211,102,0.4)'
+              }}
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+            >
+              <FaWhatsapp size={24} />
+              Fastest way to reach us
+            </motion.a>
 
-          {/* Col 3: Legal */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <span style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '10px',
-              textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-              fontWeight: 700,
-              color: 'var(--footer-charcoal-locked)',
-            }}>
-              Legal & Info
-            </span>
-            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {LEGAL.map(({ to, label }) => (
-                <li key={to}>
-                  <Link
-                    to={to}
-                    style={linkStyle}
-                    onMouseEnter={e => e.target.style.color = 'var(--white-locked)'}
-                    onMouseLeave={e => e.target.style.color = 'var(--footer-text-locked-70)'}
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <span style={{
+                  fontFamily: 'var(--font-mono)', fontSize: '10px', textTransform: 'uppercase',
+                  letterSpacing: '0.12em', fontWeight: 700, color: 'var(--footer-charcoal-locked)',
+                }}>
+                  Sitemap
+                </span>
+                <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {SITEMAP.map(({ to, label }) => (
+                    <li key={to}>
+                      <Link
+                        to={to}
+                        style={linkStyle}
+                        onMouseEnter={e => e.target.style.color = 'var(--white-locked)'}
+                        onMouseLeave={e => e.target.style.color = 'var(--footer-text-locked-70)'}
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
+        {/* Row 2 — Credit bar / Wordmark */}
         <div style={{
-          marginTop: '3rem',
-          paddingTop: '1.5rem',
-          borderTop: '1px solid var(--footer-text-locked-15)',
+          paddingTop: '2rem',
+          borderTop: '1px solid var(--footer-charcoal-locked)',
           display: 'flex',
-          flexWrap: 'wrap',
+          flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '1rem',
+          gap: '2rem',
         }}>
-          <p style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '9px',
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-            color: 'var(--footer-text-locked-50)',
+          
+          <h2 className="font-display" style={{ 
+            fontSize: 'clamp(3rem, 10vw, 7rem)', 
+            color: 'var(--footer-text-locked)', 
+            lineHeight: 1,
+            margin: 0,
+            textAlign: 'center',
+            letterSpacing: '-0.02em'
           }}>
-            &copy; {new Date().getFullYear()} NorthStarDevs. All rights reserved. Colombo, Sri Lanka.
-          </p>
+            NORTHSTARDEVS
+          </h2>
 
-          <Link
-            to="/contact"
-            style={{
-              background: 'var(--footer-charcoal-locked)',
-              color: 'var(--footer-text-locked)',
+          <div style={{
+            width: '100%',
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '1rem',
+          }}>
+            <p style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '10px',
+              fontSize: '9px',
               textTransform: 'uppercase',
-              letterSpacing: '0.1em',
-              fontWeight: 700,
-              textDecoration: 'none',
-              padding: '0.6rem 1.25rem',
-              borderRadius: '999px',
-              transition: 'opacity 0.2s',
-            }}
-            onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
-            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-          >
-            Start a Project
-          </Link>
+              letterSpacing: '0.12em',
+              color: 'var(--footer-text-locked-50)',
+            }}>
+              &copy; {new Date().getFullYear()} NorthStarDevs. All rights reserved. Colombo, Sri Lanka.
+            </p>
+
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              {LEGAL.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '9px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                    color: 'var(--footer-text-locked-50)',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={e => e.target.style.color = 'var(--white-locked)'}
+                  onMouseLeave={e => e.target.style.color = 'var(--footer-text-locked-50)'}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </footer>

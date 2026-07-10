@@ -1,6 +1,6 @@
 import React from 'react';
 import BentoCard from '../components/BentoCard';
-import { ShieldCheck, Zap, Lock } from 'lucide-react';
+import { ShieldIcon, BoltIcon, CodeIcon } from '../icons';
 
 export default function Testimonials() {
   return (
@@ -17,7 +17,7 @@ export default function Testimonials() {
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <BentoCard accentColor="lime" className="text-center">
           <div className="mx-auto w-12 h-12 bg-[var(--lime)]/10 rounded-full flex items-center justify-center mb-6">
-            <Zap className="w-6 h-6 text-[var(--lime)]" />
+            <BoltIcon className="w-6 h-6 text-[var(--lime)]" />
           </div>
           <h3 className="font-display font-black text-xl mb-3 text-[var(--text)]">Speed Guarantee</h3>
           <p className="font-sans text-sm text-[var(--text-muted)] leading-relaxed">
@@ -27,7 +27,7 @@ export default function Testimonials() {
 
         <BentoCard accentColor="orange" className="text-center">
           <div className="mx-auto w-12 h-12 bg-[var(--orange)]/10 rounded-full flex items-center justify-center mb-6">
-            <ShieldCheck className="w-6 h-6 text-[var(--orange)]" />
+            <ShieldIcon className="w-6 h-6 text-[var(--orange)]" />
           </div>
           <h3 className="font-display font-black text-xl mb-3 text-[var(--text)]">Quality SLA</h3>
           <p className="font-sans text-sm text-[var(--text-muted)] leading-relaxed">
@@ -37,7 +37,7 @@ export default function Testimonials() {
 
         <BentoCard accentColor="lime" className="text-center">
           <div className="mx-auto w-12 h-12 bg-[var(--lime)]/10 rounded-full flex items-center justify-center mb-6">
-            <Lock className="w-6 h-6 text-[var(--lime)]" />
+            <CodeIcon className="w-6 h-6 text-[var(--lime)]" />
           </div>
           <h3 className="font-display font-black text-xl mb-3 text-[var(--text)]">IP Transfer</h3>
           <p className="font-sans text-sm text-[var(--text-muted)] leading-relaxed">

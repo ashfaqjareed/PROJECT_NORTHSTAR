@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
+import { PlusIcon, MinusIcon } from '../icons';
 
 const faqs = [
   {
@@ -54,7 +54,7 @@ export default function Faq() {
                   {faq.q}
                 </h3>
                 <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-[var(--orange)]/10 text-[var(--orange)]' : 'bg-[var(--bg-alt)] text-[var(--text-soft)]'}`}>
-                  {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  {isOpen ? <MinusIcon className="w-4 h-4" /> : <PlusIcon className="w-4 h-4" />}
                 </div>
               </button>
               

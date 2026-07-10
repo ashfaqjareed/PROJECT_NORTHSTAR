@@ -1,8 +1,19 @@
-// src/pages/Pricing.jsx — 6 panels
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useScrollFadeUp } from '../hooks/useScrollFadeUp';
-import { CheckIcon, ArrowRightIcon, PlusIcon, MinusIcon } from '../icons';
+import { motion } from 'framer-motion';
+import { CheckIcon, ArrowRightIcon, PlusIcon, MinusIcon, WhatsAppIcon } from '../icons';
+import PricingPill from '../components/PricingPill';
+import PillButton from '../components/PillButton';
+
+const fadeUpContainer = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } }
+};
+
+const fadeUpItem = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+};
 
 function AccordionItem({ q, a }) {
   const [open, setOpen] = useState(false);
@@ -10,20 +21,14 @@ function AccordionItem({ q, a }) {
     <div style={{ borderBottom: '1px solid var(--border)' }}>
       <button
         onClick={() => setOpen(!open)}
-        style={{
-          width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '1.25rem 0', background: 'none', border: 'none',
-          cursor: 'pointer', color: 'var(--text)', textAlign: 'left',
-        }}
+        className="w-full flex items-center justify-between py-5 bg-transparent border-none cursor-pointer text-left text-[var(--text)] transition-colors hover:text-[var(--orange)]"
         aria-expanded={open}
       >
-        <span className="font-display" style={{ fontSize: '1rem' }}>{q}</span>
-        {open
-          ? <MinusIcon className="w-5 h-5" style={{ flexShrink: 0, color: 'var(--orange)' }} />
-          : <PlusIcon  className="w-5 h-5" style={{ flexShrink: 0 }} />}
+        <span className="font-display text-base">{q}</span>
+        {open ? <MinusIcon className="w-5 h-5 text-[var(--orange)] flex-shrink-0" /> : <PlusIcon className="w-5 h-5 flex-shrink-0" />}
       </button>
       <div className={`accordion-content ${open ? 'open' : ''}`}>
-        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.7, paddingBottom: '1.25rem' }}>{a}</p>
+        <p className="font-sans text-[0.9rem] text-[var(--text-muted)] leading-relaxed pb-5">{a}</p>
       </div>
     </div>
   );
@@ -31,218 +36,129 @@ function AccordionItem({ q, a }) {
 
 const TIERS = [
   {
-    name: 'Speed MVP',
-    tagline: 'Get to market fast.',
-    usd: '$500',
-    lkr: 'LKR 155,000',
-    timeline: '5–7 business days',
-    revision: '2 rounds',
-    features: [
-      'Landing page or brand asset',
-      'Mobile-first responsive layout',
-      'Performance-optimised build',
-      'Basic on-page SEO meta',
-      'Vercel deployment',
-      '2 revision rounds',
-    ],
-    notIncluded: ['Multi-page routing', 'Firestore backend', 'Custom brand system', 'Post-launch SLA'],
-    featured: false,
+    name: 'Budget',
+    tagline: 'Simple presence.',
+    usd: 'From $200',
+    timeline: '3–5 days',
+    features: ['Single landing page', 'Template based', 'Mobile responsive', '1 revision'],
     accent: 'lime',
+    featured: false,
+  },
+  {
+    name: 'Starter',
+    tagline: 'Custom design.',
+    usd: 'From $350',
+    timeline: '5–7 days',
+    features: ['Single landing page', 'Custom UI/UX', 'Form integration', '2 revisions'],
+    accent: 'lime',
+    featured: false,
+  },
+  {
+    name: 'Growth',
+    tagline: 'Get to market fast.',
+    usd: 'From $500',
+    timeline: '5–7 days',
+    features: ['Multi-section layout', 'Performance optimized', 'Basic SEO', '2 revisions'],
+    accent: 'orange',
+    featured: false,
   },
   {
     name: 'Full Launch',
     tagline: 'The complete product.',
-    usd: '$1,500',
-    lkr: 'LKR 465,000',
+    usd: 'From $1,500',
     timeline: '3–5 weeks',
-    revision: '4 rounds',
-    features: [
-      'Multi-page React application',
-      'Tailwind CSS design system',
-      'Firestore backend integration',
-      'Dark/light mode',
-      'Contact form (Firestore-backed)',
-      'Lighthouse 90+ audit',
-      'Domain + Vercel deploy',
-      '4 revision rounds',
-      '30-day post-launch support',
-    ],
-    notIncluded: [],
-    featured: true,
+    features: ['Multi-page React app', 'Firestore backend', 'Dark/light mode', '4 revisions'],
     accent: 'orange',
+    featured: true,
   },
   {
-    name: 'Custom Retainer',
-    tagline: 'Ongoing partnership.',
-    usd: 'Custom',
-    lkr: 'Scoped monthly',
-    timeline: 'Monthly scope',
-    revision: 'Unlimited',
-    features: [
-      'Monthly feature build scope',
-      'Priority support response',
-      'Written SLA with response times',
-      'Weekly async check-in',
-      'Unlimited revisions in scope',
-      'Architecture consultation',
-    ],
-    notIncluded: [],
+    name: 'Premium',
+    tagline: 'Advanced requirements.',
+    usd: 'From $3,000',
+    timeline: '6–8 weeks',
+    features: ['Complex architecture', 'Multiple integrations', 'Custom animations', 'Unlimited (in scope)'],
+    accent: 'orange',
     featured: false,
+  },
+  {
+    name: 'Custom Sprints',
+    tagline: 'Ongoing partnership.',
+    usd: 'Let\'s talk',
+    timeline: 'Monthly scope',
+    features: ['Feature builds', 'Priority support', 'Written SLA', 'Architecture consult'],
     accent: 'lime',
+    featured: false,
   },
 ];
 
 const COMPARISON_ROWS = [
-  { label: 'Landing page',          vals: [true,  true,  true]  },
-  { label: 'Multi-page app',        vals: [false, true,  true]  },
-  { label: 'Firestore backend',     vals: [false, true,  true]  },
-  { label: 'Brand identity kit',    vals: [false, true,  true]  },
-  { label: 'Dark/light mode',       vals: [false, true,  true]  },
-  { label: 'SEO meta',              vals: [true,  true,  true]  },
-  { label: 'Revisions',             vals: ['2',   '4',   '∞']   },
-  { label: 'Post-launch support',   vals: [false, '30d', 'SLA'] },
-  { label: 'Architecture consult',  vals: [false, false, true]  },
+  { label: 'Landing page',          vals: [true,  true,  true,  true,  true,  true]  },
+  { label: 'Custom UI/UX',          vals: [false, true,  true,  true,  true,  true]  },
+  { label: 'Multi-page app',        vals: [false, false, false, true,  true,  true]  },
+  { label: 'Firestore backend',     vals: [false, false, false, true,  true,  true]  },
+  { label: 'Advanced Integrations', vals: [false, false, false, false, true,  true]  },
+  { label: 'Dark/light mode',       vals: [false, false, false, true,  true,  true]  },
+  { label: 'Post-launch support',   vals: [false, false, false, '30d', '60d', 'SLA'] },
 ];
 
 const FAQS = [
-  {
-    q: 'Do you require a deposit?',
-    a: '50% upfront, 50% on delivery. For retainer clients, the full monthly amount is invoiced at the start of each billing period.',
-  },
-  {
-    q: 'What currency do you invoice in?',
-    a: 'USD for international clients. LKR equivalent rates are available for Sri Lankan clients — we quote both in the proposal.',
-  },
-  {
-    q: 'What payment methods do you accept?',
-    a: 'Bank transfer (local and international), PayPal, and Wise. We send a formal invoice for every payment.',
-  },
-  {
-    q: 'What happens if the project runs over scope?',
-    a: 'We flag scope changes before acting on them. If the additional work requires a separate cost, we quote it and get your sign-off before proceeding. No surprise invoices.',
-  },
+  { q: 'Do you require a deposit?', a: '50% upfront, 50% on delivery. For retainer clients, the full monthly amount is invoiced at the start of each billing period.' },
+  { q: 'What currency do you invoice in?', a: 'USD for international clients. LKR equivalent rates are available for Sri Lankan clients — we quote both in the proposal.' },
+  { q: 'What payment methods do you accept?', a: 'Bank transfer (local and international), PayPal, and Wise. We send a formal invoice for every payment.' },
+  { q: 'What happens if the project runs over scope?', a: 'We flag scope changes before acting on them. If the additional work requires a separate cost, we quote it and get your sign-off before proceeding. No surprise invoices.' },
 ];
 
 export default function Pricing() {
-  useScrollFadeUp();
-
   return (
     <div>
       {/* Panel 1 */}
-      <section style={{ padding: '5rem 0' }}>
-        <div className="section-container">
-          <p className="eyebrow fade-up" style={{ marginBottom: '0.75rem' }}>Investment</p>
-          <h1 className="font-display fade-up" data-delay="60" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', marginBottom: '1.25rem', maxWidth: '640px' }}>
+      <section className="py-20">
+        <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <motion.p variants={fadeUpItem} className="eyebrow mb-3">Investment</motion.p>
+          <motion.h1 variants={fadeUpItem} className="font-display text-4xl md:text-5xl lg:text-[4.5rem] leading-[1.1] mb-5 max-w-3xl">
             Transparent pricing.<br />No surprises.
-          </h1>
-          <p className="fade-up" data-delay="120" style={{ fontFamily: 'var(--font-sans)', fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '560px' }}>
+          </motion.h1>
+          <motion.p variants={fadeUpItem} className="font-sans text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
             Every tier listed with a real price range, timeline, and what's included — so you can scope a project before you even contact us.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </section>
 
-      {/* Panel 2: Three tier cards */}
-      <section style={{ background: 'var(--bg-alt)', padding: '5rem 0' }}>
-        <div className="section-container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+      {/* Panel 2: Six tier cards */}
+      <section className="bg-[var(--bg-alt)] py-20">
+        <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {TIERS.map((tier, i) => (
-              <div
-                key={tier.name}
-                className="fade-up"
-                data-delay={i * 80}
-                style={{
-                  background: 'var(--bg)',
-                  border: `1px solid ${tier.featured ? 'var(--orange)' : 'var(--border)'}`,
-                  borderRadius: 'var(--radius-card)',
-                  padding: '2rem',
-                  display: 'flex', flexDirection: 'column',
-                  ...(tier.featured ? { boxShadow: '0 0 0 1px var(--orange)' } : {}),
-                }}
-              >
-                {tier.featured && (
-                  <span style={{
-                    background: 'var(--orange)', color: 'var(--white-locked)',
-                    fontFamily: 'var(--font-mono)', fontSize: '9px', fontWeight: 700,
-                    textTransform: 'uppercase', letterSpacing: '0.1em',
-                    padding: '0.25rem 0.75rem', borderRadius: '999px',
-                    display: 'inline-block', marginBottom: '1rem', alignSelf: 'flex-start',
-                  }}>
-                    Recommended
-                  </span>
-                )}
-
-                <p className="eyebrow" style={{ marginBottom: '0.25rem' }}>{tier.name}</p>
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>{tier.tagline}</p>
-
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <span className="font-display" style={{ fontSize: '2.5rem', color: 'var(--text)' }}>{tier.usd}</span>
-                  {tier.usd !== 'Custom' && <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: 'var(--text-muted)', marginLeft: '0.5rem' }}>USD</span>}
-                  <br />
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)' }}>{tier.lkr}</span>
-                </div>
-
-                <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '1.5rem' }}>
-                  <div>
-                    <p className="eyebrow" style={{ marginBottom: '0.2rem' }}>Timeline</p>
-                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem' }}>{tier.timeline}</p>
-                  </div>
-                  <div>
-                    <p className="eyebrow" style={{ marginBottom: '0.2rem' }}>Revisions</p>
-                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem' }}>{tier.revision}</p>
-                  </div>
-                </div>
-
-                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
-                  {tier.features.map(f => (
-                    <li key={f} style={{ display: 'flex', gap: '0.5rem', fontFamily: 'var(--font-sans)', fontSize: '0.875rem' }}>
-                      <CheckIcon className="w-4 h-4" style={{ color: 'var(--orange)', flexShrink: 0, marginTop: '2px' }} />
-                      {f}
-                    </li>
-                  ))}
-                  {tier.notIncluded.map(f => (
-                    <li key={f} style={{ display: 'flex', gap: '0.5rem', fontFamily: 'var(--font-sans)', fontSize: '0.875rem', opacity: 0.35 }}>
-                      <span style={{ width: 16, height: 16, flexShrink: 0 }}>–</span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to="/contact"
-                  className={tier.featured ? 'btn-liquid' : ''}
-                  style={{
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    background: tier.featured ? 'var(--orange)' : 'var(--bg-alt)',
-                    color: tier.featured ? 'var(--white-locked)' : 'var(--text)',
-                    border: `1px solid ${tier.featured ? 'var(--orange)' : 'var(--border)'}`,
-                    borderRadius: tier.featured ? undefined : '999px',
-                    fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700,
-                    textTransform: 'uppercase', letterSpacing: '0.1em',
-                    textDecoration: 'none', padding: '0.75rem',
-                  }}
-                >
-                  {tier.usd === 'Custom' ? 'Get a Quote' : 'Start This Tier'}
-                </Link>
-              </div>
+              <motion.div key={tier.name} variants={fadeUpItem}>
+                <PricingPill 
+                  tier={tier.name}
+                  price={tier.usd}
+                  desc={tier.tagline}
+                  features={[...tier.features, `Timeline: ${tier.timeline}`]}
+                  accent={tier.accent}
+                  featured={tier.featured}
+                />
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Panel 3: Comparison table */}
-      <section style={{ padding: '5rem 0' }}>
-        <div className="section-container">
-          <p className="eyebrow fade-up" style={{ marginBottom: '0.75rem' }}>Side by side</p>
-          <h2 className="font-display fade-up" data-delay="60" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', marginBottom: '2.5rem' }}>
+      <section className="py-20 border-y border-[var(--border)]">
+        <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <motion.p variants={fadeUpItem} className="eyebrow mb-3">Side by side</motion.p>
+          <motion.h2 variants={fadeUpItem} className="font-display text-3xl md:text-4xl mb-10">
             What's in each tier
-          </h2>
-          <div className="fade-up" data-delay="120" style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          </motion.h2>
+          
+          <motion.div variants={fadeUpItem} className="overflow-x-auto bg-[var(--bg)] border border-[var(--border)] rounded-2xl">
+            <table className="w-full border-collapse min-w-[800px]">
               <thead>
                 <tr>
-                  <th style={{ textAlign: 'left', padding: '1rem', borderBottom: '2px solid var(--border)', fontFamily: 'var(--font-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)' }}>Feature</th>
+                  <th className="text-left p-4 border-b-2 border-[var(--border)] font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">Feature</th>
                   {TIERS.map(t => (
-                    <th key={t.name} style={{ padding: '1rem', borderBottom: '2px solid var(--border)', fontFamily: 'var(--font-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', textAlign: 'center', color: t.featured ? 'var(--orange)' : 'var(--text)' }}>
+                    <th key={t.name} className={`p-4 border-b-2 border-[var(--border)] font-mono text-[10px] uppercase tracking-widest text-center ${t.featured ? 'text-[var(--orange)]' : 'text-[var(--text)]'}`}>
                       {t.name}
                     </th>
                   ))}
@@ -250,78 +166,69 @@ export default function Pricing() {
               </thead>
               <tbody>
                 {COMPARISON_ROWS.map((row, i) => (
-                  <tr key={row.label} style={{ borderBottom: '1px solid var(--border)', background: i % 2 ? 'var(--bg-alt)' : 'transparent' }}>
-                    <td style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-sans)', fontSize: '0.875rem' }}>{row.label}</td>
+                  <tr key={row.label} className="border-b border-[var(--border)]" style={{ background: i % 2 ? 'var(--bg-alt)' : 'transparent' }}>
+                    <td className="p-4 font-sans text-[0.875rem] font-medium">{row.label}</td>
                     {row.vals.map((v, j) => (
-                      <td key={j} style={{ padding: '0.875rem 1rem', textAlign: 'center' }}>
-                        {v === true ? <CheckIcon className="w-4 h-4" style={{ color: 'var(--orange)', margin: '0 auto' }} />
-                          : v === false ? <span style={{ color: 'var(--border)' }}>—</span>
-                          : <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700 }}>{v}</span>}
+                      <td key={j} className="p-4 text-center">
+                        {v === true ? <CheckIcon className="w-5 h-5 text-[var(--orange)] mx-auto" />
+                          : v === false ? <span className="text-[var(--border)]">—</span>
+                          : <span className="font-mono text-[11px] font-bold">{v}</span>}
                       </td>
                     ))}
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Panel 4: FAQ */}
-      <section style={{ background: 'var(--bg-alt)', padding: '5rem 0' }}>
-        <div className="section-container" style={{ maxWidth: '720px', margin: '0 auto' }}>
-          <p className="eyebrow fade-up" style={{ marginBottom: '0.75rem' }}>Pricing FAQ</p>
-          <h2 className="font-display fade-up" data-delay="60" style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', marginBottom: '2rem' }}>
+      <section className="bg-[var(--bg-alt)] py-20">
+        <motion.div className="section-container max-w-3xl" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <motion.p variants={fadeUpItem} className="eyebrow mb-3">Pricing FAQ</motion.p>
+          <motion.h2 variants={fadeUpItem} className="font-display text-3xl md:text-4xl mb-8">
             Payment & terms
-          </h2>
-          <div className="fade-up" data-delay="120">
+          </motion.h2>
+          <motion.div variants={fadeUpItem}>
             {FAQS.map(faq => <AccordionItem key={faq.q} q={faq.q} a={faq.a} />)}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Panel 5: Currency note */}
-      <section style={{ padding: '3rem 0', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
-        <div className="section-container" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
-            <p className="eyebrow" style={{ marginBottom: '0.25rem' }}>Currency note</p>
-            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+      <section className="py-12 border-y border-[var(--border)]">
+        <motion.div className="section-container flex flex-wrap gap-8 items-center justify-between" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <motion.div variants={fadeUpItem}>
+            <p className="eyebrow mb-1">Currency note</p>
+            <p className="font-sans text-[0.9rem] text-[var(--text-muted)] max-w-3xl">
               USD pricing is the baseline. LKR equivalent quoted at the prevailing rate on the day of invoicing. All rates are approximate — final cost is confirmed in the project proposal.
             </p>
-          </div>
-          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)', flexShrink: 0 }}>
+          </motion.div>
+          <motion.p variants={fadeUpItem} className="font-mono text-[11px] text-[var(--text-muted)] flex-shrink-0">
             Colombo-based · Remote-friendly
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </section>
 
       {/* Panel 6: CTA */}
-      <section style={{ padding: '5rem 0' }}>
-        <div className="section-container">
-          <div className="fade-up" style={{
-            textAlign: 'center', padding: '4rem 2rem',
-            borderRadius: 'var(--radius-curve)',
-            background: 'var(--text)', color: 'var(--white-locked)',
-          }}>
-            <p className="eyebrow" style={{ marginBottom: '0.75rem', color: 'var(--white-locked-10)' }}>Scoped and ready?</p>
-            <h2 className="font-display" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', marginBottom: '1rem', color: 'var(--white-locked)' }}>
+      <section className="py-20">
+        <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <motion.div variants={fadeUpItem} className="text-center p-16 md:p-24 rounded-[var(--radius-curve)] bg-[var(--text)] text-[var(--bg)]">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50 mb-3">Scoped and ready?</p>
+            <h2 className="font-display text-4xl md:text-5xl mb-8 text-white">
               Let's write up a brief.
             </h2>
-            <Link
-              to="/contact"
-              className="btn-liquid"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                background: 'var(--orange)', color: 'var(--white-locked)',
-                fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700,
-                textTransform: 'uppercase', letterSpacing: '0.1em',
-                textDecoration: 'none', padding: '0.875rem 2rem', marginTop: '1rem',
-              }}
-            >
-              Contact Us <ArrowRightIcon className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <PillButton as="a" href="https://wa.me/94768325949" target="_blank" rel="noopener noreferrer" variant="orange">
+                <WhatsAppIcon className="w-4 h-4 mr-2" /> WhatsApp Us
+              </PillButton>
+              <PillButton as="link" to="/contact" variant="neutral" style={{ background: 'var(--white-locked-10)', color: 'var(--white-locked)', borderColor: 'rgba(255,255,255,0.2)' }}>
+                Contact Form
+              </PillButton>
+            </div>
+          </motion.div>
+        </motion.div>
       </section>
     </div>
   );
