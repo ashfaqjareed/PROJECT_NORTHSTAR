@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { PROJECTS } from '../data/projects';
 import { ArrowLeftIcon, ArrowRightIcon, StarIcon, CodeIcon, ClockIcon, LinkIcon } from '../icons';
 import PillButton from '../components/PillButton';
-import { SiReact, SiVite, SiTailwindcss, SiFirebase, SiFigma, SiNodedotjs, SiVercel, SiTypescript, SiNextdotjs, SiOpenai } from 'react-icons/si';
+import { SiReact, SiVite, SiTailwindcss, SiFirebase, SiFigma, SiNodedotjs, SiVercel, SiTypescript, SiNextdotjs, SiOpenaigym } from 'react-icons/si';
 
 const ICONS = {
   'React': SiReact,
@@ -18,7 +18,7 @@ const ICONS = {
   'Vercel': SiVercel,
   'TypeScript': SiTypescript,
   'Next.js': SiNextdotjs,
-  'OpenAI API': SiOpenai,
+  'OpenAI API': SiOpenaigym,
 };
 
 const fadeUpContainer = {
