@@ -1,30 +1,38 @@
-// src/components/Logo.jsx — variant-based logo with swappable SVG assets
+// src/components/Logo.jsx — real PNG logos from /public
 import React from 'react';
-import logoHeader from '../assets/logo-header.svg';
-import logoFooter from '../assets/logo-footer.svg';
 
-export default function Logo({ variant = 'header', className = '' }) {
-  if (variant === 'favicon') {
-    // Favicon is referenced directly via <link> in index.html — /public/favicon.svg
-    // This render is for in-app usage if ever needed
+export default function Logo({ variant = 'header', className = '', style = {} }) {
+  if (variant === 'footer') {
+    // Lime N-star icon for footer
     return (
       <img
-        src="/favicon.svg"
+        src="/logo-icon.png"
         alt="NorthStarDevs"
         className={className}
-        style={{ width: '1em', height: '1em' }}
+        style={{ height: '80px', width: 'auto', objectFit: 'contain', ...style }}
       />
     );
   }
 
-  const src = variant === 'footer' ? logoFooter : logoHeader;
+  if (variant === 'icon') {
+    // Lime N-star icon (small, for favicon use in-app)
+    return (
+      <img
+        src="/logo-icon.png"
+        alt="NorthStarDevs"
+        className={className}
+        style={{ height: '36px', width: 'auto', objectFit: 'contain', ...style }}
+      />
+    );
+  }
 
+  // Default: header — orange NORTHSTARDEVS wordmark
   return (
     <img
-      src={src}
+      src="/logo-header.png"
       alt="NorthStarDevs"
       className={className}
-      style={{ height: '24px', width: 'auto' }}
+      style={{ height: '36px', width: 'auto', objectFit: 'contain', ...style }}
     />
   );
 }

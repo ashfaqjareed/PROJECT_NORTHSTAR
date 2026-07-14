@@ -1,4 +1,4 @@
-// src/components/Layout.jsx
+// src/components/Layout.jsx — no PreFooter (removed as requested)
 import React, { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -10,7 +10,6 @@ export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
 
-  // Scroll to top on route change
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
@@ -22,9 +21,7 @@ export default function Layout() {
       flexDirection: 'column',
       background: 'var(--bg)',
       color: 'var(--text)',
-      transition: 'background-color 0.3s, color 0.3s',
     }}>
-      {/* Subtle grid texture */}
       <div className="page-grid-texture" aria-hidden="true" />
 
       <Header onOpenSidebar={() => setSidebarOpen(true)} />

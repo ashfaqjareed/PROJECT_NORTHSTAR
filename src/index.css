@@ -80,6 +80,7 @@
 html { scroll-behavior: smooth; }
 
 body {
+  zoom: 0.9;
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
@@ -336,6 +337,14 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 900; letter-spacing:
   letter-spacing: 0.1em;
   font-weight: 700;
   color: var(--text-muted);
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .section-container {

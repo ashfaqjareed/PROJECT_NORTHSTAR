@@ -35,18 +35,17 @@ export default function PillButton({
     position: 'relative',
     overflow: 'hidden',
     borderRadius: '999px',
-    fontFamily: 'var(--font-mono)',
-    fontSize: '10px',
-    textTransform: 'uppercase',
-    letterSpacing: '0.1em',
-    fontWeight: 700,
+    fontFamily: 'var(--font-sans)',
+    fontSize: '1rem',
+    fontWeight: 500,
     textDecoration: 'none',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '0.75rem 1.75rem',
+    padding: '1rem 2.5rem',
     cursor: 'pointer',
     border: 'none',
+    transition: 'all 0.3s ease',
     ...getStyles()
   };
 
@@ -58,15 +57,17 @@ export default function PillButton({
     delete props.href;
   }
 
+  const { style: customStyle, ...restProps } = props;
+
   return (
     <Component
-      style={baseStyles}
+      style={{ ...baseStyles, ...customStyle }}
       className={className}
       whileHover="hover"
       whileTap={{ scale: 0.97 }}
-      {...props}
+      {...restProps}
     >
-      <span style={{ position: 'relative', zIndex: 2 }}>{children}</span>
+      <span style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center' }}>{children}</span>
       
       {/* Shine effect overlay */}
       <motion.div

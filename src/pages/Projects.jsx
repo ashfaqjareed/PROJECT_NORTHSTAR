@@ -45,10 +45,11 @@ export default function Projects() {
         </motion.div>
       </section>
 
-      {/* Panel 2: Case study grid */}
+      {/* Panel 2: Case study slider */}
       <section className="pb-24">
-        <div className="section-container">
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="section-container relative">
+          {/* Horizontal scroll container */}
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar" style={{ scrollBehavior: 'smooth' }}>
             <AnimatePresence mode="popLayout">
               {filteredProjects.length > 0 ? filteredProjects.map((project, i) => (
                 <motion.div
@@ -58,27 +59,65 @@ export default function Projects() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
-                  className={`group bg-[var(--bg)] border border-[var(--border)] p-8 md:p-10 flex flex-col hover:border-[var(--orange)] transition-colors ${i % 3 === 0 ? 'bento-card-asym' : 'rounded-[32px]'}`}
+                  className="group relative min-w-[320px] md:min-w-[400px] snap-center bg-[var(--bg)] border border-[var(--border)] p-8 md:p-10 flex flex-col hover:border-[var(--orange)] transition-all duration-300 rounded-[32px] overflow-hidden"
+                  style={{ flex: '0 0 auto' }}
                 >
                   <div className="flex justify-between items-start mb-6">
                     <span className={`font-mono text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full ${project.type === 'Client Project' ? 'bg-[var(--orange)] text-[var(--white-locked)]' : 'border border-[var(--border)] text-[var(--text-muted)]'}`}>
                       {project.type}
                     </span>
-                    <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--text-muted)] flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${project.status === 'Live' ? 'bg-[var(--lime)]' : project.status === 'In Development' ? 'bg-[var(--orange)]' : 'bg-[var(--text-muted)]'}`} />
+                    
+                    {/* Live Pulse Status */}
+                    <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-widest text-[var(--text-muted)]">
+                      <span className="relative flex h-3 w-3">
+                        <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+                          project.status === 'Live' ? 'bg-green-500' :
+                          project.status === 'Maintenance' ? 'bg-yellow-500' : 'bg-red-500'
+                        }`}></span>
+                        <span className={`relative inline-flex rounded-full h-3 w-3 ${
+                          project.status === 'Live' ? 'bg-green-500' :
+                          project.status === 'Maintenance' ? 'bg-yellow-500' : 'bg-red-500'
+                        }`}></span>
+                      </span>
                       {project.status}
-                    </span>
+                    </div>
                   </div>
                   
                   <h3 className="font-display text-2xl md:text-3xl mb-3 group-hover:text-[var(--orange)] transition-colors">
-                    <Link to={`/projects/${project.slug}`} className="before:absolute before:inset-0">
+                    <Link to={`/projects/${project.slug}`} className="before:absolute before:inset-0 z-10">
                       {project.name}
                     </Link>
                   </h3>
                   
-                  <p className="font-sans text-[var(--text-muted)] text-[0.95rem] leading-relaxed mb-8 flex-1">
+                  <p className="font-sans text-[var(--text-muted)] text-[0.95rem] leading-relaxed mb-4 flex-1">
                     {project.description}
                   </p>
+
+                  {/* Expanded info on hover */}
+                  <div className="max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 transition-all duration-500 overflow-hidden mb-4 relative z-20">
+                    <div className="flex flex-col gap-2 text-sm text-[var(--text)] font-sans">
+                      {project.liveUrl && (
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-xs text-[var(--text-muted)]">URL:</span>
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--orange)] truncate">
+                            {project.liveUrl.replace('https://', '')}
+                          </a>
+                        </div>
+                      )}
+                      {project.github && (
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-xs text-[var(--text-muted)]">GitHub:</span>
+                          <a href={`https://github.com/${project.github.owner}/${project.github.repo}`} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--orange)] truncate">
+                            {project.github.owner}/{project.github.repo}
+                          </a>
+                        </div>
+                      )}
+                      <div className="flex items-center gap-2 mt-1">
+                        <StarIcon className="w-4 h-4 text-yellow-500" />
+                        <span className="font-mono text-xs font-bold">{project.stars || 0} Stars</span>
+                      </div>
+                    </div>
+                  </div>
                   
                   <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-[var(--border)]">
                     {project.tags.slice(0, 3).map(tag => (
@@ -96,7 +135,7 @@ export default function Projects() {
               )) : (
                 <motion.div
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                  className="col-span-full py-20 text-center border border-dashed border-[var(--border)] rounded-[32px]"
+                  className="w-full py-20 text-center border border-dashed border-[var(--border)] rounded-[32px]"
                 >
                   <CodeIcon className="w-8 h-8 text-[var(--text-muted)] mx-auto mb-4" />
                   <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
@@ -105,7 +144,10 @@ export default function Projects() {
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.div>
+          </div>
+          {/* Fading edges for carousel */}
+          <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-[var(--bg)] to-transparent pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-[var(--bg)] to-transparent pointer-events-none" />
         </div>
       </section>
 

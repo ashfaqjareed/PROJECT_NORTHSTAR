@@ -1,67 +1,59 @@
-// src/components/Sidebar.jsx
+// src/components/Sidebar.jsx — Secondary nav only + WhatsApp pill (no dark mode toggle)
 import React, { useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
-import { XIcon, SunIcon, MoonIcon, WhatsAppIcon, MailIcon } from '../icons';
+import { XIcon, WhatsAppIcon, ArrowRightIcon } from '../icons';
 
-const STAGGER = 0.035;
+const STAGGER = 0.03;
 
-const TextRoll = ({ children, className }) => (
+const TextRoll = ({ children, className = '' }) => (
   <motion.span
     initial="initial"
     whileHover="hovered"
     className={`relative block overflow-hidden ${className}`}
-    style={{ lineHeight: 0.9 }}
+    style={{ lineHeight: 0.95 }}
   >
     <div>
-      {children.split("").map((l, i) => (
+      {children.split('').map((l, i) => (
         <motion.span
           key={i}
-          variants={{ initial: { y: 0 }, hovered: { y: "-100%" } }}
-          transition={{ ease: "easeInOut", delay: STAGGER * i }}
+          variants={{ initial: { y: 0 }, hovered: { y: '-100%' } }}
+          transition={{ ease: 'easeInOut', delay: STAGGER * i }}
           className="inline-block"
         >
-          {l === " " ? "\u00A0" : l}
+          {l === ' ' ? '\u00A0' : l}
         </motion.span>
       ))}
     </div>
-    <div className="absolute inset-0">
-      {children.split("").map((l, i) => (
+    <div style={{ position: 'absolute', inset: 0 }}>
+      {children.split('').map((l, i) => (
         <motion.span
           key={i}
-          variants={{ initial: { y: "100%" }, hovered: { y: 0 } }}
-          transition={{ ease: "easeInOut", delay: STAGGER * i }}
+          variants={{ initial: { y: '100%' }, hovered: { y: 0 } }}
+          transition={{ ease: 'easeInOut', delay: STAGGER * i }}
           className="inline-block"
+          style={{ color: 'var(--orange)' }}
         >
-          {l === " " ? "\u00A0" : l}
+          {l === ' ' ? '\u00A0' : l}
         </motion.span>
       ))}
     </div>
   </motion.span>
 );
 
-const ALL_LINKS = [
-  { to: '/',            label: 'Home' },
-  { to: '/services',    label: 'Services' },
-  { to: '/projects',    label: 'Projects' },
-  { to: '/pricing',     label: 'Pricing' },
-  { to: '/about',       label: 'About Us' },
-  { to: '/contact',     label: 'Get a Quote' },
-  { to: '/faq',         label: 'FAQ' },
-  { to: '/process',     label: 'Process' },
-  { to: '/support',     label: 'Support' },
+// Pages not in the primary top-bar nav
+const NAV_ITEMS = [
+  { name: 'About Us', href: '/about'   },
+  { name: 'Contact',  href: '/contact' },
+  { name: 'Pricing',  href: '/pricing' },
+  { name: 'Privacy',  href: '/privacy' },
+  { name: 'Terms',    href: '/terms'   },
 ];
 
 export default function Sidebar({ isOpen, onClose }) {
-  const { theme, toggleTheme } = useTheme();
-
-  // Trap focus and handle Escape
   useEffect(() => {
     if (!isOpen) return;
-    const handleKey = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
+    const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', handleKey);
     document.body.style.overflow = 'hidden';
     return () => {
@@ -79,158 +71,141 @@ export default function Sidebar({ isOpen, onClose }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="sidebar-overlay open"
-            style={{ pointerEvents: 'auto' }}
+            transition={{ duration: 0.25 }}
             onClick={onClose}
             aria-hidden="true"
+            style={{
+              position: 'fixed', inset: 0,
+              background: 'rgba(0,0,0,0.5)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              zIndex: 99,
+            }}
           />
 
-          {/* Panel */}
+          {/* Drawer */}
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="sidebar-panel open"
+            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
-            aria-expanded={isOpen}
+            style={{
+              position: 'fixed', top: 0, right: 0, bottom: 0,
+              width: 'min(88vw, 360px)',
+              background: 'var(--bg)',
+              borderLeft: '1px solid var(--border)',
+              zIndex: 100,
+              display: 'flex', flexDirection: 'column',
+              boxShadow: '-8px 0 40px rgba(0,0,0,0.15)',
+            }}
           >
-            {/* Header */}
+            {/* Top bar */}
             <div style={{
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
               padding: '1.25rem 1.5rem',
               borderBottom: '1px solid var(--border)',
             }}>
-              <span className="eyebrow">Navigation</span>
-              <button
+              <span style={{
+                fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 800,
+                textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--text-muted)',
+              }}>Menu</span>
+
+              <motion.button
                 onClick={onClose}
-                aria-label="Close navigation"
+                aria-label="Close menu"
+                whileHover={{ scale: 1.05, rotate: 90 }}
+                whileTap={{ scale: 0.95 }}
                 style={{
                   background: 'var(--bg-alt)', border: '1px solid var(--border)',
-                  borderRadius: '8px', padding: '6px', cursor: 'pointer',
-                  color: 'var(--text)', display: 'flex',
+                  borderRadius: '999px', padding: '8px',
+                  cursor: 'pointer', color: 'var(--text)', display: 'flex',
                 }}
               >
                 <XIcon className="w-5 h-5" />
-              </button>
+              </motion.button>
             </div>
 
-            {/* Nav links */}
-            <nav style={{ flex: 1, overflowY: 'auto', padding: '1.5rem' }}>
-              <ul className="flex min-h-full w-full flex-col items-center justify-center gap-4 py-3 m-0 p-0 list-none">
-                {ALL_LINKS.map(({ to, label }) => (
-                  <li key={to} className="relative flex cursor-pointer flex-col items-center">
+            {/* Nav links — centered, bold, large */}
+            <nav style={{
+              flex: 1, overflowY: 'auto',
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'center',
+              padding: '2rem 1.5rem',
+            }}>
+              <ul style={{
+                listStyle: 'none', margin: 0, padding: 0,
+                display: 'flex', flexDirection: 'column',
+                alignItems: 'center', gap: '0.25rem', width: '100%',
+              }}>
+                {NAV_ITEMS.map((item) => (
+                  <li key={item.href} style={{ width: '100%', textAlign: 'center' }}>
                     <NavLink
-                      to={to}
+                      to={item.href}
                       onClick={onClose}
-                      end={to === '/'}
-                      className={({ isActive }) => (isActive ? 'text-[var(--orange)]' : 'text-[var(--text)]')}
-                      style={{ textDecoration: 'none' }}
+                      end={item.href === '/'}
+                      style={{ textDecoration: 'none', display: 'block', padding: '0.5rem 0' }}
                     >
-                      <TextRoll className="text-3xl font-display uppercase tracking-tight lg:text-4xl">
-                        {label}
-                      </TextRoll>
+                      {({ isActive }) => (
+                        <TextRoll
+                          className={`font-display ${isActive ? 'text-[var(--orange)]' : 'text-[var(--text)]'}`}
+                          style={{
+                            fontSize: '2.5rem',
+                            fontWeight: 900,
+                            letterSpacing: '-0.03em',
+                            textTransform: 'uppercase',
+                          }}
+                        >
+                          {item.name}
+                        </TextRoll>
+                      )}
                     </NavLink>
                   </li>
                 ))}
               </ul>
             </nav>
 
-            {/* Bottom controls */}
+            {/* Bottom — WhatsApp pill only */}
             <div style={{
               borderTop: '1px solid var(--border)',
               padding: '1.5rem',
-              display: 'flex', flexDirection: 'column', gap: '0.75rem',
             }}>
-              {/* Theme toggle */}
-              <button
-                onClick={toggleTheme}
-                style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  padding: '0.75rem 1rem',
-                  background: 'var(--bg-alt)',
-                  border: '1px solid var(--border)',
-                  borderRadius: '12px',
-                  cursor: 'pointer',
-                  color: 'var(--text)',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '10px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  fontWeight: 700,
-                }}
-              >
-                <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-                {theme === 'dark' ? <SunIcon className="w-4 h-4" /> : <MoonIcon className="w-4 h-4" />}
-              </button>
-
-              {/* WhatsApp */}
-              <a
+              <motion.a
                 href="https://wa.me/94768325949"
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.02, boxShadow: '0 12px 32px rgba(37,211,102,0.45)' }}
+                whileTap={{ scale: 0.97 }}
                 style={{
-                  display: 'flex', alignItems: 'center', gap: '0.75rem',
-                  padding: '0.75rem 1rem',
-                  background: 'var(--whatsapp-bg)',
-                  border: '1px solid var(--whatsapp-border)',
-                  borderRadius: '12px',
-                  color: 'var(--whatsapp-brand)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem',
+                  padding: '1rem 1.75rem',
+                  background: '#25D366',
+                  borderRadius: '999px',
+                  color: 'white',
                   textDecoration: 'none',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.875rem',
-                  fontWeight: 500,
+                  fontFamily: 'var(--font-sans)', fontSize: '1rem', fontWeight: 700,
+                  boxShadow: '0 4px 16px rgba(37,211,102,0.3)',
+                  width: '100%',
+                  overflow: 'hidden',
+                  position: 'relative',
                 }}
               >
+                {/* Shine sweep */}
+                <motion.div
+                  initial={{ x: '-100%', opacity: 0 }}
+                  whileHover={{ x: '200%', opacity: 1, transition: { duration: 0.5 } }}
+                  style={{
+                    position: 'absolute', top: 0, left: 0, width: '50%', height: '100%',
+                    background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%)',
+                    pointerEvents: 'none',
+                  }}
+                />
                 <WhatsAppIcon className="w-5 h-5" />
                 <span>Message on WhatsApp</span>
-              </a>
-
-              {/* Email */}
-              <a
-                href="mailto:northstardevs1@gmail.com"
-                style={{
-                  display: 'flex', alignItems: 'center', gap: '0.75rem',
-                  padding: '0.75rem 1rem',
-                  background: 'var(--bg-alt)',
-                  border: '1px solid var(--border)',
-                  borderRadius: '12px',
-                  color: 'var(--text)',
-                  textDecoration: 'none',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.875rem',
-                  fontWeight: 500,
-                  transition: 'border-color 0.2s',
-                }}
-              >
-                <MailIcon className="w-5 h-5" />
-                <span>northstardevs1@gmail.com</span>
-              </a>
-
-              {/* CTA */}
-              <Link
-                to="/contact"
-                onClick={onClose}
-                className="btn-liquid"
-                style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: 'var(--orange)',
-                  color: 'var(--white-locked)',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '10px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  fontWeight: 700,
-                  textDecoration: 'none',
-                  padding: '0.875rem 1.5rem',
-                  marginTop: '0.25rem',
-                }}
-              >
-                Get a Quote
-              </Link>
+                <ArrowRightIcon className="w-4 h-4" style={{ marginLeft: '0.25rem' }} />
+              </motion.a>
             </div>
           </motion.div>
         </>
