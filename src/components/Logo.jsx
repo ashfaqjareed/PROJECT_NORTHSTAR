@@ -8,7 +8,7 @@ export default function Logo({ variant = 'header', className = '', style = {} })
         src="/logo-icon.png"
         alt="NorthStarDevs"
         className={className}
-        style={{ height: '100px', width: 'auto', objectFit: 'contain', ...style }}
+        style={{ height: '80px', width: 'auto', objectFit: 'contain', ...style }}
       />
     );
   }
@@ -19,7 +19,7 @@ export default function Logo({ variant = 'header', className = '', style = {} })
         src="/logo-icon.png"
         alt="NorthStarDevs"
         className={className}
-        style={{ height: '44px', width: 'auto', objectFit: 'contain', ...style }}
+        style={{ height: '80px', width: 'auto', objectFit: 'contain', ...style }}
       />
     );
   }
@@ -27,10 +27,10 @@ export default function Logo({ variant = 'header', className = '', style = {} })
   // header — orange NORTHSTARDEVS wordmark, bigger
   return (
     <img
-      src="/logo-header.png"
+      src="/NDS1.png"
       alt="NorthStarDevs"
       className={className}
-      style={{ height: '48px', width: 'auto', objectFit: 'contain', ...style }}
+      style={{ height: '280px', width: 'auto', objectFit: 'contain', ...style }}
     />
   );
 }

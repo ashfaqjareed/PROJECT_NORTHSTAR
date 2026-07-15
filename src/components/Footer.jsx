@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaXTwitter, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa6';
+import { FaXTwitter, FaInstagram, FaLinkedin, FaGithub, FaWhatsapp } from 'react-icons/fa6';
 import Logo from './Logo';
 
 const NAV_LINKS = [
@@ -21,10 +21,11 @@ const LEGAL = [
 ];
 
 const SOCIALS = [
-  { Icon: FaXTwitter, href: '#', label: 'Twitter / X'  },
-  { Icon: FaInstagram,href: '#', label: 'Instagram'    },
-  { Icon: FaLinkedin, href: '#', label: 'LinkedIn'     },
-  { Icon: FaGithub,   href: '#', label: 'GitHub'       },
+  { Icon: FaXTwitter,  href: 'https://twitter.com',   label: 'Twitter'   },
+  { Icon: FaInstagram, href: 'https://instagram.com', label: 'Instagram' },
+  { Icon: FaLinkedin,  href: 'https://linkedin.com',  label: 'LinkedIn'  },
+  { Icon: FaGithub,    href: 'https://github.com',    label: 'GitHub'    },
+  { Icon: FaWhatsapp,  href: 'https://wa.me/94768325949', label: 'WhatsApp' },
 ];
 
 export default function Footer() {
@@ -158,21 +159,30 @@ export default function Footer() {
         {/* Large wordmark + copyright */}
         <div style={{ borderTop: '1px solid rgba(23,23,23,0.2)', paddingTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
           
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(2rem, 5vw, 4rem)',
-            fontWeight: 900,
-            background: 'linear-gradient(to right, #00f2fe, #4facfe, #00f2fe)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundSize: '200% auto',
-            animation: 'shine 3s linear infinite',
-            margin: 0,
-            lineHeight: 1
-          }}>
+          <Logo variant="footer" />
+          
+          <motion.h2 
+            className="hover-gradient-text"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(2rem, 5vw, 4rem)',
+              fontWeight: 900,
+              margin: 0,
+              lineHeight: 1,
+              color: 'rgba(253,246,238,0.7)',
+              transition: 'color 0.3s ease'
+            }}
+          >
             NORTHSTARDEVS
-          </h2>
+          </motion.h2>
           <style>{`
+            .hover-gradient-text:hover {
+              color: transparent !important;
+              background: linear-gradient(to right, #00f2fe, #4facfe, #00f2fe);
+              -webkit-background-clip: text;
+              background-size: 200% auto;
+              animation: shine 2s linear infinite;
+            }
             @keyframes shine {
               to {
                 background-position: 200% center;

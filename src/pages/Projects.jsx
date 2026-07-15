@@ -45,9 +45,52 @@ export default function Projects() {
         </motion.div>
       </section>
 
-      {/* Panel 2: Case study slider */}
+      {/* Panel 2: Fun Slideshow for Featured Projects */}
+      <section className="pb-16">
+        <div className="section-container relative">
+          <motion.div variants={fadeUpContainer} initial="hidden" animate="show" className="mb-6">
+            <h2 className="font-display text-2xl md:text-3xl">Featured Showcase</h2>
+            <p className="font-sans text-[var(--text-muted)]">Swipe through some of our best work.</p>
+          </motion.div>
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar" style={{ scrollBehavior: 'smooth' }}>
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.slice(0, 6).map((project, i) => (
+                <motion.div
+                  key={'slide-' + project.slug}
+                  layout
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="group relative min-w-[320px] md:min-w-[480px] h-[300px] snap-center rounded-[32px] overflow-hidden flex flex-col justify-end p-8 border border-[var(--border)] hover:border-[var(--orange)] transition-all cursor-pointer"
+                  style={{ flex: '0 0 auto', background: 'var(--bg-alt)' }}
+                >
+                  <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity bg-gradient-to-t from-black/80 to-transparent z-0" />
+                  
+                  <div className="relative z-10">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-[var(--orange)] text-white rounded-full mb-3 inline-block">
+                      {project.type}
+                    </span>
+                    <h3 className="font-display text-3xl text-white mb-2">{project.name}</h3>
+                    <p className="font-sans text-white/80 text-sm line-clamp-2 mb-4">{project.description}</p>
+                    
+                    <PillButton as="link" to={`/projects/${project.slug}`} variant="orange" style={{ padding: '0.4rem 1rem', fontSize: '0.8rem' }}>
+                      View Details
+                    </PillButton>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+          <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-[var(--bg)] to-transparent pointer-events-none" />
+        </div>
+      </section>
+
+      {/* Panel 3: Full Grid */}
       <section className="pb-24">
         <div className="section-container relative">
+          <motion.h2 variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }} className="font-display text-2xl md:text-3xl mb-8">
+            All Projects Directory
+          </motion.h2>
           {/* Grid container */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatePresence mode="popLayout">

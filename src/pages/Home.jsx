@@ -318,29 +318,29 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch pt-4">
             <motion.div variants={fadeUpItem}>
               <PricingPill 
-                tier="Full Launch" 
-                price="From $1,500" 
-                desc="Complete web application with Firestore backend and brand system." 
-                features={['Multi-page React app', 'Firestore backend', 'Dark/light mode', '4 revision rounds']}
+                tier="Web Maintenance" 
+                price="From $150/mo" 
+                desc="Keep your platform fast, secure, and consistently updated." 
+                features={['Security patches', 'Uptime monitoring', 'Minor content updates', 'Monthly report']}
+                accent="lime"
+              />
+            </motion.div>
+            <motion.div variants={fadeUpItem} className="md:-translate-y-4">
+              <PricingPill 
+                tier="Growth Plan" 
+                price="From $500" 
+                desc="The most affordable launchpad for startups. High-conversion landing page." 
+                features={['Single-page layout', 'Mobile-responsive', 'Performance optimised', '2 revision rounds']}
                 accent="orange"
                 featured={true}
               />
             </motion.div>
             <motion.div variants={fadeUpItem}>
               <PricingPill 
-                tier="Growth" 
-                price="From $500" 
-                desc="Precision landing page or brand asset. 5-day delivery." 
-                features={['Single-page layout', 'Mobile-responsive', 'Performance optimised', '2 revision rounds']}
-                accent="lime"
-              />
-            </motion.div>
-            <motion.div variants={fadeUpItem}>
-              <PricingPill 
-                tier="Custom Sprints" 
-                price="Let's talk" 
-                desc="Ongoing engineering partnership — feature builds and SLA-backed support." 
-                features={['Monthly scope', 'Priority support', 'Weekly check-ins', 'Documented SLA']}
+                tier="Full Platform" 
+                price="From $1,500" 
+                desc="Complete web application with a scalable backend and full brand system." 
+                features={['Multi-page React app', 'Firestore backend', 'Dark/light mode', '4 revision rounds']}
                 accent="lime"
               />
             </motion.div>

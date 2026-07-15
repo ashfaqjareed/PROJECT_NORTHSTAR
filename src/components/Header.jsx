@@ -51,12 +51,13 @@ export default function Header({ onOpenSidebar }) {
       >
         <motion.div
           animate={{
-            background: scrolled ? 'var(--orange)' : 'var(--lime)',
+            background: scrolled ? 'var(--lime)' : 'var(--bg)',
             borderBottomLeftRadius: scrolled ? '24px' : '0px',
             borderBottomRightRadius: scrolled ? '24px' : '0px',
             boxShadow: scrolled
-              ? '0 8px 40px rgba(254,107,0,0.25), 0 2px 8px rgba(0,0,0,0.08)'
+              ? '0 8px 40px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.05)'
               : 'none',
+            borderBottom: scrolled ? 'none' : '1px solid var(--border)'
           }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
           style={{
@@ -65,35 +66,35 @@ export default function Header({ onOpenSidebar }) {
             width: '100%',
           }}
         >
-          {/* Noise overlay */}
-          <div className="noise-overlay" style={{ mixBlendMode: 'multiply' }} />
-
           <div className="section-container" style={{ position: 'relative', zIndex: 2 }}>
             <div style={{
-              height: scrolled ? '68px' : '80px',
+              height: scrolled ? '68px' : '90px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
               gap: '1rem',
               transition: 'height 0.4s ease',
+              position: 'relative'
             }}>
               {/* Logo — bigger, always visible */}
-              <Link to="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
+              <Link to="/" style={{ textDecoration: 'none', flexShrink: 0, zIndex: 10 }}>
                 <Logo variant="header" />
               </Link>
 
-              {/* Desktop centred nav */}
+              {/* Desktop strictly centred nav */}
               <nav style={{
                 display: 'none',
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
+                position: 'absolute',
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 5
               }} className="hdr-nav">
                 <AnimatedTabs tabs={tabs} />
               </nav>
 
               {/* Right side: theme + menu */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexShrink: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexShrink: 0, zIndex: 10 }}>
                 <button
                   onClick={toggleTheme}
                   aria-label="Toggle theme"

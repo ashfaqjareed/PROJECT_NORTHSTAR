@@ -142,21 +142,23 @@ export default function Sidebar({ isOpen, onClose }) {
                       to={item.href}
                       onClick={onClose}
                       end={item.href === '/'}
-                      style={{ textDecoration: 'none', display: 'block', padding: '0.65rem 0' }}
+                      style={{ textDecoration: 'none', display: 'block', padding: '1rem 0' }}
                     >
                       {({ isActive }) => (
-                        <TextRoll
+                        <motion.span
+                          whileHover={{ scale: 1.05, color: 'var(--orange)' }}
                           style={{
+                            display: 'inline-block',
                             fontFamily: 'var(--font-display)',
                             fontWeight: 900,
-                            fontSize: 'clamp(3rem, 10vw, 5rem)',
-                            letterSpacing: '-0.03em',
-                            textTransform: 'uppercase',
+                            fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
+                            letterSpacing: '-0.02em',
                             color: isActive ? 'var(--orange)' : 'var(--text)',
+                            transition: 'color 0.2s ease',
                           }}
                         >
                           {item.name}
-                        </TextRoll>
+                        </motion.span>
                       )}
                     </NavLink>
                   </li>
