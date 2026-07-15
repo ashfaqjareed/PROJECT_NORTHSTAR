@@ -15,8 +15,9 @@ const NAV_LINKS = [
 ];
 
 const LEGAL = [
-  { to: '/privacy', label: 'Privacy Policy'  },
+  { to: '/privacy', label: 'Privacy Policy'   },
   { to: '/terms',   label: 'Terms of Service' },
+  { to: '/contact', label: 'Support'          },
 ];
 
 const SOCIALS = [
@@ -111,14 +112,14 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Sitemap */}
+          {/* Pages */}
           <div>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 700, color: 'rgba(23,23,23,0.7)', marginBottom: '1.25rem' }}>
-              Sitemap
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 700, color: 'rgba(23,23,23,0.7)', marginBottom: '1.25rem' }}>
+              Pages
             </p>
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {NAV_LINKS.map(({ to, label }) => (
-                <li key={to}>
+                <li key={to + label}>
                   <Link
                     to={to}
                     style={linkBase}
@@ -156,7 +157,28 @@ export default function Footer() {
 
         {/* Large wordmark + copyright */}
         <div style={{ borderTop: '1px solid rgba(23,23,23,0.2)', paddingTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
-          <Logo variant="footer" />
+          
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2rem, 5vw, 4rem)',
+            fontWeight: 900,
+            background: 'linear-gradient(to right, #00f2fe, #4facfe, #00f2fe)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundSize: '200% auto',
+            animation: 'shine 3s linear infinite',
+            margin: 0,
+            lineHeight: 1
+          }}>
+            NORTHSTARDEVS
+          </h2>
+          <style>{`
+            @keyframes shine {
+              to {
+                background-position: 200% center;
+              }
+            }
+          `}</style>
 
           <p style={{
             fontFamily: 'var(--font-mono)', fontSize: '12px', textTransform: 'uppercase',

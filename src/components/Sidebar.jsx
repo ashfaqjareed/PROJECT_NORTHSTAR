@@ -1,17 +1,16 @@
-// src/components/Sidebar.jsx — Secondary nav only + WhatsApp pill (no dark mode toggle)
+// src/components/Sidebar.jsx — bigger links, no dark mode toggle, WhatsApp pill
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { XIcon, WhatsAppIcon, ArrowRightIcon } from '../icons';
 
-const STAGGER = 0.03;
+const STAGGER = 0.025;
 
-const TextRoll = ({ children, className = '' }) => (
+const TextRoll = ({ children }) => (
   <motion.span
     initial="initial"
     whileHover="hovered"
-    className={`relative block overflow-hidden ${className}`}
-    style={{ lineHeight: 0.95 }}
+    style={{ position: 'relative', display: 'block', overflow: 'hidden', lineHeight: 1.1 }}
   >
     <div>
       {children.split('').map((l, i) => (
@@ -19,7 +18,7 @@ const TextRoll = ({ children, className = '' }) => (
           key={i}
           variants={{ initial: { y: 0 }, hovered: { y: '-100%' } }}
           transition={{ ease: 'easeInOut', delay: STAGGER * i }}
-          className="inline-block"
+          style={{ display: 'inline-block' }}
         >
           {l === ' ' ? '\u00A0' : l}
         </motion.span>
@@ -31,8 +30,7 @@ const TextRoll = ({ children, className = '' }) => (
           key={i}
           variants={{ initial: { y: '100%' }, hovered: { y: 0 } }}
           transition={{ ease: 'easeInOut', delay: STAGGER * i }}
-          className="inline-block"
-          style={{ color: 'var(--orange)' }}
+          style={{ display: 'inline-block', color: 'var(--orange)' }}
         >
           {l === ' ' ? '\u00A0' : l}
         </motion.span>
@@ -41,7 +39,6 @@ const TextRoll = ({ children, className = '' }) => (
   </motion.span>
 );
 
-// Pages not in the primary top-bar nav
 const NAV_ITEMS = [
   { name: 'About Us', href: '/about'   },
   { name: 'Contact',  href: '/contact' },
@@ -71,19 +68,18 @@ export default function Sidebar({ isOpen, onClose }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
             onClick={onClose}
             aria-hidden="true"
             style={{
               position: 'fixed', inset: 0,
-              background: 'rgba(0,0,0,0.5)',
+              background: 'rgba(0,0,0,0.55)',
               backdropFilter: 'blur(8px)',
               WebkitBackdropFilter: 'blur(8px)',
               zIndex: 99,
             }}
           />
 
-          {/* Drawer */}
+          {/* Panel */}
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
@@ -91,36 +87,36 @@ export default function Sidebar({ isOpen, onClose }) {
             transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
             role="dialog"
             aria-modal="true"
-            aria-label="Navigation menu"
+            aria-label="Navigation"
             style={{
               position: 'fixed', top: 0, right: 0, bottom: 0,
-              width: 'min(88vw, 360px)',
+              width: 'min(90vw, 380px)',
               background: 'var(--bg)',
               borderLeft: '1px solid var(--border)',
               zIndex: 100,
               display: 'flex', flexDirection: 'column',
-              boxShadow: '-8px 0 40px rgba(0,0,0,0.15)',
+              boxShadow: '-12px 0 48px rgba(0,0,0,0.2)',
             }}
           >
-            {/* Top bar */}
+            {/* Header row */}
             <div style={{
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              padding: '1.25rem 1.5rem',
+              padding: '1.25rem 1.75rem',
               borderBottom: '1px solid var(--border)',
             }}>
               <span style={{
-                fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 800,
+                fontFamily: 'var(--font-mono)', fontSize: '12px', fontWeight: 800,
                 textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--text-muted)',
-              }}>Menu</span>
+              }}>Navigation</span>
 
               <motion.button
                 onClick={onClose}
-                aria-label="Close menu"
-                whileHover={{ scale: 1.05, rotate: 90 }}
-                whileTap={{ scale: 0.95 }}
+                aria-label="Close"
+                whileHover={{ scale: 1.08, rotate: 90 }}
+                whileTap={{ scale: 0.92 }}
                 style={{
                   background: 'var(--bg-alt)', border: '1px solid var(--border)',
-                  borderRadius: '999px', padding: '8px',
+                  borderRadius: '999px', padding: '9px',
                   cursor: 'pointer', color: 'var(--text)', display: 'flex',
                 }}
               >
@@ -128,17 +124,17 @@ export default function Sidebar({ isOpen, onClose }) {
               </motion.button>
             </div>
 
-            {/* Nav links — centered, bold, large */}
+            {/* Links — big, bold, centered */}
             <nav style={{
               flex: 1, overflowY: 'auto',
               display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center',
-              padding: '2rem 1.5rem',
+              padding: '2.5rem 2rem',
             }}>
               <ul style={{
                 listStyle: 'none', margin: 0, padding: 0,
                 display: 'flex', flexDirection: 'column',
-                alignItems: 'center', gap: '0.25rem', width: '100%',
+                alignItems: 'center', gap: '0.2rem', width: '100%',
               }}>
                 {NAV_ITEMS.map((item) => (
                   <li key={item.href} style={{ width: '100%', textAlign: 'center' }}>
@@ -146,16 +142,17 @@ export default function Sidebar({ isOpen, onClose }) {
                       to={item.href}
                       onClick={onClose}
                       end={item.href === '/'}
-                      style={{ textDecoration: 'none', display: 'block', padding: '0.5rem 0' }}
+                      style={{ textDecoration: 'none', display: 'block', padding: '0.65rem 0' }}
                     >
                       {({ isActive }) => (
                         <TextRoll
-                          className={`font-display ${isActive ? 'text-[var(--orange)]' : 'text-[var(--text)]'}`}
                           style={{
-                            fontSize: '2.5rem',
+                            fontFamily: 'var(--font-display)',
                             fontWeight: 900,
+                            fontSize: 'clamp(3rem, 10vw, 5rem)',
                             letterSpacing: '-0.03em',
                             textTransform: 'uppercase',
+                            color: isActive ? 'var(--orange)' : 'var(--text)',
                           }}
                         >
                           {item.name}
@@ -167,11 +164,8 @@ export default function Sidebar({ isOpen, onClose }) {
               </ul>
             </nav>
 
-            {/* Bottom — WhatsApp pill only */}
-            <div style={{
-              borderTop: '1px solid var(--border)',
-              padding: '1.5rem',
-            }}>
+            {/* WhatsApp pill CTA */}
+            <div style={{ padding: '1.5rem 1.75rem', borderTop: '1px solid var(--border)' }}>
               <motion.a
                 href="https://wa.me/94768325949"
                 target="_blank"
@@ -180,19 +174,18 @@ export default function Sidebar({ isOpen, onClose }) {
                 whileTap={{ scale: 0.97 }}
                 style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem',
-                  padding: '1rem 1.75rem',
+                  padding: '1.1rem 2rem',
                   background: '#25D366',
                   borderRadius: '999px',
                   color: 'white',
                   textDecoration: 'none',
-                  fontFamily: 'var(--font-sans)', fontSize: '1rem', fontWeight: 700,
-                  boxShadow: '0 4px 16px rgba(37,211,102,0.3)',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '1.05rem', fontWeight: 700,
+                  boxShadow: '0 4px 20px rgba(37,211,102,0.3)',
                   width: '100%',
-                  overflow: 'hidden',
-                  position: 'relative',
+                  overflow: 'hidden', position: 'relative',
                 }}
               >
-                {/* Shine sweep */}
                 <motion.div
                   initial={{ x: '-100%', opacity: 0 }}
                   whileHover={{ x: '200%', opacity: 1, transition: { duration: 0.5 } }}
@@ -204,7 +197,7 @@ export default function Sidebar({ isOpen, onClose }) {
                 />
                 <WhatsAppIcon className="w-5 h-5" />
                 <span>Message on WhatsApp</span>
-                <ArrowRightIcon className="w-4 h-4" style={{ marginLeft: '0.25rem' }} />
+                <ArrowRightIcon className="w-4 h-4" />
               </motion.a>
             </div>
           </motion.div>

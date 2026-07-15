@@ -48,8 +48,8 @@ export default function Projects() {
       {/* Panel 2: Case study slider */}
       <section className="pb-24">
         <div className="section-container relative">
-          {/* Horizontal scroll container */}
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar" style={{ scrollBehavior: 'smooth' }}>
+          {/* Grid container */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatePresence mode="popLayout">
               {filteredProjects.length > 0 ? filteredProjects.map((project, i) => (
                 <motion.div
@@ -59,8 +59,7 @@ export default function Projects() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
-                  className="group relative min-w-[320px] md:min-w-[400px] snap-center bg-[var(--bg)] border border-[var(--border)] p-8 md:p-10 flex flex-col hover:border-[var(--orange)] transition-all duration-300 rounded-[32px] overflow-hidden"
-                  style={{ flex: '0 0 auto' }}
+                  className="group relative bg-[var(--bg)] border border-[var(--border)] p-8 md:p-10 flex flex-col hover:border-[var(--orange)] transition-all duration-300 rounded-[32px] overflow-hidden"
                 >
                   <div className="flex justify-between items-start mb-6">
                     <span className={`font-mono text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full ${project.type === 'Client Project' ? 'bg-[var(--orange)] text-[var(--white-locked)]' : 'border border-[var(--border)] text-[var(--text-muted)]'}`}>
@@ -93,29 +92,27 @@ export default function Projects() {
                     {project.description}
                   </p>
 
-                  {/* Expanded info on hover */}
-                  <div className="max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 transition-all duration-500 overflow-hidden mb-4 relative z-20">
-                    <div className="flex flex-col gap-2 text-sm text-[var(--text)] font-sans">
-                      {project.liveUrl && (
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-xs text-[var(--text-muted)]">URL:</span>
-                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--orange)] truncate">
-                            {project.liveUrl.replace('https://', '')}
-                          </a>
-                        </div>
-                      )}
-                      {project.github && (
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-xs text-[var(--text-muted)]">GitHub:</span>
-                          <a href={`https://github.com/${project.github.owner}/${project.github.repo}`} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--orange)] truncate">
-                            {project.github.owner}/{project.github.repo}
-                          </a>
-                        </div>
-                      )}
-                      <div className="flex items-center gap-2 mt-1">
-                        <StarIcon className="w-4 h-4 text-yellow-500" />
-                        <span className="font-mono text-xs font-bold">{project.stars || 0} Stars</span>
+                  {/* Links & Info */}
+                  <div className="flex flex-col gap-2 text-sm text-[var(--text)] font-sans mb-6 relative z-20">
+                    {project.liveUrl && (
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-wider">URL:</span>
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--orange)] truncate font-semibold">
+                          {project.liveUrl.replace('https://', '')}
+                        </a>
                       </div>
+                    )}
+                    {project.github && (
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-wider">GitHub:</span>
+                        <a href={`https://github.com/${project.github.owner}/${project.github.repo}`} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--orange)] truncate font-semibold">
+                          {project.github.owner}/{project.github.repo}
+                        </a>
+                      </div>
+                    )}
+                    <div className="flex items-center gap-2 mt-2">
+                      <StarIcon className="w-4 h-4 text-yellow-500" />
+                      <span className="font-mono text-xs font-bold uppercase tracking-widest">{project.stars || 0} Stars</span>
                     </div>
                   </div>
                   
@@ -135,7 +132,7 @@ export default function Projects() {
               )) : (
                 <motion.div
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                  className="w-full py-20 text-center border border-dashed border-[var(--border)] rounded-[32px]"
+                  className="col-span-1 md:col-span-2 lg:col-span-3 py-20 text-center border border-dashed border-[var(--border)] rounded-[32px]"
                 >
                   <CodeIcon className="w-8 h-8 text-[var(--text-muted)] mx-auto mb-4" />
                   <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
@@ -145,9 +142,6 @@ export default function Projects() {
               )}
             </AnimatePresence>
           </div>
-          {/* Fading edges for carousel */}
-          <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-[var(--bg)] to-transparent pointer-events-none" />
-          <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-[var(--bg)] to-transparent pointer-events-none" />
         </div>
       </section>
 
@@ -230,16 +224,20 @@ export default function Projects() {
       {/* Panel 5: CTA band */}
       <section className="pb-24 pt-12">
         <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <motion.div variants={fadeUpItem} className="text-center p-16 md:p-24 rounded-[var(--radius-curve)] bg-[var(--text)] text-[var(--bg)]">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50 mb-3">Like what you see?</p>
+          <motion.div 
+            variants={fadeUpItem} 
+            className="text-center p-16 md:p-24 rounded-[var(--radius-curve)]"
+            style={{ backgroundColor: 'var(--orange)', color: '#fff' }}
+          >
+            <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/70 mb-3">Like what you see?</p>
             <h2 className="font-display text-4xl md:text-5xl mb-8 text-white">
               Let's build your next platform.
             </h2>
             <div className="flex gap-4 justify-center flex-wrap">
-              <PillButton as="a" href="https://wa.me/94768325949" target="_blank" rel="noopener noreferrer" variant="orange">
+              <PillButton as="a" href="https://wa.me/94768325949" target="_blank" rel="noopener noreferrer" variant="neutral" style={{ background: '#fff', color: 'var(--orange)' }}>
                 <WhatsAppIcon className="w-4 h-4 mr-2" /> WhatsApp Us
               </PillButton>
-              <PillButton as="link" to="/contact" variant="neutral" style={{ background: 'var(--white-locked-10)', color: 'var(--white-locked)', borderColor: 'rgba(255,255,255,0.2)' }}>
+              <PillButton as="link" to="/contact" variant="neutral" style={{ background: 'var(--white-locked-10)', color: '#fff', borderColor: 'rgba(255,255,255,0.2)' }}>
                 Start a Project
               </PillButton>
             </div>

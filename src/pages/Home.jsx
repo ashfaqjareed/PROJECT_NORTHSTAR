@@ -442,19 +442,20 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center p-16 md:p-24 rounded-[var(--radius-curve)] bg-[var(--text)] text-[var(--bg)] border-none relative overflow-hidden"
+            className="text-center p-16 md:p-24 rounded-[var(--radius-curve)] relative overflow-hidden"
+            style={{ backgroundColor: 'var(--orange)', color: '#fff' }}
           >
             {/* Subtle glow behind text */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[var(--orange)] rounded-full blur-[120px] opacity-20 pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white rounded-full blur-[120px] opacity-20 pointer-events-none" />
 
             <div className="relative z-10">
-              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white/50 mb-4">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white/70 mb-4">
                 Ready to build?
               </p>
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6 text-white">
                 Ready to start?
               </h2>
-              <p className="font-sans text-white/65 mb-10 max-w-lg mx-auto text-lg">
+              <p className="font-sans text-white/90 mb-10 max-w-lg mx-auto text-lg">
                 Message us on WhatsApp for a response within the hour, or drop us an email. 
                 We respond to every inquiry personally.
               </p>
