@@ -1,31 +1,30 @@
-// src/components/Footer.jsx — clean sitemap footer, bigger text, no WhatsApp pill
+// src/components/Footer.jsx — clean sitemap footer
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaXTwitter, FaInstagram, FaLinkedin, FaGithub, FaWhatsapp } from 'react-icons/fa6';
-import Logo from './Logo';
 
 const NAV_LINKS = [
-  { to: '/',         label: 'Home'     },
+  { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
   { to: '/projects', label: 'Projects' },
-  { to: '/pricing',  label: 'Pricing'  },
-  { to: '/about',    label: 'About Us' },
-  { to: '/contact',  label: 'Contact'  },
+  { to: '/pricing', label: 'Pricing' },
+  { to: '/about', label: 'About Us' },
+  { to: '/contact', label: 'Contact' },
 ];
 
 const LEGAL = [
-  { to: '/privacy', label: 'Privacy Policy'   },
-  { to: '/terms',   label: 'Terms of Service' },
-  { to: '/contact', label: 'Support'          },
+  { to: '/privacy', label: 'Privacy Policy' },
+  { to: '/terms', label: 'Terms of Service' },
+  { to: '/contact', label: 'Support' },
 ];
 
 const SOCIALS = [
-  { Icon: FaXTwitter,  href: 'https://twitter.com',   label: 'Twitter'   },
+  { Icon: FaXTwitter, href: 'https://twitter.com', label: 'Twitter' },
   { Icon: FaInstagram, href: 'https://instagram.com', label: 'Instagram' },
-  { Icon: FaLinkedin,  href: 'https://linkedin.com',  label: 'LinkedIn'  },
-  { Icon: FaGithub,    href: 'https://github.com',    label: 'GitHub'    },
-  { Icon: FaWhatsapp,  href: 'https://wa.me/94768325949', label: 'WhatsApp' },
+  { Icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { Icon: FaGithub, href: 'https://github.com', label: 'GitHub' },
+  { Icon: FaWhatsapp, href: 'https://wa.me/94768325949', label: 'WhatsApp' },
 ];
 
 export default function Footer() {
@@ -158,10 +157,8 @@ export default function Footer() {
 
         {/* Large wordmark + copyright */}
         <div style={{ borderTop: '1px solid rgba(23,23,23,0.2)', paddingTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
-          
-          <Logo variant="footer" />
-          
-          <motion.h2 
+
+          <motion.h2
             className="hover-gradient-text"
             style={{
               fontFamily: 'var(--font-display)',
@@ -178,7 +175,7 @@ export default function Footer() {
           <style>{`
             .hover-gradient-text:hover {
               color: transparent !important;
-              background: linear-gradient(to right, #00f2fe, #4facfe, #00f2fe);
+              background: linear-gradient(to right, #adff2f, #fe6c01, #adff2f);
               -webkit-background-clip: text;
               background-size: 200% auto;
               animation: shine 2s linear infinite;

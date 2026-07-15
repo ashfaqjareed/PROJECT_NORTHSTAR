@@ -1,36 +1,30 @@
-// src/components/Logo.jsx — real PNG logos, bigger sizes
+// src/components/Logo.jsx — real PNG logos, correct sizes
 import React from 'react';
 
 export default function Logo({ variant = 'header', className = '', style = {} }) {
   if (variant === 'footer') {
-    return (
-      <img
-        src="/logo-icon.png"
-        alt="NorthStarDevs"
-        className={className}
-        style={{ height: '80px', width: 'auto', objectFit: 'contain', ...style }}
-      />
-    );
+    // Footer logo — removed, using text wordmark instead
+    return null;
   }
 
   if (variant === 'icon') {
     return (
       <img
-        src="/logo-icon.png"
+        src="/N1.png"
         alt="NorthStarDevs"
         className={className}
-        style={{ height: '80px', width: 'auto', objectFit: 'contain', ...style }}
+        style={{ height: '40px', width: 'auto', objectFit: 'contain', ...style }}
       />
     );
   }
 
-  // header — orange NORTHSTARDEVS wordmark, bigger
+  // header — show the actual logo image at a sensible size
   return (
     <img
       src="/NDS1.png"
       alt="NorthStarDevs"
       className={className}
-      style={{ height: '280px', width: 'auto', objectFit: 'contain', ...style }}
+      style={{ height: '48px', width: 'auto', objectFit: 'contain', ...style }}
     />
   );
 }
