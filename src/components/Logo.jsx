@@ -24,7 +24,7 @@ export default function Logo({ variant = 'header', className = '', style = {} })
       src="/NDS1.png"
       alt="NorthStarDevs"
       className={className}
-      style={{ height: '48px', width: 'auto', objectFit: 'contain', ...style }}
+      style={{ height: '200px', width: 'auto', objectFit: 'contain', ...style }}
     />
   );
 }
