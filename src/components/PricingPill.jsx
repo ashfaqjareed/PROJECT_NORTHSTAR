@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { CheckIcon } from '../icons';
 
 export default function PricingPill({ 
+  slug,
   tier, 
   price, 
   desc, 
@@ -94,7 +95,7 @@ export default function PricingPill({
         </ul>
 
         <Link
-          to="/pricing"
+          to={`/pricing/${slug}`}
           className="flex items-center justify-center font-mono text-[10px] uppercase tracking-widest font-bold py-3 px-4 transition-opacity"
           style={{
             background: featured ? accentColor : 'var(--bg-alt)',

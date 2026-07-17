@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { XIcon, WhatsAppIcon, ArrowRightIcon } from '../icons';
 
-const STAGGER = 0.022;
+const STAGGER = 0.01;
 
 // Letter-by-letter roll animation
 const TextRoll = ({ children, style = {} }) => (
@@ -18,8 +18,8 @@ const TextRoll = ({ children, style = {} }) => (
       {String(children).split('').map((l, i) => (
         <motion.span
           key={`a-${i}`}
-          variants={{ initial: { y: 0 }, hovered: { y: '-100%' } }}
-          transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.35, delay: STAGGER * i }}
+          variants={{ initial: { y: 0, opacity: 1 }, hovered: { y: '-40%', opacity: 0 } }}
+          transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.25, delay: STAGGER * i }}
           style={{ display: 'inline-block' }}
         >
           {l === ' ' ? '\u00A0' : l}
@@ -32,8 +32,8 @@ const TextRoll = ({ children, style = {} }) => (
       {String(children).split('').map((l, i) => (
         <motion.span
           key={`b-${i}`}
-          variants={{ initial: { y: '100%' }, hovered: { y: 0 } }}
-          transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.35, delay: STAGGER * i }}
+          variants={{ initial: { y: '40%', opacity: 0 }, hovered: { y: 0, opacity: 1 } }}
+          transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.25, delay: STAGGER * i }}
           style={{ display: 'inline-block', color: 'var(--orange)' }}
         >
           {l === ' ' ? '\u00A0' : l}
@@ -44,9 +44,12 @@ const TextRoll = ({ children, style = {} }) => (
 );
 
 const NAV_ITEMS = [
+  { name: 'Home',     href: '/'        },
+  { name: 'Services', href: '/services' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Pricing',  href: '/pricing' },
   { name: 'About Us', href: '/about'   },
   { name: 'Contact',  href: '/contact' },
-  { name: 'Pricing',  href: '/pricing' },
   { name: 'Privacy',  href: '/privacy' },
   { name: 'Terms',    href: '/terms'   },
 ];

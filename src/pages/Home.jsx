@@ -218,7 +218,16 @@ export default function Home() {
                 label="Strict SLA Guarantee"
                 description="Fixed timelines, defined revision cycles, and written retainer terms. No hidden clauses."
                 accent="orange"
-                className="h-full md:col-span-2 lg:col-span-2"
+                className="h-full"
+              />
+            </motion.div>
+            <motion.div variants={fadeUpItem}>
+              <ServicePill 
+                icon={<StarIcon className="w-8 h-8" />}
+                label="Bespoke Micro-Animations"
+                description="Custom framer-motion choreographies that turn static pages into living, breathing digital environments."
+                accent="lime"
+                className="h-full"
               />
             </motion.div>
           </div>

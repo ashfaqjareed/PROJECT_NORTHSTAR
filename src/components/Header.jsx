@@ -71,7 +71,7 @@ export default function Header({ onOpenSidebar }) {
           }}
         >
           <div className="section-container" style={{ position: 'relative', zIndex: 2 }}>
-            <div style={{
+            <div className="hdr-container" style={{
               height: scrolled ? '72px' : '80px',
               display: 'flex',
               alignItems: 'center',
@@ -80,8 +80,11 @@ export default function Header({ onOpenSidebar }) {
               transition: 'height 0.4s ease',
               position: 'relative',
             }}>
+              {/* Spacer for mobile to push toggles right */}
+              <div className="hdr-spacer" style={{ width: '40px', flexShrink: 0 }}></div>
+
               {/* Logo */}
-              <Link to="/" style={{ textDecoration: 'none', flexShrink: 0, zIndex: 10 }}>
+              <Link to="/" className="hdr-logo" style={{ textDecoration: 'none', flexShrink: 0, zIndex: 10 }}>
                 <Logo variant="header" />
               </Link>
 
@@ -136,7 +139,15 @@ export default function Header({ onOpenSidebar }) {
       </motion.header>
 
       <style>{`
+        @media (max-width: 1023px) {
+          .hdr-logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
         @media (min-width: 1024px) {
+          .hdr-spacer { display: none !important; }
           .hdr-nav { display: flex !important; }
         }
       `}</style>

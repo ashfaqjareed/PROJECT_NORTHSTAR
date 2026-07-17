@@ -4,10 +4,11 @@ import { motion } from 'framer-motion';
 export default function ServicePill({ icon, label, description, accent = 'orange', className = '' }) {
   return (
     <motion.div
-      className={`relative overflow-hidden bg-[var(--bg)] border ${className}`}
+      className={`relative overflow-hidden border ${className}`}
       style={{
         borderRadius: '32px',
         borderColor: 'var(--border)',
+        background: 'linear-gradient(145deg, var(--bg-alt) 0%, var(--bg) 100%)',
         padding: '1.5rem',
         display: 'flex',
         alignItems: 'flex-start',

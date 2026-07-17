@@ -20,10 +20,10 @@ const LEGAL = [
 ];
 
 const SOCIALS = [
-  { Icon: FaXTwitter, href: 'https://twitter.com', label: 'Twitter' },
-  { Icon: FaInstagram, href: 'https://instagram.com', label: 'Instagram' },
-  { Icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { Icon: FaGithub, href: 'https://github.com', label: 'GitHub' },
+  { Icon: FaXTwitter, href: 'https://x.com/northstardevs', label: 'Twitter' },
+  { Icon: FaInstagram, href: 'https://www.instagram.com/northstardevs/', label: 'Instagram' },
+  { Icon: FaLinkedin, href: 'https://www.linkedin.com/in/mohamed-ashfaq-jareed-20070401mh/', label: 'LinkedIn' },
+  { Icon: FaGithub, href: 'https://github.com/northstardevs', label: 'GitHub' },
   { Icon: FaWhatsapp, href: 'https://wa.me/94768325949', label: 'WhatsApp' },
 ];
 

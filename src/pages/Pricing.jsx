@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { CheckIcon, ArrowRightIcon, PlusIcon, MinusIcon, WhatsAppIcon } from '../icons';
 import PricingPill from '../components/PricingPill';
 import PillButton from '../components/PillButton';
+import { TIERS } from '../data/pricing';
 
 const fadeUpContainer = {
   hidden: { opacity: 0 },
@@ -34,62 +35,7 @@ function AccordionItem({ q, a }) {
   );
 }
 
-const TIERS = [
-  {
-    name: 'Full Launch',
-    tagline: 'The complete product.',
-    usd: 'From $1,500',
-    timeline: '3–5 weeks',
-    features: ['Multi-page React app', 'Firestore backend', 'Dark/light mode', '4 revisions'],
-    accent: 'orange',
-    featured: true,
-  },
-  {
-    name: 'Growth',
-    tagline: 'Get to market fast.',
-    usd: 'From $500',
-    timeline: '5–7 days',
-    features: ['Multi-section layout', 'Performance optimized', 'Basic SEO', '2 revisions'],
-    accent: 'orange',
-    featured: false,
-  },
-  {
-    name: 'Custom Sprints',
-    tagline: 'Ongoing partnership.',
-    usd: 'Let\'s talk',
-    timeline: 'Monthly scope',
-    features: ['Feature builds', 'Priority support', 'Written SLA', 'Architecture consult'],
-    accent: 'lime',
-    featured: false,
-  },
-  {
-    name: 'Budget',
-    tagline: 'Simple presence.',
-    usd: 'From $200',
-    timeline: '3–5 days',
-    features: ['Single landing page', 'Template based', 'Mobile responsive', '1 revision'],
-    accent: 'lime',
-    featured: false,
-  },
-  {
-    name: 'Starter',
-    tagline: 'Custom design.',
-    usd: 'From $350',
-    timeline: '5–7 days',
-    features: ['Single landing page', 'Custom UI/UX', 'Form integration', '2 revisions'],
-    accent: 'lime',
-    featured: false,
-  },
-  {
-    name: 'Premium',
-    tagline: 'Advanced requirements.',
-    usd: 'From $3,000',
-    timeline: '6–8 weeks',
-    features: ['Complex architecture', 'Multiple integrations', 'Custom animations', 'Unlimited (in scope)'],
-    accent: 'orange',
-    featured: false,
-  },
-];
+
 
 const COMPARISON_ROWS = [
   { label: 'Landing page',          vals: [true,  true,  true,  true,  true,  true]  },
@@ -112,10 +58,10 @@ export default function Pricing() {
   return (
     <div>
       {/* Panel 1 */}
-      <section className="py-20">
+      <section className="py-20 bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
         <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
           <motion.p variants={fadeUpItem} className="eyebrow mb-3">Investment</motion.p>
-          <motion.h1 variants={fadeUpItem} className="font-display text-4xl md:text-5xl lg:text-[4.5rem] leading-[1.1] mb-5 max-w-3xl">
+          <motion.h1 variants={fadeUpItem} className="font-display text-4xl md:text-5xl lg:text-[4.5rem] leading-[1.1] mb-5 max-w-3xl text-[var(--text)]">
             Transparent pricing.<br />No surprises.
           </motion.h1>
           <motion.p variants={fadeUpItem} className="font-sans text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
@@ -131,6 +77,7 @@ export default function Pricing() {
             {TIERS.map((tier, i) => (
               <motion.div key={tier.name} variants={fadeUpItem}>
                 <PricingPill 
+                  slug={tier.slug}
                   tier={tier.name}
                   price={tier.usd}
                   desc={tier.tagline}

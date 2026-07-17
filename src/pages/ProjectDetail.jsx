@@ -96,13 +96,23 @@ export default function ProjectDetail() {
               </span>
             </motion.div>
 
-            <motion.h1 variants={fadeUpItem} className="font-display text-4xl md:text-5xl lg:text-[4rem] leading-[1.1] mb-6">
+            <motion.h1 variants={fadeUpItem} className="font-display text-4xl md:text-5xl lg:text-[4rem] leading-[1.1] mb-4">
               {project.name}
             </motion.h1>
 
-            <motion.p variants={fadeUpItem} className="font-sans text-xl text-[var(--text-muted)] leading-relaxed max-w-3xl">
-              {project.description}
-            </motion.p>
+            {/* Visual Stars */}
+            <motion.div variants={fadeUpItem} className="flex gap-1 mb-8">
+              {[1, 2, 3, 4, 5].map(star => (
+                <StarIcon key={star} className="w-5 h-5 text-[var(--orange)]" />
+              ))}
+            </motion.div>
+
+            <motion.div variants={fadeUpItem}>
+              <h2 className="font-display text-2xl mb-4">Overview</h2>
+              <p className="font-sans text-lg text-[var(--text-muted)] leading-relaxed max-w-3xl">
+                {project.fullDescription || project.description}
+              </p>
+            </motion.div>
           </div>
 
           {/* Sidebar / Meta Stats */}
@@ -156,13 +166,37 @@ export default function ProjectDetail() {
           )}
         </motion.div>
 
-        {/* Visual Showcase Placeholder */}
-        <motion.div variants={fadeUpItem} className="bento-card-asym bg-[var(--bg-alt)] border border-[var(--border)] p-10 md:p-20 text-center flex flex-col items-center justify-center min-h-[400px]">
-          <LinkIcon className="w-12 h-12 text-[var(--text-muted)] mb-6 opacity-30" />
-          <h2 className="font-display text-2xl text-[var(--text-muted)] mb-3">Case Study Media Coming Soon</h2>
-          <p className="font-sans text-[var(--text-muted)] max-w-md mx-auto opacity-70">
-            Full visual breakdown, architectural diagrams, and performance metrics for {project.name} will be uploaded here shortly.
-          </p>
+        {/* Visual Showcase Slides */}
+        <motion.div variants={fadeUpItem} className="mb-20">
+          <h2 className="font-display text-3xl mb-8">Project Slides</h2>
+          <div className="flex gap-6 overflow-x-auto pb-8 snap-x" style={{ scrollbarWidth: 'none' }}>
+            {project.images && project.images.length > 0 ? (
+               project.images.map((imgUrl, index) => (
+                <div 
+                  key={index} 
+                  className="snap-center shrink-0 w-[85vw] md:w-[600px] h-[400px] rounded-[24px] bg-[var(--bg-alt)] border border-[var(--border)] relative overflow-hidden group"
+                >
+                  <img src={imgUrl} alt={`${project.name} slide ${index + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                </div>
+              ))
+            ) : (
+              [1, 2, 3].map(slide => (
+                <div 
+                  key={slide} 
+                  className="snap-center shrink-0 w-[85vw] md:w-[600px] h-[400px] rounded-[24px] bg-[var(--bg-alt)] border border-[var(--border)] flex flex-col items-center justify-center relative overflow-hidden group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[rgba(173,255,47,0.03)] to-[rgba(254,108,1,0.03)]" />
+                  <div className="z-10 text-center">
+                    <LinkIcon className="w-10 h-10 text-[var(--text-muted)] mb-4 mx-auto opacity-30 group-hover:scale-110 transition-transform duration-300" />
+                    <p className="font-mono text-[10px] uppercase tracking-widest font-bold text-[var(--text-muted)] mb-2">Slide {slide}</p>
+                    <p className="font-sans text-sm text-[var(--text-muted)] max-w-[250px] mx-auto opacity-70">
+                      High-resolution imagery or architectural diagrams for {project.name}.
+                    </p>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </motion.div>
       </motion.div>
     </div>
