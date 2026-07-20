@@ -244,7 +244,7 @@ export default function Maintenance() {
           transition={{ delay: 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           style={{ marginBottom: '3.5rem' }}
         >
-          <Logo style={{ height: '72px', filter: 'brightness(0)' }} />
+          <Logo style={{ height: '220px', filter: 'brightness(0)' }} />
         </motion.div>
 
         {/* Heading */}
@@ -314,7 +314,7 @@ export default function Maintenance() {
               display: 'inline-block',
               animation: 'pulse-dot 1.8s ease-in-out infinite',
             }} />
-            Site is in Maintenance
+            Site is Under-Maintenance
           </div>
 
           {/* Learn More button */}
