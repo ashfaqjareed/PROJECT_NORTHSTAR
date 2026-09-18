@@ -213,8 +213,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 900; letter-spacing:
   transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s;
 }
 .btn-liquid:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(254,107,0,0.35);
+  opacity: 0.9;
 }
 @keyframes button-glow {
   0% { box-shadow: 0 0 0 0 rgba(254, 107, 0, 0.4); }
@@ -231,9 +230,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 900; letter-spacing:
 }
 .bento-card-asym:hover {
   border-radius: 24px;
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
 /* ─────────────────────────────────────────

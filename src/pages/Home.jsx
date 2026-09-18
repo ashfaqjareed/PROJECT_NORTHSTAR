@@ -327,30 +327,41 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch pt-4">
             <motion.div variants={fadeUpItem}>
               <PricingPill 
-                tier="Web Maintenance" 
-                price="From Rs. 15,000/mo" 
-                desc="Keep your platform fast, secure, and consistently updated." 
-                features={['Security patches', 'Uptime monitoring', 'Minor content updates', 'Monthly report']}
+                slug="basic-maker"
+                tier="Cheapest" 
+                price="From Rs. 15,000" 
+                desc="A very low-cost entry plan for basic website making and presence." 
+                features={['1 Basic Page', 'Mobile Responsive', 'Template Design', '1 revision']}
                 accent="lime"
+                featured={true}
+                badgeText="Cheapest"
+                customStrokeColor="var(--lime)"
               />
             </motion.div>
             <motion.div variants={fadeUpItem} className="md:-translate-y-4">
               <PricingPill 
+                slug="growth"
                 tier="Growth Plan" 
                 price="From Rs. 160,000" 
                 desc="The most affordable launchpad for startups. High-conversion landing page." 
                 features={['Single-page layout', 'Mobile-responsive', 'Performance optimised', '2 revision rounds']}
                 accent="orange"
                 featured={true}
+                badgeText="Affordable"
+                customStrokeColor="#ff3333"
               />
             </motion.div>
             <motion.div variants={fadeUpItem}>
               <PricingPill 
+                slug="full-launch"
                 tier="Full Platform" 
                 price="From Rs. 480,000" 
                 desc="Complete web application with a scalable backend and full brand system." 
                 features={['Multi-page React app', 'Firestore backend', 'Dark/light mode', '4 revision rounds']}
-                accent="lime"
+                accent="orange"
+                featured={true}
+                badgeText="Recommended"
+                customStrokeColor="var(--orange)"
               />
             </motion.div>
           </div>

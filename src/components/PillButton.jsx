@@ -63,34 +63,10 @@ export default function PillButton({
     <Component
       style={{ ...baseStyles, ...customStyle }}
       className={className}
-      whileHover="hover"
       whileTap={{ scale: 0.97 }}
       {...restProps}
     >
       <span style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center' }}>{children}</span>
-      
-      {/* Shine effect overlay */}
-      <motion.div
-        variants={{
-          initial: { x: '-100%', opacity: 0 },
-          hover: { 
-            x: '100%', 
-            opacity: 1, 
-            transition: { duration: 0.6, ease: 'easeInOut' } 
-          }
-        }}
-        initial="initial"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: '-50%',
-          width: '50%',
-          height: '100%',
-          background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%)',
-          zIndex: 1,
-          pointerEvents: 'none'
-        }}
-      />
     </Component>
   );
 }

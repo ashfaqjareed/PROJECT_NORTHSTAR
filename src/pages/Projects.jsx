@@ -145,9 +145,13 @@ function ProjectCarousel({ project, index }) {
 
 export default function Projects() {
   const [filter, setFilter] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
   
   const filteredProjects = PROJECTS.filter(p => filter === 'All' ? true : p.type === filter);
   const featuredProject = PROJECTS.find(p => p.slug === 'northstar');
+  
+  const itemsPerPage = 5;
+  const currentItems = currentPage === 1 ? filteredProjects.slice(0, itemsPerPage) : [];
 
   return (
     <div>
@@ -170,7 +174,7 @@ export default function Projects() {
             {['All', 'Client Project', 'Personal Build'].map(tag => (
               <button
                 key={tag}
-                onClick={() => setFilter(tag)}
+                onClick={() => { setFilter(tag); setCurrentPage(1); }}
                 className={`filter-tag ${filter === tag ? 'active' : ''}`}
               >
                 {tag}
@@ -193,9 +197,22 @@ export default function Projects() {
             All Projects — {filteredProjects.length} builds
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <AnimatePresence mode="popLayout">
-              {filteredProjects.length > 0 ? filteredProjects.map((project, i) => (
+              {currentPage === 2 ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="col-span-full py-24 flex flex-col items-center justify-center text-center"
+                >
+                  <CodeIcon className="w-12 h-12 text-[var(--orange)] mb-4" />
+                  <h3 className="font-display text-3xl mb-2">Coming Soon</h3>
+                  <p className="font-sans text-[var(--text-muted)] max-w-md">
+                    These projects are currently under development. Check back later to see our latest work in action.
+                  </p>
+                </motion.div>
+              ) : currentItems.length > 0 ? currentItems.map((project, i) => (
                 <motion.div
                   key={project.slug}
                   layout
@@ -298,6 +315,28 @@ export default function Projects() {
               )}
             </AnimatePresence>
           </div>
+
+          {/* Pagination Controls */}
+          {filter === 'All' && (
+            <div className="flex justify-center items-center gap-4 mt-8">
+              <button
+                onClick={() => setCurrentPage(1)}
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-mono font-bold transition-colors ${
+                  currentPage === 1 ? 'bg-[var(--orange)] text-white' : 'bg-[var(--bg-alt)] hover:bg-[var(--border)] text-[var(--text)]'
+                }`}
+              >
+                1
+              </button>
+              <button
+                onClick={() => setCurrentPage(2)}
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-mono font-bold transition-colors ${
+                  currentPage === 2 ? 'bg-[var(--orange)] text-white' : 'bg-[var(--bg-alt)] hover:bg-[var(--border)] text-[var(--text)]'
+                }`}
+              >
+                2
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

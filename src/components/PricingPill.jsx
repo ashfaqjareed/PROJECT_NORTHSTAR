@@ -10,14 +10,15 @@ export default function PricingPill({
   desc, 
   features, 
   accent = 'lime', 
-  featured = false 
+  featured = false,
+  badgeText = 'Recommended',
+  customStrokeColor = null
 }) {
-  const accentColor = accent === 'orange' ? 'var(--orange)' : 'var(--lime)';
+  const accentColor = customStrokeColor || (accent === 'orange' ? 'var(--orange)' : 'var(--lime)');
   const isCustom = price === "Let's talk" || price === 'Custom';
   
   return (
     <motion.div
-      whileHover="hover"
       initial="initial"
       className="relative flex flex-col h-full bg-[var(--bg)] border p-8"
       style={{
@@ -33,42 +34,12 @@ export default function PricingPill({
       {featured && (
         <div className="absolute -top-4 left-8">
           <span className="font-mono text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full" style={{ background: accentColor, color: 'var(--white-locked)' }}>
-            Recommended
+            {badgeText}
           </span>
         </div>
       )}
 
-      {/* Shine effect overlay on hover */}
-      <motion.div
-        variants={{
-          initial: { x: '-100%', opacity: 0 },
-          hover: { 
-            x: '100%', 
-            opacity: 1, 
-            transition: { duration: 0.8, ease: 'easeInOut' } 
-          }
-        }}
-        style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%)',
-          borderRadius: '32px', zIndex: 1, pointerEvents: 'none',
-        }}
-      />
-      
-      {/* Dynamic border color on hover (for non-featured) */}
-      {!featured && (
-        <motion.div
-          variants={{
-            initial: { opacity: 0 },
-            hover: { opacity: 1, transition: { duration: 0.2 } }
-          }}
-          style={{
-            position: 'absolute', inset: 0,
-            borderRadius: '32px', border: `1px solid ${accentColor}`,
-            zIndex: 0, pointerEvents: 'none',
-          }}
-        />
-      )}
+
 
       <div className="relative z-10 flex flex-col h-full">
         <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold mb-2">
