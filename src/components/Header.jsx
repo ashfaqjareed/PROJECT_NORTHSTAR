@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
+import { PAGE_VISIBILITY } from '../config';
 import { SunIcon, MoonIcon, MenuIcon } from '../icons';
 import AnimatedTabs from './AnimatedTabs';
 import Logo from './Logo';
@@ -28,12 +29,14 @@ export default function Header({ onOpenSidebar }) {
 
   useEffect(() => () => { if (idleTimer.current) clearTimeout(idleTimer.current); }, []);
 
-  const tabs = [
-    { name: 'Home',     href: '/'         },
-    { name: 'Services', href: '/services' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Pricing',  href: '/pricing'  },
+  const allTabs = [
+    { name: 'Home',     href: '/',        id: 'home'     },
+    { name: 'Services', href: '/services', id: 'services' },
+    { name: 'Projects', href: '/projects', id: 'projects' },
+    { name: 'Pricing',  href: '/pricing',  id: 'pricing'  },
   ];
+
+  const tabs = allTabs.filter(tab => PAGE_VISIBILITY[tab.id]);
 
   // When scrolled, lime background always has dark text (it's always light green).
   // When NOT scrolled, adapt to current theme.

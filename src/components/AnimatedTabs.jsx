@@ -42,7 +42,6 @@ export default function AnimatedTabs({ tabs, scrolled, theme }) {
       borderRadius: '999px',
       background: containerBg,
       border: `1px solid ${containerBorder}`,
-      backdropFilter: 'blur(8px)',
     }}>
       {tabs.map((tab) => {
         const isActive = location.pathname === tab.href || (tab.href !== '/' && location.pathname.startsWith(tab.href));

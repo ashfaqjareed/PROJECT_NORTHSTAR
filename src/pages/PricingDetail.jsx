@@ -37,6 +37,7 @@ export default function PricingDetail() {
   }
 
   const accentColor = tier.accent === 'orange' ? 'var(--orange)' : 'var(--lime)';
+  const isCustom = tier.lkr === "Let's talk";
 
   return (
     <div className="pb-24 pt-12">
@@ -57,9 +58,15 @@ export default function PricingDetail() {
               </span>
             </motion.div>
 
-            <motion.h1 variants={fadeUpItem} className="font-display text-4xl md:text-5xl lg:text-[4rem] leading-[1.1] mb-6" style={{ color: tier.accent === 'orange' ? 'var(--brand-orange)' : 'var(--text)' }}>
-              {tier.usd}
-            </motion.h1>
+            {/* LKR Primary Price */}
+            <motion.div variants={fadeUpItem} className="mb-6">
+              <h1 className="font-display text-4xl md:text-5xl lg:text-[4rem] leading-[1.1]" style={{ color: accentColor }}>
+                {tier.lkr}
+                {!isCustom && (
+                  <span className="font-mono text-[14px] font-bold uppercase tracking-widest ml-3 align-middle opacity-70">LKR</span>
+                )}
+              </h1>
+            </motion.div>
 
             <motion.h2 variants={fadeUpItem} className="font-sans text-2xl font-medium mb-6">
               {tier.tagline}
@@ -83,11 +90,50 @@ export default function PricingDetail() {
                 ))}
               </ul>
             </motion.div>
+
+            {/* Detailed breakdown table */}
+            {tier.tableRows && (
+              <motion.div variants={fadeUpItem} className="mb-8">
+                <h3 className="font-display text-xl mb-4">Full Breakdown</h3>
+                <div className="overflow-x-auto rounded-2xl border border-[var(--border)] bg-[var(--bg)]">
+                  <table className="w-full border-collapse">
+                    <thead>
+                      <tr>
+                        <th className="text-left px-3 py-2 border-b-2 border-[var(--border)] font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">
+                          Feature
+                        </th>
+                        <th className="text-left px-3 py-2 border-b-2 border-[var(--border)] font-mono text-[10px] uppercase tracking-widest" style={{ color: accentColor }}>
+                          {tier.name}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {tier.tableRows.map((row, i) => (
+                        <tr key={row.feature} className="border-b border-[var(--border)]" style={{ background: i % 2 ? 'var(--bg-alt)' : 'transparent' }}>
+                          <td className="px-3 py-2 font-sans text-[0.85rem] font-medium text-[var(--text-muted)]">
+                            {row.feature}
+                          </td>
+                          <td className="px-3 py-2 font-sans text-[0.85rem] font-semibold text-[var(--text)]">
+                            {row.value}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </motion.div>
+            )}
           </div>
 
           {/* Sidebar / Meta Stats */}
           <motion.div variants={fadeUpItem} className="lg:col-span-5 bg-[var(--bg-alt)] border border-[var(--border)] rounded-[24px] p-8">
             <div className="flex flex-col gap-8">
+              {/* LKR Price display */}
+              <div>
+                <p className="eyebrow mb-3 text-[var(--text-muted)]">Price (LKR)</p>
+                <p className="font-display text-3xl" style={{ color: accentColor }}>{tier.lkr}</p>
+              </div>
+
               {/* Timeline */}
               <div>
                 <p className="eyebrow mb-3 text-[var(--text-muted)]">Estimated Timeline</p>
@@ -110,12 +156,13 @@ export default function PricingDetail() {
               {/* Terms Slip */}
               <div className="pt-6 border-t border-[var(--border)]">
                 <div className="bg-[var(--bg)] border border-[var(--border)] rounded-[16px] p-5">
-                  <p className="font-mono text-[10px] uppercase font-bold tracking-widest mb-3">Terms & Conditions</p>
+                  <p className="font-mono text-[10px] uppercase font-bold tracking-widest mb-3">Terms &amp; Conditions</p>
                   <ul className="font-sans text-[0.8rem] text-[var(--text-muted)] leading-relaxed list-disc pl-4 flex flex-col gap-2">
                     <li>50% upfront deposit is required to commence work.</li>
                     <li>Revisions beyond the listed amount will be billed at an hourly rate.</li>
                     <li>Hosting and domain costs are not included unless explicitly stated.</li>
                     <li>Final hand-off occurs after the remaining 50% balance is cleared.</li>
+                    <li>LKR rate locked at time of proposal — not affected by exchange fluctuations.</li>
                   </ul>
                 </div>
               </div>

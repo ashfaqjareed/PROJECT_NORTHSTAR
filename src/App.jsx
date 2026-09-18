@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
-import { IS_UNDER_MAINTENANCE } from './config';
+import { IS_UNDER_MAINTENANCE, PAGE_VISIBILITY } from './config';
 import Layout from './components/Layout';
 import Maintenance from './pages/Maintenance';
 import Home from './pages/Home';
@@ -32,14 +32,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="services" element={<Services />} />
-            <Route path="projects" element={<Projects />} />
-            <Route path="projects/:slug" element={<ProjectDetail />} />
-            <Route path="pricing" element={<Pricing />} />
-            <Route path="pricing/:slug" element={<PricingDetail />} />
+            <Route index element={PAGE_VISIBILITY.home ? <Home /> : <Navigate to="/" replace />} />
+            <Route path="services" element={PAGE_VISIBILITY.services ? <Services /> : <Navigate to="/" replace />} />
+            <Route path="projects" element={PAGE_VISIBILITY.projects ? <Projects /> : <Navigate to="/" replace />} />
+            <Route path="projects/:slug" element={PAGE_VISIBILITY.projects ? <ProjectDetail /> : <Navigate to="/" replace />} />
+            <Route path="pricing" element={PAGE_VISIBILITY.pricing ? <Pricing /> : <Navigate to="/" replace />} />
+            <Route path="pricing/:slug" element={PAGE_VISIBILITY.pricing ? <PricingDetail /> : <Navigate to="/" replace />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="about" element={<About />} />
+            <Route path="about" element={PAGE_VISIBILITY.about ? <About /> : <Navigate to="/" replace />} />
             <Route path="testimonials" element={<Testimonials />} />
             <Route path="support" element={<Support />} />
             <Route path="faq" element={<Faq />} />

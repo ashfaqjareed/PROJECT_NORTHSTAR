@@ -136,19 +136,19 @@ export default function Home() {
             <motion.div variants={fadeUpItem} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0.9rem', border: '1px solid var(--border)', borderRadius: '999px', background: 'var(--bg-alt)' }}>
                 <StarIcon className="w-3 h-3 text-[var(--orange)]" />
-                <span className="eyebrow">Creative Engineering Studio — Colombo, Sri Lanka</span>
+                <span className="eyebrow">Professional Web Studio — Colombo, Sri Lanka</span>
               </div>
             </motion.div>
 
             {/* Headline */}
             <motion.h1 variants={fadeUpItem} className="font-display" style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', lineHeight: 1.05, marginBottom: '1.5rem' }}>
-              We engineer<br />interfaces that<br /><span className="text-[var(--orange)]">demand attention.</span>
+              We build websites<br />that work<br /><span className="text-[var(--orange)]">for you.</span>
             </motion.h1>
 
             {/* Subhead */}
             <motion.p variants={fadeUpItem} style={{ fontFamily: 'var(--font-sans)', fontSize: '1.1rem', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '560px', marginBottom: '2.5rem' }}>
-              High-contrast visual identities, scalable React portals, and performance-first client interfaces.
-              Designed for precision. Engineered for speed.
+              High-quality web design, scalable platforms, and fast interfaces.
+              Designed for clarity. Built for success.
             </motion.p>
 
             {/* CTAs */}
@@ -179,8 +179,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill 
                 icon={<CodeIcon className="w-8 h-8" />}
-                label="Component-Driven UI"
-                description="Strictly typed, modular React ecosystems. Every element reusable, rigorously tested, aligned to premium design tokens."
+                label="Website Development"
+                description="We build your website from scratch using React. Every page is custom-designed, mobile-friendly, and fast to load."
                 accent="orange"
                 className="h-full"
               />
@@ -188,8 +188,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill 
                 icon={<BoltIcon className="w-8 h-8" />}
-                label="90 FPS Motion"
-                description="GPU-composited transitions. Zero jank. Every animation on transform and opacity only."
+                label="Landing Pages"
+                description="A clean, high-converting landing page to get your business or product online. Looks great, loads fast, built to your brief."
                 accent="lime"
                 className="h-full"
               />
@@ -197,8 +197,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill 
                 icon={<PaletteIcon className="w-8 h-8" />}
-                label="Swiss-Modern Design"
-                description="High contrast. Pristine typography. Zero clutter. We build interfaces that age gracefully."
+                label="Logo & Brand Design"
+                description="Logo creation, colour palettes, and brand guidelines. We design something you'll actually want to use everywhere."
                 accent="orange"
                 className="h-full"
               />
@@ -206,8 +206,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill 
                 icon={<CloudIcon className="w-8 h-8" />}
-                label="Serverless Backend"
-                description="Edge-deployed Node environments backed by real-time Firestore for instant data sync."
+                label="Full Stack Apps"
+                description="Need a database, user logins, or an admin panel? We build React apps backed by Firebase/Firestore."
                 accent="lime"
                 className="h-full"
               />
@@ -215,8 +215,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill 
                 icon={<ShieldIcon className="w-8 h-8" />}
-                label="Strict SLA Guarantee"
-                description="Fixed timelines, defined revision cycles, and written retainer terms. No hidden clauses."
+                label="Web Maintenance"
+                description="Ongoing monthly support — security updates, content changes, and keeping things running smoothly."
                 accent="orange"
                 className="h-full"
               />
@@ -224,8 +224,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill 
                 icon={<StarIcon className="w-8 h-8" />}
-                label="Bespoke Micro-Animations"
-                description="Custom framer-motion choreographies that turn static pages into living, breathing digital environments."
+                label="Social Suits"
+                description="Social media content, post designs, and management. We handle it so you can focus on running the business."
                 accent="lime"
                 className="h-full"
               />
@@ -243,10 +243,10 @@ export default function Home() {
             <div>
               <motion.p variants={fadeUpItem} className="eyebrow mb-3">How it works</motion.p>
               <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-4">
-                A disciplined four-step process
+                How we build a website
               </motion.h2>
               <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] text-lg mb-8">
-                No black-box production. Every engagement follows a documented sequence you can inspect at any stage.
+                Four steps, clearly defined. You know what's happening and when at every stage.
               </motion.p>
               <motion.div variants={fadeUpItem}>
                 <PillButton as="link" to="/process" variant="neutral">
@@ -255,10 +255,10 @@ export default function Home() {
               </motion.div>
             </div>
             <div className="flex flex-col gap-8">
-              <ProcessStep num="01" title="Discovery" desc="We map your goals, audience, and technical constraints in a structured brief before any design work begins." />
-              <ProcessStep num="02" title="Design" desc="High-fidelity mockups with your design system tokens defined up front. No surprises mid-build." />
-              <ProcessStep num="03" title="Build" desc="Component-driven React build with continuous preview deploys. You can see the work live every day." />
-              <ProcessStep num="04" title="Launch" desc="Production deploy plus handoff documentation — codebase walkthrough, CMS training, and SLA contract." />
+              <ProcessStep num="01" title="Brief" desc="We start with a written brief. You tell us what you need, who it's for, and what you want it to look like. We ask the right questions." />
+              <ProcessStep num="02" title="Design" desc="We put together the layout and visuals for your approval before any code gets written. You see it first." />
+              <ProcessStep num="03" title="Build" desc="We build the site and share previews as we go. You can see progress without waiting until the end." />
+              <ProcessStep num="04" title="Launch" desc="We deploy the site, hand over the files, and explain how to update things. You own it completely after final payment." />
             </div>
           </div>
         </motion.div>
@@ -318,17 +318,17 @@ export default function Home() {
         <motion.div className="section-container relative z-10" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
           <motion.p variants={fadeUpItem} className="eyebrow mb-3">Investment</motion.p>
           <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-4">
-            Transparent pricing
+            Pricing plans
           </motion.h2>
           <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] mb-12">
-            Clear tiers. No hidden fees. USD rates — LKR equivalent available on request.
+            Clear tiers. No hidden fees. LKR rates — straightforward and simple.
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch pt-4">
             <motion.div variants={fadeUpItem}>
               <PricingPill 
                 tier="Web Maintenance" 
-                price="From $150/mo" 
+                price="From Rs. 15,000/mo" 
                 desc="Keep your platform fast, secure, and consistently updated." 
                 features={['Security patches', 'Uptime monitoring', 'Minor content updates', 'Monthly report']}
                 accent="lime"
@@ -337,7 +337,7 @@ export default function Home() {
             <motion.div variants={fadeUpItem} className="md:-translate-y-4">
               <PricingPill 
                 tier="Growth Plan" 
-                price="From $500" 
+                price="From Rs. 160,000" 
                 desc="The most affordable launchpad for startups. High-conversion landing page." 
                 features={['Single-page layout', 'Mobile-responsive', 'Performance optimised', '2 revision rounds']}
                 accent="orange"
@@ -347,7 +347,7 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <PricingPill 
                 tier="Full Platform" 
-                price="From $1,500" 
+                price="From Rs. 480,000" 
                 desc="Complete web application with a scalable backend and full brand system." 
                 features={['Multi-page React app', 'Firestore backend', 'Dark/light mode', '4 revision rounds']}
                 accent="lime"

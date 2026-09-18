@@ -6,13 +6,14 @@ import { CheckIcon } from '../icons';
 export default function PricingPill({ 
   slug,
   tier, 
-  price, 
+  price,    // lkr value
   desc, 
   features, 
   accent = 'lime', 
   featured = false 
 }) {
   const accentColor = accent === 'orange' ? 'var(--orange)' : 'var(--lime)';
+  const isCustom = price === "Let's talk" || price === 'Custom';
   
   return (
     <motion.div
@@ -74,14 +75,19 @@ export default function PricingPill({
           {tier}
         </p>
         
-        <div className="font-display text-[1.75rem] mb-3" style={{ color: accent === 'orange' ? 'var(--brand-orange)' : 'var(--text)' }}>
-          {price}
-          {price !== "Let's talk" && price !== "Custom" && (
-            <span className="font-sans text-[0.9rem] text-[var(--text-muted)] font-normal ml-2">USD</span>
-          )}
+        {/* LKR Primary Price */}
+        <div className="mb-1">
+          <div className="font-display text-[1.6rem] leading-tight" style={{ color: accent === 'orange' ? 'var(--brand-orange)' : 'var(--text)' }}>
+            {price}
+            {!isCustom && (
+              <span className="font-mono text-[10px] font-bold uppercase tracking-widest ml-2 align-middle" style={{ color: accentColor }}>
+                LKR
+              </span>
+            )}
+          </div>
         </div>
 
-        <p className="font-sans text-[0.875rem] text-[var(--text-muted)] leading-relaxed mb-6 flex-1">
+        <p className="font-sans text-[0.875rem] text-[var(--text-muted)] leading-relaxed mb-6 flex-1 mt-3">
           {desc}
         </p>
 
