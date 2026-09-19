@@ -340,60 +340,7 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Panel 3: Featured deep-dive card */}
-      <section className="py-24 bg-[var(--bg-alt)] border-y border-[var(--border)]">
-        <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <motion.p variants={fadeUpItem} className="eyebrow mb-3">Featured Case Study</motion.p>
-          <motion.h2 variants={fadeUpItem} className="font-display text-3xl md:text-4xl mb-12">
-            Engineering our own platform
-          </motion.h2>
 
-          {featuredProject && (
-            <motion.div variants={fadeUpItem} className="bento-card-asym bg-[var(--bg)] border border-[var(--orange)] p-8 md:p-12 shadow-[0_0_0_1px_var(--orange)]">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h3 className="font-display text-3xl mb-4">{featuredProject.name}</h3>
-                  <p className="font-sans text-[var(--text-muted)] text-[1.05rem] leading-relaxed mb-6">
-                    {featuredProject.description}
-                  </p>
-                  <ul className="flex flex-col gap-3 mb-8">
-                    {['Zero layout shift (CLS: 0)', 'Dark mode pre-hydration', 'Framer Motion layout animations', 'Firestore ready'].map(f => (
-                      <li key={f} className="flex items-center gap-3 font-sans text-[0.95rem]">
-                        <CheckIcon className="w-4 h-4 text-[var(--orange)] flex-shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <PillButton as="link" to={`/projects/${featuredProject.slug}`} variant="orange">
-                    Read the Case Study <ArrowRightIcon className="w-4 h-4 ml-2" />
-                  </PillButton>
-                </div>
-                <div className="bg-[var(--bg-alt)] rounded-[24px] p-8 min-h-[320px] relative overflow-hidden flex flex-col justify-between">
-                  <div className="absolute inset-0 opacity-10" style={{
-                    backgroundImage: 'linear-gradient(var(--text) 1px, transparent 1px), linear-gradient(90deg, var(--text) 1px, transparent 1px)',
-                    backgroundSize: '24px 24px'
-                  }} />
-                  <div className="relative z-10 font-mono text-sm text-[var(--text-muted)] leading-loose">
-                    <span className="text-[var(--orange)]">import</span> React <span className="text-[var(--orange)]">from</span> 'react';<br/>
-                    <span className="text-[var(--orange)]">import</span> {'{ motion }'} <span className="text-[var(--orange)]">from</span> 'framer-motion';<br/>
-                    <br/>
-                    <span className="text-[var(--lime)]">// Swiss-modern aesthetics</span><br/>
-                    <span className="text-[var(--lime)]">// GPU-accelerated motion</span><br/>
-                    <span className="text-[var(--lime)]">// Component-driven architecture</span><br/>
-                  </div>
-                  <div className="relative z-10 flex gap-4 mt-8 flex-wrap">
-                    {featuredProject.tags.map(tag => (
-                      <span key={tag} className="font-mono text-[10px] font-bold uppercase tracking-widest bg-[var(--text)] text-[var(--bg)] px-3 py-1.5 rounded-full">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </motion.div>
-      </section>
 
       {/* Panel 4: CTA band */}
       <section className="pb-24 pt-12">

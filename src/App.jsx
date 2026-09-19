@@ -18,6 +18,7 @@ import Terms from './pages/Terms';
 import ProjectDetail from './pages/ProjectDetail';
 import PricingDetail from './pages/PricingDetail';
 import FloatingContact from './components/FloatingContact';
+import GlobalPopup from './components/GlobalPopup';
 
 function App() {
   if (IS_UNDER_MAINTENANCE) {
@@ -40,7 +41,7 @@ function App() {
             <Route path="pricing" element={PAGE_VISIBILITY.pricing ? <Pricing /> : <Navigate to="/" replace />} />
             <Route path="pricing/:slug" element={PAGE_VISIBILITY.pricing ? <PricingDetail /> : <Navigate to="/" replace />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="about" element={PAGE_VISIBILITY.about ? <About /> : <Navigate to="/" replace />} />
+            <Route path="about" element={<About />} />
             <Route path="testimonials" element={<Testimonials />} />
             <Route path="support" element={<Support />} />
             <Route path="faq" element={<Faq />} />
@@ -50,6 +51,7 @@ function App() {
           </Route>
         </Routes>
         <FloatingContact />
+        <GlobalPopup />
       </BrowserRouter>
     </ThemeProvider>
   );

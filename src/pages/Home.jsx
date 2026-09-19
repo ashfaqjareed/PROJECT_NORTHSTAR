@@ -136,7 +136,7 @@ export default function Home() {
             <motion.div variants={fadeUpItem} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0.9rem', border: '1px solid var(--border)', borderRadius: '999px', background: 'var(--bg-alt)' }}>
                 <StarIcon className="w-3 h-3 text-[var(--orange)]" />
-                <span className="eyebrow">Professional Web Studio — Colombo, Sri Lanka</span>
+                <span className="eyebrow">Studio Motto — You pay for what you ask</span>
               </div>
             </motion.div>
 
@@ -148,7 +148,7 @@ export default function Home() {
             {/* Subhead */}
             <motion.p variants={fadeUpItem} style={{ fontFamily: 'var(--font-sans)', fontSize: '1.1rem', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '560px', marginBottom: '2.5rem' }}>
               High-quality web design, scalable platforms, and fast interfaces.
-              Designed for clarity. Built for success.
+              You pay strictly for what you request — zero hidden retainers, zero feature bloat.
             </motion.p>
 
             {/* CTAs */}

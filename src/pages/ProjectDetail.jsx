@@ -109,9 +109,19 @@ export default function ProjectDetail() {
 
             <motion.div variants={fadeUpItem}>
               <h2 className="font-display text-2xl mb-4">Overview</h2>
-              <p className="font-sans text-lg text-[var(--text-muted)] leading-relaxed max-w-3xl">
-                {project.fullDescription || project.description}
-              </p>
+              {project.underDevelopment ? (
+                <div className="bg-[var(--bg-alt)] border border-dashed border-[var(--border)] rounded-2xl p-8 text-center my-6">
+                  <CodeIcon className="w-8 h-8 text-[var(--orange)] mx-auto mb-3" />
+                  <h3 className="font-display text-xl mb-2">Coming Soon / Under Development</h3>
+                  <p className="font-sans text-[var(--text-muted)] text-sm max-w-md mx-auto">
+                    We are currently building this project. Full details, live previews, and documentation will be released soon.
+                  </p>
+                </div>
+              ) : (
+                <p className="font-sans text-lg text-[var(--text-muted)] leading-relaxed max-w-3xl">
+                  {project.fullDescription || project.description}
+                </p>
+              )}
             </motion.div>
           </div>
 

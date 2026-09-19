@@ -34,6 +34,7 @@ export default function Header({ onOpenSidebar }) {
     { name: 'Services', href: '/services', id: 'services' },
     { name: 'Projects', href: '/projects', id: 'projects' },
     { name: 'Pricing',  href: '/pricing',  id: 'pricing'  },
+    { name: 'About Us', href: '/about',    id: 'about'    },
   ];
 
   const tabs = allTabs.filter(tab => PAGE_VISIBILITY[tab.id]);

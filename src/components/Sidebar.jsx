@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { XIcon, WhatsAppIcon, ArrowRightIcon } from '../icons';
+import { PAGE_VISIBILITY } from '../config';
 
 const STAGGER = 0.01;
 
@@ -44,11 +45,11 @@ const TextRoll = ({ children, style = {} }) => (
 );
 
 const NAV_ITEMS = [
-  { name: 'Home',     href: '/'        },
-  { name: 'Services', href: '/services' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Pricing',  href: '/pricing' },
-  { name: 'About Us', href: '/about'   },
+  { name: 'Home',     href: '/',        id: 'home'     },
+  { name: 'Services', href: '/services', id: 'services' },
+  { name: 'Projects', href: '/projects', id: 'projects' },
+  { name: 'Pricing',  href: '/pricing',  id: 'pricing'  },
+  { name: 'About Us', href: '/about',    id: 'about'    },
   { name: 'Contact',  href: '/contact' },
   { name: 'Privacy',  href: '/privacy' },
   { name: 'Terms',    href: '/terms'   },
@@ -163,7 +164,7 @@ export default function Sidebar({ isOpen, onClose }) {
                   alignItems: 'center', gap: '0.1rem', width: '100%',
                 }}
               >
-                {NAV_ITEMS.map((item) => (
+                {NAV_ITEMS.filter(item => !item.id || PAGE_VISIBILITY[item.id] !== false).map((item) => (
                   <motion.li key={item.href} variants={itemVariants} style={{ width: '100%', textAlign: 'center' }}>
                     <NavLink
                       to={item.href}

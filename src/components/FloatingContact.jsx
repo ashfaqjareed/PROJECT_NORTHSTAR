@@ -30,7 +30,7 @@ export default function FloatingContact() {
             
             {/* Email */}
             <a
-              href="mailto:hello@northstardevs.com" // Replace with actual email
+              href="mailto:northstardevs1@gmail.com"
               className="flex items-center gap-3 bg-[var(--bg)] border border-[var(--border)] px-4 py-2 rounded-full shadow-lg hover:border-[var(--orange)] transition-colors group text-decoration-none"
             >
               <span className="font-sans text-sm font-semibold text-[var(--text)]">Email Us</span>

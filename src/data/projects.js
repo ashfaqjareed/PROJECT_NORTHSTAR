@@ -15,6 +15,7 @@ export const PROJECTS = [
     year: '2025',
     client: 'NorthStarDevs (Internal)',
     role: 'Full-Stack Design & Engineering',
+    underDevelopment: false,
   },
   {
     slug: 'fitforge',
@@ -32,6 +33,7 @@ export const PROJECTS = [
     year: '2025',
     client: 'Open Source',
     role: 'Full-Stack Engineering',
+    underDevelopment: true,
   },
   {
     slug: 'truthlens',
@@ -49,6 +51,7 @@ export const PROJECTS = [
     year: '2024',
     client: 'Open Source',
     role: 'AI Integration & Frontend',
+    underDevelopment: true,
   },
   {
     slug: 'scanscribe',
