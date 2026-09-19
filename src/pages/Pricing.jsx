@@ -60,7 +60,7 @@ function TierBreakdownSection() {
           Detailed breakdown per tier
         </motion.h2>
         <motion.p variants={fadeUpItem} className="font-sans text-[0.95rem] text-[var(--text-muted)] mb-8 max-w-xl">
-          Select a package below to see exactly what is offered — no guesswork.
+          Select a package below to see exactly what is offered: zero guesswork.
         </motion.p>
 
         {/* Dropdown selector */}
@@ -75,7 +75,7 @@ function TierBreakdownSection() {
               cursor: 'pointer',
             }}
           >
-            <span>{tier.name} — {tier.tagline}</span>
+            <span>{tier.name}: {tier.tagline}</span>
             <motion.span
               animate={{ rotate: dropdownOpen ? 180 : 0 }}
               transition={{ duration: 0.2 }}
@@ -121,7 +121,7 @@ function TierBreakdownSection() {
                         onMouseLeave={e => { if (!isActive) e.currentTarget.style.background = 'transparent'; }}
                       >
                         <span className="font-semibold">{t.name}</span>
-                        <span className="ml-2 text-[var(--text-muted)] text-[0.8rem]">— {t.tagline}</span>
+                        <span className="ml-2 text-[var(--text-muted)] text-[0.8rem]">: {t.tagline}</span>
                       </button>
                     </li>
                   );
@@ -142,7 +142,7 @@ function TierBreakdownSection() {
         >
           <div className="rounded-2xl px-6 py-4" style={{ background: 'var(--bg)', border: `1px solid ${accentColor}`, boxShadow: `0 0 0 1px ${accentColor}22` }}>
             <p className="font-mono text-[9px] uppercase tracking-widest font-bold mb-1" style={{ color: accentColor }}>
-              Price — LKR
+              Price (LKR)
             </p>
             <p className="font-display text-2xl" style={{ color: accentColor }}>
               {tier.lkr}
@@ -230,7 +230,7 @@ const COMPARISON_ROWS = [
 
 const FAQS = [
   { q: 'Do you require a deposit?', a: 'We ask for a 50% upfront deposit before starting the project. The remaining 50% must be completed when the project is fully delivered.' },
-  { q: 'What currency do you invoice in?', a: 'LKR for Sri Lankan clients — we quote in rupees as standard. The exact rate is confirmed in the project proposal at the day of invoicing.' },
+  { q: 'What currency do you invoice in?', a: 'LKR for Sri Lankan clients. We quote in rupees as standard. The exact rate is confirmed in the project proposal at the day of invoicing.' },
   { q: 'What payment methods do you accept?', a: 'Bank transfer, PayPal, and Wise. We send a formal invoice for every payment.' },
   { q: 'What happens if the project runs over scope?', a: 'We flag scope changes before acting on them. If the additional work requires a separate cost, we quote it and get your sign-off before proceeding. No surprise invoices.' },
 ];
@@ -246,7 +246,7 @@ export default function Pricing() {
             Our Pricing.<br />No surprises.
           </motion.h1>
           <motion.p variants={fadeUpItem} className="font-sans text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
-            Every tier listed with a real price range in <strong>Sri Lankan Rupees (LKR)</strong>, timeline, and what's included — so you can scope a project before you even contact us.
+            Every tier listed with a real price range in <strong>Sri Lankan Rupees (LKR)</strong>, timeline, and what's included so you can scope a project before you contact us.
           </motion.p>
           <motion.div variants={fadeUpItem} className="mt-4 inline-flex items-center gap-2 rounded-full px-4 py-2" style={{ background: 'var(--orange)', color: 'var(--white-locked)' }}>
             <span className="font-mono text-[10px] font-bold uppercase tracking-widest">All prices shown in LKR</span>

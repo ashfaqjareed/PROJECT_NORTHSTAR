@@ -121,34 +121,25 @@ const AccordionItem = ({ q, a }) => {
 ═══════════════════════════════════════════ */
 export default function Home() {
   const pricingRef = useRef(null);
-  
+
   return (
     <div>
       {/* ── PANEL 1: HERO ── */}
       <section style={{ position: 'relative', overflow: 'hidden', padding: '6rem 0 4rem' }}>
         <BlobMorph />
-        <motion.div 
+        <motion.div
           className="section-container" style={{ position: 'relative', zIndex: 1 }}
           variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }}
         >
           <div style={{ maxWidth: '860px' }}>
-            {/* Eyebrow */}
-            <motion.div variants={fadeUpItem} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0.9rem', border: '1px solid var(--border)', borderRadius: '999px', background: 'var(--bg-alt)' }}>
-                <StarIcon className="w-3 h-3 text-[var(--orange)]" />
-                <span className="eyebrow">Studio Motto — You pay for what you ask</span>
-              </div>
-            </motion.div>
-
             {/* Headline */}
             <motion.h1 variants={fadeUpItem} className="font-display" style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', lineHeight: 1.05, marginBottom: '1.5rem' }}>
-              We build websites<br />that work<br /><span className="text-[var(--orange)]">for you.</span>
+              You pay for<br /><span className="text-[var(--orange)]">what you ask.</span>
             </motion.h1>
 
             {/* Subhead */}
             <motion.p variants={fadeUpItem} style={{ fontFamily: 'var(--font-sans)', fontSize: '1.1rem', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '560px', marginBottom: '2.5rem' }}>
-              High-quality web design, scalable platforms, and fast interfaces.
-              You pay strictly for what you request — zero hidden retainers, zero feature bloat.
+              High-quality web design, scalable platforms, and fast interfaces. You pay strictly for what you request: zero hidden retainers, zero feature bloat.
             </motion.p>
 
             {/* CTAs */}
@@ -177,7 +168,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <motion.div variants={fadeUpItem}>
-              <ServicePill 
+              <ServicePill
                 icon={<CodeIcon className="w-8 h-8" />}
                 label="Website Development"
                 description="We build your website from scratch using React. Every page is custom-designed, mobile-friendly, and fast to load."
@@ -186,7 +177,7 @@ export default function Home() {
               />
             </motion.div>
             <motion.div variants={fadeUpItem}>
-              <ServicePill 
+              <ServicePill
                 icon={<BoltIcon className="w-8 h-8" />}
                 label="Landing Pages"
                 description="A clean, high-converting landing page to get your business or product online. Looks great, loads fast, built to your brief."
@@ -195,7 +186,7 @@ export default function Home() {
               />
             </motion.div>
             <motion.div variants={fadeUpItem}>
-              <ServicePill 
+              <ServicePill
                 icon={<PaletteIcon className="w-8 h-8" />}
                 label="Logo & Brand Design"
                 description="Logo creation, colour palettes, and brand guidelines. We design something you'll actually want to use everywhere."
@@ -204,7 +195,7 @@ export default function Home() {
               />
             </motion.div>
             <motion.div variants={fadeUpItem}>
-              <ServicePill 
+              <ServicePill
                 icon={<CloudIcon className="w-8 h-8" />}
                 label="Full Stack Apps"
                 description="Need a database, user logins, or an admin panel? We build React apps backed by Firebase/Firestore."
@@ -213,7 +204,7 @@ export default function Home() {
               />
             </motion.div>
             <motion.div variants={fadeUpItem}>
-              <ServicePill 
+              <ServicePill
                 icon={<ShieldIcon className="w-8 h-8" />}
                 label="Web Maintenance"
                 description="Ongoing monthly support — security updates, content changes, and keeping things running smoothly."
@@ -222,7 +213,7 @@ export default function Home() {
               />
             </motion.div>
             <motion.div variants={fadeUpItem}>
-              <ServicePill 
+              <ServicePill
                 icon={<StarIcon className="w-8 h-8" />}
                 label="Social Suits"
                 description="Social media content, post designs, and management. We handle it so you can focus on running the business."
@@ -326,11 +317,11 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch pt-4">
             <motion.div variants={fadeUpItem}>
-              <PricingPill 
+              <PricingPill
                 slug="basic-maker"
-                tier="Cheapest" 
-                price="From Rs. 15,000" 
-                desc="A very low-cost entry plan for basic website making and presence." 
+                tier="Cheapest"
+                price="From Rs. 15,000"
+                desc="A very low-cost entry plan for basic website making and presence."
                 features={['1 Basic Page', 'Mobile Responsive', 'Template Design', '1 revision']}
                 accent="lime"
                 featured={true}
@@ -339,11 +330,11 @@ export default function Home() {
               />
             </motion.div>
             <motion.div variants={fadeUpItem} className="md:-translate-y-4">
-              <PricingPill 
+              <PricingPill
                 slug="growth"
-                tier="Growth Plan" 
-                price="From Rs. 160,000" 
-                desc="The most affordable launchpad for startups. High-conversion landing page." 
+                tier="Growth Plan"
+                price="From Rs. 160,000"
+                desc="The most affordable launchpad for startups. High-conversion landing page."
                 features={['Single-page layout', 'Mobile-responsive', 'Performance optimised', '2 revision rounds']}
                 accent="orange"
                 featured={true}
@@ -352,11 +343,11 @@ export default function Home() {
               />
             </motion.div>
             <motion.div variants={fadeUpItem}>
-              <PricingPill 
+              <PricingPill
                 slug="full-launch"
-                tier="Full Platform" 
-                price="From Rs. 480,000" 
-                desc="Complete web application with a scalable backend and full brand system." 
+                tier="Full Platform"
+                price="From Rs. 480,000"
+                desc="Complete web application with a scalable backend and full brand system."
                 features={['Multi-page React app', 'Firestore backend', 'Dark/light mode', '4 revision rounds']}
                 accent="orange"
                 featured={true}
@@ -382,7 +373,7 @@ export default function Home() {
               We rely on strict, contractual guarantees that protect your investment and ensure delivery.
             </motion.p>
           </div>
-          
+
           <div className="flex flex-col gap-6">
             {[
               { title: "Direct WhatsApp Line", desc: "No ticketing systems or account managers. You speak directly to the engineers building your product." },
@@ -457,7 +448,7 @@ export default function Home() {
       {/* ── PANEL 10: FINAL CTA BAND ── */}
       <section className="pb-20 pt-10">
         <div className="section-container">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -476,7 +467,7 @@ export default function Home() {
                 Ready to start?
               </h2>
               <p className="font-sans text-white/90 mb-10 max-w-lg mx-auto text-lg">
-                Message us on WhatsApp for a response within the hour, or drop us an email. 
+                Message us on WhatsApp for a response within the hour, or drop us an email.
                 We respond to every inquiry personally.
               </p>
               <div className="flex gap-4 justify-center flex-wrap">

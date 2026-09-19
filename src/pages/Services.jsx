@@ -146,7 +146,7 @@ function ContactModal({ open, onClose, serviceName }) {
                       WhatsApp
                     </p>
                     <p className="font-sans text-[0.85rem]" style={{ color: 'var(--text)' }}>
-                      Message us — respond within 24h
+                      Message us: respond within 24h
                     </p>
                   </div>
                 </a>
@@ -178,7 +178,7 @@ function ContactModal({ open, onClose, serviceName }) {
                       Direct Call
                     </p>
                     <p className="font-sans text-[0.85rem] text-[var(--text)]">
-                      +94 76 832 5949 — 5–15 min chat
+                      +94 76 832 5949 (5 to 15 min chat)
                     </p>
                   </div>
                 </a>
@@ -204,7 +204,7 @@ const SERVICES = [
     icon: CodeIcon,
     eyebrow: 'Full-Stack Development',
     title: 'Web Application Development',
-    desc: 'We build full React web applications connected to a Firebase/Firestore backend. If you need user logins, a database, an admin panel, or multiple pages that actually talk to each other — this is the service for you. Built properly from the start, not patched together.',
+    desc: 'We build full React web applications connected to a Firebase/Firestore backend. If you need user logins, a database, an admin panel, or multiple pages that actually talk to each other, this is the service for you. Built properly from the start, not patched together.',
     priceRange: 'Rs. 480,000 – Rs. 1,920,000',
     timeline: '3–5 weeks',
     features: [
@@ -219,7 +219,7 @@ const SERVICES = [
     ],
     tableRows: [
       { feature: 'Number of Pages',      value: 'Up to 8' },
-      { feature: 'Custom UI/UX',         value: 'Yes — Fully Custom' },
+      { feature: 'Custom UI/UX',         value: 'Yes (Fully Custom)' },
       { feature: 'Mobile Responsive',    value: 'Yes' },
       { feature: 'Firestore Backend',    value: 'Included' },
       { feature: 'Dark / Light Mode',    value: 'Included' },
@@ -249,7 +249,7 @@ const SERVICES = [
     ],
     tableRows: [
       { feature: 'Number of Pages',      value: '1–2 pages' },
-      { feature: 'Custom UI/UX',         value: 'Yes — Custom layout' },
+      { feature: 'Custom UI/UX',         value: 'Yes (Custom layout)' },
       { feature: 'Mobile Responsive',    value: 'Yes' },
       { feature: 'Form Integration',     value: 'Formspree / Firestore' },
       { feature: 'SEO Optimisation',     value: 'Structured data + meta' },
@@ -265,7 +265,7 @@ const SERVICES = [
     icon: PaletteIcon,
     eyebrow: 'Brand Identity',
     title: 'Logo & Brand Identity',
-    desc: 'We design logos and brand identities that actually hold up — in print, on screen, at any size. You get the logo, a colour palette, font choices, and a document explaining how to use it all so it stays consistent.',
+    desc: 'We design logos and brand identities that actually hold up in print, on screen, at any size. You get the logo, a colour palette, font choices, and a document explaining how to use it all so it stays consistent.',
     priceRange: 'Rs. 64,000 – Rs. 256,000',
     timeline: '3–5 business days',
     features: [
@@ -292,7 +292,7 @@ const SERVICES = [
     icon: StarIcon,
     eyebrow: 'Visual Assets',
     title: 'Graphic Banners & Posters',
-    desc: 'Social media banners, event posters, promotional flyers — designed to the right dimensions for the right platform. We handle the sizing and export properly so nothing looks stretched or blurry.',
+    desc: 'Social media banners, event posters, promotional flyers designed to the right dimensions for the right platform. We handle the sizing and export properly so nothing looks stretched or blurry.',
     priceRange: 'Rs. 32,000 – Rs. 128,000',
     timeline: '2–3 business days',
     features: [
@@ -600,7 +600,7 @@ export default function Services() {
               Start a conversation.
             </h2>
             <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-muted)', maxWidth: '480px', margin: '0 auto 2.5rem' }}>
-              Have a <strong>5–15 minute call</strong> or drop us a WhatsApp message with your brief — we'll respond with a ballpark scope within 24 hours.
+              Have a <strong>5 to 15 minute call</strong> or drop us a WhatsApp message with your brief. We will respond with a ballpark scope within 24 hours.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button

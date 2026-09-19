@@ -2,67 +2,75 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function GlobalPopup() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isClosed, setIsClosed] = useState(false);
 
   useEffect(() => {
-    // Show the popup a short time after the page loads
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 1500); // 1.5 second delay
-    return () => clearTimeout(timer);
+    const handleScroll = () => {
+      if (window.scrollY > 150) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (isClosed) return null;
 
   return (
     <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-          />
-
-          {/* Popup Content */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-md bg-[var(--bg-alt)] border border-[var(--border)] rounded-[24px] overflow-hidden shadow-2xl z-10"
-          >
-            {/* Close Button */}
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 40, scale: 0.9 }}
+          transition={{ type: 'spring', damping: 22, stiffness: 260 }}
+          className="fixed bottom-6 left-6 z-40 flex flex-col items-start"
+        >
+          <div className="relative bg-[var(--bg)] border border-[var(--border)] shadow-2xl rounded-2xl p-4 flex flex-col items-center backdrop-blur-md max-w-[220px]">
+            {/* Close button */}
             <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-[var(--bg)]/80 hover:bg-[var(--orange)] hover:text-white text-[var(--text)] rounded-full backdrop-blur-md transition-colors z-20"
-              aria-label="Close popup"
+              onClick={() => setIsClosed(true)}
+              className="absolute -top-2 -right-2 w-6 h-6 bg-[var(--bg-alt)] border border-[var(--border)] hover:bg-[var(--orange)] hover:text-white rounded-full flex items-center justify-center text-xs transition-colors shadow-md z-10"
+              aria-label="Dismiss QR code"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              ✕
             </button>
 
-            <div className="p-8 text-center flex flex-col items-center">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--orange)] mb-2">Welcome</span>
-              <h3 className="font-display text-2xl mb-3">Want to learn more about us?</h3>
-
-              {/* QR Code Container */}
-              <div className="w-56 h-56 bg-white p-3 rounded-2xl flex items-center justify-center my-4 border border-[var(--border)] shadow-md">
-                <img
-                  src="/About Us.png"
-                  alt="Scan to visit About Us"
-                  className="w-full h-full object-contain rounded-lg"
-                />
-              </div>
-
-              <p className="font-sans text-[var(--text-muted)] text-sm max-w-xs">
-                Scan with your mobile camera to view our story.
+            {/* Header / Text */}
+            <div 
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="cursor-pointer text-center group"
+            >
+              <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-[var(--orange)] block mb-1">
+                Scan & Explore
+              </span>
+              <p className="font-display text-xs font-semibold leading-tight group-hover:text-[var(--orange)] transition-colors">
+                Want to learn more about us?
               </p>
             </div>
-          </motion.div>
-        </div>
+
+            {/* QR Code Container */}
+            <motion.div
+              animate={{ height: isExpanded ? 'auto' : '140px', opacity: 1 }}
+              className="w-32 bg-white p-2 rounded-xl border border-[var(--border)] my-2 overflow-hidden shadow-sm"
+            >
+              <img
+                src="/About Us.png"
+                alt="Scan to visit About Us"
+                className="w-full h-full object-contain rounded-lg"
+              />
+            </motion.div>
+
+            <span className="font-sans text-[10px] text-[var(--text-muted)] text-center">
+              Scan with phone camera
+            </span>
+          </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );

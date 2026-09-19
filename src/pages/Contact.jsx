@@ -111,6 +111,41 @@ export default function Contact() {
               </div>
             </motion.a>
 
+            {/* Google Form card */}
+            <motion.a
+              variants={fadeUp}
+              href="https://forms.google.com" // Placeholder for Google Form URL
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ y: -4, boxShadow: '0 12px 32px rgba(59,130,246,0.12)' }}
+              transition={{ type: 'spring', stiffness: 300 }}
+              style={{
+                display: 'flex', flexDirection: 'column', gap: '1rem',
+                padding: '2rem', borderRadius: '24px',
+                background: 'var(--bg-alt)',
+                border: '1px solid var(--border)',
+                textDecoration: 'none', color: 'var(--text)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div style={{ width: 48, height: 48, borderRadius: '14px', background: 'rgba(59,130,246,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', flexShrink: 0 }}>
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-display" style={{ fontSize: '1.25rem', marginBottom: '0.2rem' }}>Project Brief (Google Form)</p>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text-muted)' }}>Structured Client Intake</p>
+                </div>
+              </div>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                Fill out our quick project questionnaire covering your goals, timeline, and scope for a fast quote.
+              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#3b82f6' }}>
+                Open Google Form <ArrowRightIcon className="w-4 h-4" />
+              </div>
+            </motion.a>
+
             {/* Email card */}
             <motion.a
               variants={fadeUp}

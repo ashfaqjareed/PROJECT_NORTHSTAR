@@ -20,7 +20,7 @@ export default function FloatingContact() {
               href="https://wa.me/94770000000" // Replace with actual number
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 bg-[var(--bg)] border border-[var(--border)] px-4 py-2 rounded-full shadow-lg hover:border-[#25D366] transition-colors group text-decoration-none"
+              className="w-44 flex items-center justify-between bg-[var(--bg)] border border-[var(--border)] px-4 py-2 rounded-full shadow-lg hover:border-[#25D366] transition-colors group text-decoration-none"
             >
               <span className="font-sans text-sm font-semibold text-[var(--text)]">WhatsApp Us</span>
               <div className="bg-[#25D366] p-1.5 rounded-full text-white">
@@ -31,7 +31,7 @@ export default function FloatingContact() {
             {/* Email */}
             <a
               href="mailto:northstardevs1@gmail.com"
-              className="flex items-center gap-3 bg-[var(--bg)] border border-[var(--border)] px-4 py-2 rounded-full shadow-lg hover:border-[var(--orange)] transition-colors group text-decoration-none"
+              className="w-44 flex items-center justify-between bg-[var(--bg)] border border-[var(--border)] px-4 py-2 rounded-full shadow-lg hover:border-[var(--orange)] transition-colors group text-decoration-none"
             >
               <span className="font-sans text-sm font-semibold text-[var(--text)]">Email Us</span>
               <div className="bg-[var(--orange)] p-1.5 rounded-full text-white">
