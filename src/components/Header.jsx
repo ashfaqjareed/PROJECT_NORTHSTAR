@@ -58,7 +58,9 @@ export default function Header({ onOpenSidebar }) {
           animate={{
             background: scrolled
               ? 'var(--lime)'
-              : (theme === 'dark' ? '#0d0d0d' : '#ffffff'),
+              : (theme === 'dark' ? 'rgba(13, 13, 13, 0.95)' : 'rgba(255, 255, 255, 0.95)'),
+            backdropFilter: scrolled ? 'none' : 'blur(12px)',
+            WebkitBackdropFilter: scrolled ? 'none' : 'blur(12px)',
             borderBottomLeftRadius: scrolled ? '28px' : '0px',
             borderBottomRightRadius: scrolled ? '28px' : '0px',
             boxShadow: scrolled

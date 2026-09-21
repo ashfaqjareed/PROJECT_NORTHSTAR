@@ -166,9 +166,12 @@ export default function Projects() {
       <section className="pt-24 pb-12">
         <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" animate="show">
           <motion.p variants={fadeUpItem} className="eyebrow mb-3">Portfolio</motion.p>
-          <motion.h1 variants={fadeUpItem} className="font-display text-4xl md:text-5xl lg:text-[4.5rem] leading-[1.1] mb-8">
-            Things we've built.
+          <motion.h1 variants={fadeUpItem} className="font-display text-4xl md:text-5xl lg:text-[4.5rem] leading-[1.1] mb-4">
+            Selected Work.
           </motion.h1>
+          <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] text-lg mb-8 max-w-2xl">
+            A few things we've built, designed and shipped.
+          </motion.p>
           
           <motion.div variants={fadeUpItem} className="flex gap-3 flex-wrap">
             {['All', 'Client Project', 'Personal Build'].map(tag => (

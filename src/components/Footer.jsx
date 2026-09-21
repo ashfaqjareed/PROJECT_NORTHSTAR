@@ -67,11 +67,14 @@ export default function Footer() {
             </Link>
 
             <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.975rem', color: 'rgba(253,246,238,0.78)', lineHeight: 1.75, maxWidth: '300px' }}>
-              Elite creative engineering — Swiss-modern interfaces, performance-first React ecosystems, and brand identities that endure.
+              NorthStarDevs builds custom websites and web applications for businesses that want something better than a template.
             </p>
 
             {/* Contact pills */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'rgba(253,246,238,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                Colombo, Sri Lanka
+              </p>
               <a href="mailto:northstardevs1@gmail.com" style={{ ...linkBase, fontSize: '0.9rem', color: 'rgba(253,246,238,0.85)' }}
                 onMouseEnter={e => e.target.style.color = '#fff'}
                 onMouseLeave={e => e.target.style.color = 'rgba(253,246,238,0.85)'}

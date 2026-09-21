@@ -217,15 +217,15 @@ function TierBreakdownSection() {
   );
 }
 
-/* ---------- Comparison table (six tiers) ---------- */
+/* ---------- Comparison table (four tiers) ---------- */
 const COMPARISON_ROWS = [
-  { label: 'Landing page',          vals: [true,  true,  true,  true,  true,  true]  },
-  { label: 'Custom UI/UX',          vals: [false, true,  true,  true,  true,  true]  },
-  { label: 'Multi-page app',        vals: [false, false, false, true,  true,  true]  },
-  { label: 'Firestore backend',     vals: [false, false, false, true,  true,  true]  },
-  { label: 'Advanced Integrations', vals: [false, false, false, false, true,  true]  },
-  { label: 'Dark/light mode',       vals: [false, false, false, true,  true,  true]  },
-  { label: 'Post-launch support',   vals: [false, false, false, '30d', '60d', 'SLA'] },
+  { label: 'Landing page / Web presence', vals: [true,  true,  true,  true]  },
+  { label: 'Custom UI/UX Design',         vals: [true,  true,  true,  true]  },
+  { label: 'Multi-page architecture',     vals: [false, true,  true,  true]  },
+  { label: 'E-commerce (Cart & Checkout)',vals: [false, false, true,  true]  },
+  { label: 'Database & Backend API',      vals: [false, false, false, true]  },
+  { label: 'WhatsApp / Contact Forms',    vals: [true,  true,  true,  true]  },
+  { label: 'Post-launch support',         vals: ['Std', '30d', '30d', 'SLA'] },
 ];
 
 const FAQS = [
@@ -243,10 +243,10 @@ export default function Pricing() {
         <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
           <motion.p variants={fadeUpItem} className="eyebrow mb-3">Investment</motion.p>
           <motion.h1 variants={fadeUpItem} className="font-display text-4xl md:text-5xl lg:text-[4.5rem] leading-[1.1] mb-5 max-w-3xl text-[var(--text)]">
-            Our Pricing.<br />No surprises.
+            Straightforward pricing.
           </motion.h1>
           <motion.p variants={fadeUpItem} className="font-sans text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
-            Every tier listed with a real price range in <strong>Sri Lankan Rupees (LKR)</strong>, timeline, and what's included so you can scope a project before you contact us.
+            Starting prices in LKR. No hidden fees or surprise markup. The final cost depends on the exact scope of your project, which we will put in writing before you agree to anything.
           </motion.p>
           <motion.div variants={fadeUpItem} className="mt-4 inline-flex items-center gap-2 rounded-full px-4 py-2" style={{ background: 'var(--orange)', color: 'var(--white-locked)' }}>
             <span className="font-mono text-[10px] font-bold uppercase tracking-widest">All prices shown in LKR</span>

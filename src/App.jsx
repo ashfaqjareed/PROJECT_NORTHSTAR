@@ -17,8 +17,6 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import ProjectDetail from './pages/ProjectDetail';
 import PricingDetail from './pages/PricingDetail';
-import FloatingContact from './components/FloatingContact';
-import GlobalPopup from './components/GlobalPopup';
 
 function App() {
   if (IS_UNDER_MAINTENANCE) {
@@ -50,8 +48,6 @@ function App() {
             <Route path="terms" element={<Terms />} />
           </Route>
         </Routes>
-        <FloatingContact />
-        <GlobalPopup />
       </BrowserRouter>
     </ThemeProvider>
   );

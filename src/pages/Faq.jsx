@@ -3,24 +3,36 @@ import { PlusIcon, MinusIcon } from '../icons';
 
 const faqs = [
   {
-    q: 'What is your standard delivery timeline?',
-    a: 'Speed MVPs are delivered in 7 days. Full Launches take up to 14 days. Custom sprints are assessed based on complexity.'
+    q: 'How long does it take to build a website?',
+    a: 'Starter websites usually take 5–7 working days. A multi-page business website takes 1–2 weeks. For larger web applications, we will give you a clear timeline before any work begins.'
   },
   {
-    q: 'Do you offer ongoing support?',
-    a: 'Every project includes a 30-day bug-fix guarantee. Post-launch, we offer monthly retainers for continuous development and maintenance.'
+    q: 'Do you write the content for my website?',
+    a: 'We usually ask clients to provide the text for their website, as you know your business best. We can help organise it and make sure it looks great on the page. If you need a lot of copywriting from scratch, we can include that as an additional service.'
   },
   {
-    q: 'What stack do you use?',
-    a: 'We strictly use React 18, Vite, and Tailwind CSS for the frontend. For backend needs, we utilize serverless environments (Node.js/Vercel) and Firestore.'
+    q: 'How many times can I ask for changes?',
+    a: 'It depends on your plan. Starter plans include 1 round of revisions, while Business and Online Store plans include 2 rounds. This happens during the design phase so we get everything looking right before development.'
   },
   {
-    q: 'Who owns the code?',
-    a: 'You do. Upon final payment, 100% of the intellectual property, design files, and codebase are transferred to you.'
+    q: 'Who pays for the domain name and hosting?',
+    a: 'Domain names and premium hosting are separate costs. We help you set everything up on platforms like Vercel (often free for simple sites) and can guide you through purchasing your domain. There are no hidden markup fees from us on hosting.'
   },
   {
-    q: 'Why no WordPress or Webflow?',
-    a: 'We are software engineers, not template assemblers. We build bespoke React applications that offer superior performance, unlimited scalability, and total architectural control.'
+    q: 'Who owns the website once it is finished?',
+    a: 'You do. Once the final payment is made, we hand over all the source code, assets and project files to you. You are not locked into working with us.'
+  },
+  {
+    q: 'Do you offer maintenance after launch?',
+    a: 'Yes, we have care plans starting at LKR 10,000/month. This includes technical checks, minor content updates, bug fixes for things we built, and priority support. We also include a free 30-day bug fix period for most plans after launch.'
+  },
+  {
+    q: 'How do payments work?',
+    a: 'For most projects, we ask for 40% to start, 30% at a middle milestone, and the final 30% when the project is ready to hand over. For smaller projects, we might simplify this to two payments.'
+  },
+  {
+    q: 'What if I want to add more features later?',
+    a: 'That is completely fine. If you want to add something new that wasn\'t in the original scope, we will just give you a separate quote for that work before we proceed.'
   }
 ];
 
@@ -31,10 +43,10 @@ export default function Faq() {
     <div className="space-y-16 animate-in fade-in duration-700 max-w-3xl mx-auto">
       <section className="space-y-6 text-center">
         <h1 className="font-display font-black text-4xl md:text-6xl tracking-tight text-[var(--text)]">
-          Intelligence Desk
+          Questions answered up front
         </h1>
         <p className="font-sans text-lg text-[var(--text-muted)] leading-relaxed">
-          Frequently requested operational details and SLA parameters.
+          Everything you need to know about timelines, ownership, and how we work.
         </p>
       </section>
 

@@ -202,112 +202,84 @@ const SERVICES = [
   {
     id: 'web',
     icon: CodeIcon,
-    eyebrow: 'Full-Stack Development',
+    eyebrow: 'Web Applications',
     title: 'Web Application Development',
-    desc: 'We build full React web applications connected to a Firebase/Firestore backend. If you need user logins, a database, an admin panel, or multiple pages that actually talk to each other, this is the service for you. Built properly from the start, not patched together.',
-    priceRange: 'Rs. 480,000 – Rs. 1,920,000',
+    desc: 'From forms and dashboards to accounts, databases and custom workflows — we build the functionality behind the interface. We build full React web applications connected to a Firebase/Firestore backend. If you need user logins, a database, an admin panel, or multiple pages that actually talk to each other, this is the service for you.',
+    priceRange: 'LKR 200,000+',
     timeline: '3–5 weeks',
     features: [
       'React 18+ with Vite build pipeline',
-      'Tailwind CSS design system',
-      'Firestore / REST API integration',
-      'Dark/light mode with zero FOUC',
-      'Lighthouse 90+ on all Core Web Vitals',
-      'Vercel deployment + domain setup',
-      '4 revision rounds',
-      '30-day post-launch support',
+      'Tailwind CSS styling',
+      'Firestore / API integration',
+      'Dark/light mode support',
+      'Performance tested',
+      'Deployment setup',
+      'Revision scope defined per project',
+      'Project handover',
     ],
     tableRows: [
-      { feature: 'Number of Pages',      value: 'Up to 8' },
-      { feature: 'Custom UI/UX',         value: 'Yes (Fully Custom)' },
-      { feature: 'Mobile Responsive',    value: 'Yes' },
-      { feature: 'Firestore Backend',    value: 'Included' },
-      { feature: 'Dark / Light Mode',    value: 'Included' },
-      { feature: 'Form Integration',     value: 'Firestore / Email' },
-      { feature: 'SEO Optimisation',     value: 'Full meta + OG tags' },
-      { feature: 'Vercel Deployment',    value: 'Included' },
-      { feature: 'Revision Rounds',      value: '4 rounds' },
-      { feature: 'Post-Launch Support',  value: '30 days included' },
-      { feature: 'Lighthouse Score',     value: '90+ guaranteed' },
+      { feature: 'Custom Page Structure', value: 'Yes' },
+      { feature: 'Authentication',       value: 'Where required' },
+      { feature: 'Database Integration', value: 'Included' },
+      { feature: 'Dashboard',            value: 'Where required' },
+      { feature: 'Custom Workflows',     value: 'Included' },
+      { feature: 'API / Integration',    value: 'Included' },
+      { feature: 'Responsive UI',        value: 'Yes' },
+      { feature: 'Performance Testing',  value: 'Included' },
     ],
     accent: 'orange',
   },
   {
     id: 'landing',
     icon: BoltIcon,
-    eyebrow: 'Conversion-First',
-    title: 'Landing Pages',
-    desc: 'A clean, fast landing page to get your business online and looking professional. Great for new businesses, product launches, or anyone who just needs a solid web presence without going overboard. Mobile-friendly, loads fast, built to your brief.',
-    priceRange: 'Rs. 160,000 – Rs. 384,000',
-    timeline: '5–7 business days',
+    eyebrow: 'Business Websites',
+    title: 'Business Websites & Landing Pages',
+    desc: 'We build reusable, maintainable interfaces instead of stitching together a template and calling it custom. A clean, fast website to get your business online and looking professional. Mobile-friendly, loads fast, built to your brief.',
+    priceRange: 'LKR 45,000 – LKR 95,000+',
+    timeline: '1–2 weeks',
     features: [
-      'Single-page layout with full scroll story',
-      'Form integration (Formspree / Firestore)',
-      'Structured data / SEO meta',
-      'Mobile-first responsive layout',
-      '2 revision rounds',
+      'Custom responsive design',
+      'Mobile + desktop layout',
+      'Contact / WhatsApp integration',
+      'Basic SEO structure',
+      'Performance optimisation',
     ],
     tableRows: [
-      { feature: 'Number of Pages',      value: '1–2 pages' },
-      { feature: 'Custom UI/UX',         value: 'Yes (Custom layout)' },
+      { feature: 'Number of Pages',      value: '1 to 6 pages' },
+      { feature: 'Custom UI Design',     value: 'Yes' },
       { feature: 'Mobile Responsive',    value: 'Yes' },
-      { feature: 'Form Integration',     value: 'Formspree / Firestore' },
-      { feature: 'SEO Optimisation',     value: 'Structured data + meta' },
-      { feature: 'Firestore Backend',    value: 'Not included' },
-      { feature: 'Vercel Deployment',    value: 'Included' },
-      { feature: 'Revision Rounds',      value: '2 rounds' },
-      { feature: 'Post-Launch Support',  value: '7 days email support' },
+      { feature: 'Contact Forms',        value: 'Included' },
+      { feature: 'Basic SEO',            value: 'Included' },
+      { feature: 'Analytics',            value: 'Google Analytics' },
+      { feature: 'Revision Rounds',      value: '1 to 2 rounds' },
+      { feature: 'Post-Launch Support',  value: 'Up to 30 days' },
     ],
     accent: 'lime',
   },
   {
-    id: 'brand',
+    id: 'store',
     icon: PaletteIcon,
-    eyebrow: 'Brand Identity',
-    title: 'Logo & Brand Identity',
-    desc: 'We design logos and brand identities that actually hold up in print, on screen, at any size. You get the logo, a colour palette, font choices, and a document explaining how to use it all so it stays consistent.',
-    priceRange: 'Rs. 64,000 – Rs. 256,000',
-    timeline: '3–5 business days',
+    eyebrow: 'E-Commerce',
+    title: 'Online Store',
+    desc: 'We build online stores with product catalogues, categories, shopping carts, and checkouts. We handle the payment gateway integration and order management so you can focus on selling.',
+    priceRange: 'LKR 150,000+',
+    timeline: '3–5 weeks',
     features: [
-      'Primary logo mark + wordmark',
-      'Colour palette + typography specification',
-      'SVG, PNG, and PDF deliverables',
-      'Usage guidelines document',
-      '2 concept directions, 2 revision rounds',
+      'Product catalogue & categories',
+      'Shopping cart & checkout',
+      'Payment gateway integration',
+      'Order management',
+      'Responsive storefront',
     ],
     tableRows: [
-      { feature: 'Logo Mark',             value: 'Primary + wordmark' },
-      { feature: 'Colour Palette',        value: 'Full token documentation' },
-      { feature: 'Typography Spec',       value: 'Included' },
-      { feature: 'File Formats',          value: 'SVG, PNG, PDF' },
-      { feature: 'Favicon Version',       value: 'Included' },
-      { feature: 'Usage Guidelines',      value: 'Document included' },
-      { feature: 'Concept Directions',    value: '2 concepts' },
-      { feature: 'Revision Rounds',       value: '2 rounds' },
-    ],
-    accent: 'lime',
-  },
-  {
-    id: 'graphics',
-    icon: StarIcon,
-    eyebrow: 'Visual Assets',
-    title: 'Graphic Banners & Posters',
-    desc: 'Social media banners, event posters, promotional flyers designed to the right dimensions for the right platform. We handle the sizing and export properly so nothing looks stretched or blurry.',
-    priceRange: 'Rs. 32,000 – Rs. 128,000',
-    timeline: '2–3 business days',
-    features: [
-      'Platform-spec dimensions (IG, LinkedIn, etc.)',
-      'Print-ready 300 DPI export',
-      'Source file handoff (Figma / AI)',
-      '2 revision rounds',
-    ],
-    tableRows: [
-      { feature: 'Platform Specs',        value: 'IG, LinkedIn, FB, etc.' },
-      { feature: 'Print-Ready Export',    value: '300 DPI included' },
-      { feature: 'Source File Handoff',   value: 'Figma / AI' },
-      { feature: 'Number of Designs',     value: 'Per-quote (min 1)' },
-      { feature: 'Revision Rounds',       value: '2 rounds' },
-      { feature: 'Delivery Format',       value: 'PNG, JPG, PDF' },
+      { feature: 'Product Catalogue',    value: 'Included' },
+      { feature: 'Shopping Cart',        value: 'Included' },
+      { feature: 'Checkout Process',     value: 'Included' },
+      { feature: 'Payment Gateway',      value: 'Integration included' },
+      { feature: 'Order Management',     value: 'Included' },
+      { feature: 'WhatsApp Integration', value: 'Included' },
+      { feature: 'Basic SEO',            value: 'Included' },
+      { feature: 'Analytics',            value: 'Included' },
     ],
     accent: 'orange',
   },
@@ -316,65 +288,51 @@ const SERVICES = [
     icon: StarIcon,
     eyebrow: 'Content & Strategy',
     title: 'Social Suits',
-    desc: 'End-to-end social media management and content creation. We build tailored social media campaigns that align with your brand identity and drive engagement.',
-    priceRange: 'Rs. 45,000 – Rs. 150,000 /mo',
+    desc: 'Social media management and content creation. We build social media campaigns that align with your brand identity.',
+    priceRange: 'Custom Quote',
     timeline: 'Monthly',
+    isComingSoon: true,
     features: [
-      'Platform management (IG, FB, LinkedIn)',
-      'Custom post designs & copywriting',
-      'Content calendar & scheduling',
-      'Monthly analytics reporting',
+      'Platform management',
+      'Post designs & copywriting',
+      'Content calendar',
+      'Monthly reporting',
     ],
-    tableRows: [
-      { feature: 'Platforms Managed',     value: 'Up to 3 platforms' },
-      { feature: 'Post Frequency',        value: '3-5 posts / week' },
-      { feature: 'Custom Graphics',       value: 'Included' },
-      { feature: 'Copywriting',           value: 'Included' },
-      { feature: 'Community Management',  value: 'Included' },
-      { feature: 'Analytics Report',      value: 'Monthly' },
-    ],
-    accent: 'orange',
+    accent: 'lime',
   },
   {
     id: 'ai',
     icon: BoltIcon,
     eyebrow: 'Automation',
     title: 'AI Solutions',
-    desc: 'Intelligent automation and AI chat interfaces integrated directly into your workflows or website to streamline operations and enhance user experience.',
-    priceRange: 'Rs. 100,000 – Rs. 400,000',
+    desc: 'Automation and chat interfaces integrated directly into your workflows to streamline operations.',
+    priceRange: 'Custom Quote',
     timeline: '2–4 weeks',
+    isComingSoon: true,
     features: [
-      'Custom LLM Integration',
+      'Custom Integration',
       'Customer Support Chatbots',
       'Automated Workflow Scripts',
-      'Data Extraction & Formatting',
+      'Data Extraction',
     ],
-    tableRows: [
-      { feature: 'AI Integration',        value: 'Custom LLM / OpenAI API' },
-      { feature: 'Chatbot UI',            value: 'Included' },
-      { feature: 'Workflow Automation',   value: 'Tailored scripts' },
-      { feature: 'Training Data Setup',   value: 'Included' },
-      { feature: 'Post-Launch Support',   value: '14 days included' },
-    ],
-    accent: 'lime',
+    accent: 'orange',
   },
 ];
 
 const TIERS = [
-  { name: 'Speed MVP', col: 1 },
-  { name: 'Full Launch', col: 2 },
-  { name: 'Custom Retainer', col: 3 },
+  { name: 'Starter', col: 1 },
+  { name: 'Business', col: 2 },
+  { name: 'Custom Platform', col: 3 },
 ];
 
 const COMPARISON = [
-  { feature: 'Web App',        tiers: [false, true, true] },
-  { feature: 'Landing Page',   tiers: [true,  true, true] },
-  { feature: 'Brand Identity', tiers: [false, true, true] },
-  { feature: 'Graphic Assets', tiers: [true,  true, true] },
-  { feature: 'Firestore Back', tiers: [false, true, true] },
-  { feature: 'Dark Mode',      tiers: [true,  true, true] },
-  { feature: 'Post-Launch SLA',tiers: [false, '30d', 'Custom'] },
-  { feature: 'Revisions',      tiers: ['2',   '4',  'Unlimited'] },
+  { feature: 'Custom Design',  tiers: [true,  true, true] },
+  { feature: 'Responsive Build', tiers: [true,  true, true] },
+  { feature: 'Clean Source Code',tiers: [true,  true, true] },
+  { feature: 'Contact Forms',    tiers: [false, true, true] },
+  { feature: 'Web App Features', tiers: [false, false, true] },
+  { feature: 'Post-Launch SLA',  tiers: [false, '30d', 'Custom'] },
+  { feature: 'Revisions',        tiers: ['1',   '2',  'Custom'] },
 ];
 
 export default function Services() {
@@ -396,10 +354,10 @@ export default function Services() {
         <motion.div variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }} style={{ maxWidth: '700px' }}>
           <motion.p variants={fadeUpItem} className="eyebrow" style={{ marginBottom: '0.75rem' }}>Service Modules</motion.p>
           <motion.h1 variants={fadeUpItem} className="font-display" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', marginBottom: '1.25rem' }}>
-            What we build,<br />and how much it costs.
+            What we build,<br />and what it costs.
           </motion.h1>
           <motion.p variants={fadeUpItem} style={{ fontFamily: 'var(--font-sans)', fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
-            Every service module listed with an honest price range and timeline in <strong>Sri Lankan Rupees (LKR)</strong>. No "contact for quote" on the basics.
+            Every service module listed with an honest starting price and timeline in <strong>Sri Lankan Rupees (LKR)</strong>. No "contact for quote" on the basics.
           </motion.p>
           <motion.div variants={fadeUpItem} style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
@@ -407,7 +365,7 @@ export default function Services() {
             borderRadius: '999px', padding: '0.4rem 1rem',
           }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              All prices in LKR · Approx. 1 USD = Rs. 320
+              All starting prices in LKR
             </span>
           </motion.div>
         </motion.div>
@@ -418,7 +376,7 @@ export default function Services() {
         const Icon = svc.icon;
         const isAlt = idx % 2 === 1;
         return (
-          <Section key={svc.id} alt={isAlt} style={{ position: 'relative', overflow: 'hidden' }}>
+          <Section key={svc.id} alt={isAlt} style={{ position: 'relative', overflow: 'hidden', opacity: svc.isComingSoon ? 0.6 : 1 }}>
             {/* Background shape */}
             <div className="absolute w-96 h-96 rounded-full blur-[100px] opacity-10 pointer-events-none" style={{
               background: svc.accent === 'orange' ? 'var(--orange)' : 'var(--lime)',
@@ -441,7 +399,15 @@ export default function Services() {
                     <Icon className="w-8 h-8" />
                   </motion.div>
 
-                  <motion.p variants={fadeUpItem} className="eyebrow" style={{ marginBottom: '0.5rem' }}>{svc.eyebrow}</motion.p>
+                  <motion.div variants={fadeUpItem} className="flex items-center gap-3 mb-2">
+                    <p className="eyebrow m-0">{svc.eyebrow}</p>
+                    {svc.isComingSoon && (
+                      <span className="font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-1 bg-[var(--border)] text-[var(--text-muted)] rounded">
+                        Coming 2027
+                      </span>
+                    )}
+                  </motion.div>
+                  
                   <motion.h2 variants={fadeUpItem} className="font-display" style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', marginBottom: '1rem' }}>
                     {svc.title}
                   </motion.h2>
@@ -451,13 +417,8 @@ export default function Services() {
 
                   <motion.div variants={fadeUpItem} style={{ display: 'flex', gap: '2rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
                     <div>
-                      <p className="eyebrow" style={{ marginBottom: '0.25rem' }}>Price range (LKR)</p>
+                      <p className="eyebrow" style={{ marginBottom: '0.25rem' }}>Price range</p>
                       <p className="font-display" style={{ fontSize: '1.2rem', color: 'var(--orange)' }}>{svc.priceRange}</p>
-                      {svc.priceNote && (
-                        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-                          {svc.priceNote}
-                        </p>
-                      )}
                     </div>
                     <div>
                       <p className="eyebrow" style={{ marginBottom: '0.25rem' }}>Typical timeline</p>
@@ -466,25 +427,27 @@ export default function Services() {
                   </motion.div>
 
                   {/* Let's Talk CTA Button */}
-                  <motion.div variants={fadeUpItem}>
-                    <button
-                      onClick={() => openModal(svc.title)}
-                      style={{
-                        display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                        fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700,
-                        textTransform: 'uppercase', letterSpacing: '0.1em',
-                        padding: '0.875rem 2rem', borderRadius: '999px',
-                        background: svc.accent === 'orange' ? 'var(--orange)' : 'var(--bg-alt)',
-                        color: svc.accent === 'orange' ? 'var(--white-locked)' : 'var(--text)',
-                        border: svc.accent === 'orange' ? 'none' : '1px solid var(--border)',
-                        cursor: 'pointer', transition: 'opacity 0.2s',
-                      }}
-                      onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
-                      onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-                    >
-                      Let's Talk <ArrowRightIcon className="w-4 h-4" />
-                    </button>
-                  </motion.div>
+                  {!svc.isComingSoon && (
+                    <motion.div variants={fadeUpItem}>
+                      <button
+                        onClick={() => openModal(svc.title)}
+                        style={{
+                          display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                          fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700,
+                          textTransform: 'uppercase', letterSpacing: '0.1em',
+                          padding: '0.875rem 2rem', borderRadius: '999px',
+                          background: svc.accent === 'orange' ? 'var(--orange)' : 'var(--bg-alt)',
+                          color: svc.accent === 'orange' ? 'var(--white-locked)' : 'var(--text)',
+                          border: svc.accent === 'orange' ? 'none' : '1px solid var(--border)',
+                          cursor: 'pointer', transition: 'opacity 0.2s',
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+                        onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                      >
+                        Let's Talk <ArrowRightIcon className="w-4 h-4" />
+                      </button>
+                    </motion.div>
+                  )}
                 </div>
 
                 {/* Right panel: What's included + feature table */}

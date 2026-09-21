@@ -46,18 +46,29 @@ export default function Contact() {
 
   return (
     <div>
-      {/* Hero */}
       <section style={{ padding: '5rem 0 3rem' }}>
         <motion.div className="section-container" variants={container} initial="hidden" whileInView="show" viewport={{ once: true }}>
           <motion.p variants={fadeUp} style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.75rem' }}>
             Get in touch
           </motion.p>
           <motion.h1 variants={fadeUp} className="font-display" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', lineHeight: 1.05, marginBottom: '1.25rem' }}>
-            Let&apos;s talk about<br />your project.
+            Tell us about your project.
           </motion.h1>
-          <motion.p variants={fadeUp} style={{ fontFamily: 'var(--font-sans)', fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: 1.75, maxWidth: '520px' }}>
-            We respond to every inquiry personally — no bots, no funnels. Just a direct conversation about what you&apos;re building.
+          <motion.p variants={fadeUp} style={{ fontFamily: 'var(--font-sans)', fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: 1.75, maxWidth: '560px', marginBottom: '1.5rem' }}>
+            Tell us about your project and we&apos;ll get back to you with a free plan within 24 hours. 🎉
           </motion.p>
+          <motion.div variants={fadeUp} style={{
+            display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
+            padding: '0.75rem 1.5rem',
+            background: 'rgba(254,107,0,0.08)',
+            border: '1px solid rgba(254,107,0,0.3)',
+            borderRadius: '999px',
+          }}>
+            <span style={{ fontSize: '1rem' }}>🎉</span>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: 700, color: 'var(--orange)' }}>
+              Free Consultation Service — We reply within 24 hours of submitting the form!
+            </span>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -114,7 +125,7 @@ export default function Contact() {
             {/* Google Form card */}
             <motion.a
               variants={fadeUp}
-              href="https://forms.google.com" // Placeholder for Google Form URL
+              href="https://forms.gle/NFh3nKCzf8ER6ZMU7"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ y: -4, boxShadow: '0 12px 32px rgba(59,130,246,0.12)' }}

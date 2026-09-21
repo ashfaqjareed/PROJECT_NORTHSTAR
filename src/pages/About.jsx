@@ -24,28 +24,25 @@ export default function About() {
           About NorthStarDevs.
         </h1>
         <p className="fade-up" data-delay="120" style={{ fontFamily: 'var(--font-sans)', fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '560px' }}>
-          A small web development team based in Sri Lanka. We build websites for businesses, brands, and individuals — from simple landing pages to full stack web applications.
+          A small team with a hands-on approach. NorthStarDevs is a Colombo-based software studio focused on websites, web applications and digital experiences.
         </p>
       </Section>
 
       {/* Panel 2: Our Story */}
       <Section alt>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="eyebrow fade-up" style={{ marginBottom: '0.75rem' }}>Our Story</p>
+            <p className="eyebrow fade-up" style={{ marginBottom: '0.75rem' }}>Our Approach</p>
             <h2 className="font-display fade-up" data-delay="60" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', marginBottom: '1.25rem' }}>
-              Started simple. Kept going.
+              We keep the team small on purpose.
             </h2>
           </div>
           <div className="fade-up" data-delay="120" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-muted)', lineHeight: 1.7 }}>
-              NorthStarDevs started because we kept seeing the same thing — people paying good money for websites that looked average and took forever to load. We thought we could do better, so we started taking on projects.
+              That means fewer layers between you and the people actually designing and building your project.
             </p>
             <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-muted)', lineHeight: 1.7 }}>
-              We handle both the design and the development ourselves. That means there's no miscommunication between a designer and a developer — the same person who draws the layout is the same person who writes the code. What you see in the preview is what you get when it's live.
-            </p>
-            <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-muted)', lineHeight: 1.7 }}>
-              We're honest about where we're at. We're not a big agency with a hundred past clients. What we do have is a clear process, good work to show for it, and a straightforward way of doing things.
+              You talk directly to the people working on your product, see progress as it happens and know exactly what you're paying for.
             </p>
           </div>
         </div>
@@ -70,7 +67,7 @@ export default function About() {
             },
             {
               icon: BoltIcon,
-              title: 'Growth Plans',
+              title: 'Business Websites',
               desc: 'Multi-section websites for businesses that need more than a basic page — services listed, contact forms working, and a design that actually represents the brand.',
             },
             {
@@ -115,7 +112,7 @@ export default function About() {
           A few things we stand by
         </h2>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', border: '1px solid var(--border)', borderRadius: '12px', overflow: 'hidden' }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] border border-[var(--border)] rounded-xl overflow-hidden">
           {[
             { num: '01', title: 'We say what we mean', desc: 'If your budget doesn\'t match the scope, we\'ll say so upfront. No vague promises and no agreeing to things we can\'t deliver.' },
             { num: '02', title: 'Everything is written down', desc: 'Every project starts with a clear brief — what\'s being built, how many revisions, and when it\'s due. That way there are no surprises for either side.' },
@@ -123,9 +120,8 @@ export default function About() {
           ].map((v, i) => (
             <div
               key={v.title}
-              className="fade-up"
+              className="fade-up p-8 bg-[var(--bg)]"
               data-delay={i * 80}
-              style={{ padding: '2rem', background: 'var(--bg)', borderRight: i < 2 ? '1px solid var(--border)' : 'none' }}
             >
               <p className="eyebrow" style={{ marginBottom: '0.5rem', color: 'var(--orange)' }}>{v.num}</p>
               <h3 className="font-display" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>{v.title}</h3>
@@ -137,7 +133,7 @@ export default function About() {
 
       {/* Panel 5: What we don't do */}
       <Section>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           <div>
             <p className="eyebrow fade-up" style={{ marginBottom: '0.75rem' }}>What we don't do</p>
             <h2 className="font-display fade-up" data-delay="60" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', marginBottom: '1rem' }}>

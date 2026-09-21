@@ -1,13 +1,15 @@
-// src/components/Sidebar.jsx — TextRoll animation on links, WhatsApp pill
+// src/components/Sidebar.jsx — Original Sidebar Restored perfectly
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { XIcon, WhatsAppIcon, ArrowRightIcon } from '../icons';
 import { PAGE_VISIBILITY } from '../config';
+import { useTheme } from '../context/ThemeContext';
 
-const STAGGER = 0.01;
+const STAGGER = 0.012;
+const GOOGLE_FORM_URL = 'https://forms.gle/NFh3nKCzf8ER6ZMU7';
 
-// Letter-by-letter roll animation
+// Original Letter-by-letter roll animation
 const TextRoll = ({ children, style = {} }) => (
   <motion.span
     initial="initial"
@@ -35,7 +37,7 @@ const TextRoll = ({ children, style = {} }) => (
           key={`b-${i}`}
           variants={{ initial: { y: '40%', opacity: 0 }, hovered: { y: 0, opacity: 1 } }}
           transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.25, delay: STAGGER * i }}
-          style={{ display: 'inline-block', color: 'var(--orange)' }}
+          style={{ display: 'inline-block', color: '#fe6b00' }}
         >
           {l === ' ' ? '\u00A0' : l}
         </motion.span>
@@ -69,6 +71,11 @@ const itemVariants = {
 };
 
 export default function Sidebar({ isOpen, onClose }) {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+  const textColor = isDark ? '#ffffff' : '#171717';
+  const bgColor = isDark ? '#111111' : '#ffffff';
+
   useEffect(() => {
     if (!isOpen) return;
     const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
@@ -112,7 +119,7 @@ export default function Sidebar({ isOpen, onClose }) {
             style={{
               position: 'fixed', top: 0, right: 0, bottom: 0,
               width: 'min(90vw, 380px)',
-              background: 'var(--bg)',
+              background: bgColor,
               borderLeft: '1px solid var(--border)',
               zIndex: 100,
               display: 'flex', flexDirection: 'column',
@@ -122,7 +129,7 @@ export default function Sidebar({ isOpen, onClose }) {
             {/* Header row */}
             <div style={{
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              padding: '1.25rem 1.75rem',
+              padding: '1rem 1.25rem',
               borderBottom: '1px solid var(--border)',
             }}>
               <span style={{
@@ -138,21 +145,22 @@ export default function Sidebar({ isOpen, onClose }) {
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
                 style={{
                   background: 'var(--bg-alt)', border: '1px solid var(--border)',
-                  borderRadius: '999px', padding: '9px',
-                  cursor: 'pointer', color: 'var(--text)', display: 'flex',
+                  borderRadius: '999px', padding: '6px',
+                  cursor: 'pointer', color: textColor, display: 'flex',
                 }}
               >
                 <XIcon className="w-5 h-5" />
               </motion.button>
             </div>
 
-            {/* Links — centered, TextRoll on hover */}
+            {/* Links and CTAs in a single scrollable flow - Balanced Spacing */}
             <nav style={{
               flex: 1, overflowY: 'auto',
               display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-              padding: '2rem 2rem',
+              alignItems: 'center', justifyContent: 'flex-start',
+              padding: '1.5rem 1.5rem',
             }}>
+              {/* Navigation Links */}
               <motion.ul
                 variants={listVariants}
                 initial="hidden"
@@ -161,7 +169,7 @@ export default function Sidebar({ isOpen, onClose }) {
                 style={{
                   listStyle: 'none', margin: 0, padding: 0,
                   display: 'flex', flexDirection: 'column',
-                  alignItems: 'center', gap: '0.1rem', width: '100%',
+                  alignItems: 'center', gap: '0.2rem', width: '100%',
                 }}
               >
                 {NAV_ITEMS.filter(item => !item.id || PAGE_VISIBILITY[item.id] !== false).map((item) => (
@@ -170,15 +178,15 @@ export default function Sidebar({ isOpen, onClose }) {
                       to={item.href}
                       onClick={onClose}
                       end={item.href === '/'}
-                      style={{ textDecoration: 'none', display: 'block', padding: '0.7rem 0' }}
+                      style={{ textDecoration: 'none', display: 'block', padding: '0.4rem 0' }}
                     >
                       {({ isActive }) => (
                         <TextRoll
                           style={{
                             fontFamily: 'var(--font-display)',
                             fontWeight: 700,
-                            fontSize: 'clamp(1.6rem, 5vw, 2.2rem)',
-                            color: isActive ? 'var(--orange)' : 'var(--text)',
+                            fontSize: 'clamp(1.5rem, 4.5vw, 2.2rem)', // kept large font!
+                            color: isActive ? '#fe6b00' : textColor,
                           }}
                         >
                           {item.name}
@@ -188,45 +196,76 @@ export default function Sidebar({ isOpen, onClose }) {
                   </motion.li>
                 ))}
               </motion.ul>
-            </nav>
 
-            {/* WhatsApp pill CTA */}
-            <div style={{ padding: '1.5rem 1.75rem', borderTop: '1px solid var(--border)' }}>
-              <motion.a
-                href="https://wa.me/94768325949"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.02, boxShadow: '0 12px 32px rgba(37,211,102,0.45)' }}
-                whileTap={{ scale: 0.97 }}
-                style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem',
-                  padding: '1.1rem 2rem',
-                  background: '#25D366',
-                  borderRadius: '999px',
-                  color: 'white',
-                  textDecoration: 'none',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '1rem', fontWeight: 700,
-                  boxShadow: '0 4px 20px rgba(37,211,102,0.3)',
-                  width: '100%',
-                  overflow: 'hidden', position: 'relative',
-                }}
-              >
-                {/* Shine effect */}
-                <motion.div
-                  initial={{ x: '-100%', opacity: 0 }}
-                  whileHover={{ x: '200%', opacity: 1, transition: { duration: 0.5 } }}
+              {/* CTAs placed immediately below the words - Balanced Spacing */}
+              <div style={{ width: '100%', marginTop: '0.6rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <motion.a
+                  href="https://wa.me/94768325949"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02, boxShadow: '0 8px 24px rgba(37,211,102,0.45)' }}
+                  whileTap={{ scale: 0.97 }}
                   style={{
-                    position: 'absolute', top: 0, left: 0, width: '50%', height: '100%',
-                    background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%)',
-                    pointerEvents: 'none',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem',
+                    padding: '0.85rem 1.5rem',
+                    background: '#25D366',
+                    borderRadius: '999px',
+                    color: 'white',
+                    textDecoration: 'none',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.95rem', fontWeight: 700,
+                    boxShadow: '0 4px 12px rgba(37,211,102,0.3)',
+                    width: '100%',
+                    overflow: 'hidden', position: 'relative',
                   }}
-                />
-                <WhatsAppIcon className="w-5 h-5" />
-                <span>Message on WhatsApp</span>
-                <ArrowRightIcon className="w-4 h-4" />
-              </motion.a>
-            </div>
+                >
+                  <motion.div
+                    initial={{ x: '-100%', opacity: 0 }}
+                    whileHover={{ x: '200%', opacity: 1, transition: { duration: 0.5 } }}
+                    style={{
+                      position: 'absolute', top: 0, left: 0, width: '50%', height: '100%',
+                      background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%)',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                  <WhatsAppIcon className="w-4 h-4" />
+                  <span>Message on WhatsApp</span>
+                  <ArrowRightIcon className="w-4 h-4" />
+                </motion.a>
+
+                <motion.a
+                  href={GOOGLE_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02, boxShadow: '0 8px 24px rgba(66, 133, 244, 0.45)' }}
+                  whileTap={{ scale: 0.97 }}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem',
+                    padding: '0.85rem 1.5rem',
+                    background: '#4285F4', /* Google Blue */
+                    borderRadius: '999px',
+                    color: '#ffffff',
+                    textDecoration: 'none',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.95rem', fontWeight: 700,
+                    width: '100%',
+                    boxShadow: '0 4px 12px rgba(66, 133, 244, 0.3)',
+                  }}
+                >
+                  <div style={{ background: 'white', borderRadius: '50%', padding: '2px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <svg className="w-3 h-3" viewBox="0 0 48 48">
+                      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                      <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                      <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                      <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                      <path fill="none" d="M0 0h48v48H0z"/>
+                    </svg>
+                  </div>
+                  <span>Fill Contact Form</span>
+                  <ArrowRightIcon className="w-4 h-4" />
+                </motion.a>
+              </div>
+            </nav>
           </motion.div>
         </>
       )}

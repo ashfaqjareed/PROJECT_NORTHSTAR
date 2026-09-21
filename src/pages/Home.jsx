@@ -9,6 +9,7 @@ import PillButton from '../components/PillButton';
 import LogoMarquee from '../components/LogoMarquee';
 import ServicePill from '../components/ServicePill';
 import PricingPill from '../components/PricingPill';
+import { TIERS } from '../data/pricing';
 
 /* ─── SHARED COMPONENTS ─── */
 const Section = ({ children, style = {}, className = '' }) => (
@@ -117,7 +118,7 @@ const AccordionItem = ({ q, a }) => {
 };
 
 /* ═══════════════════════════════════════════
-   HOME PAGE (10 Panels)
+   HOME PAGE
 ═══════════════════════════════════════════ */
 export default function Home() {
   const pricingRef = useRef(null);
@@ -134,12 +135,17 @@ export default function Home() {
           <div style={{ maxWidth: '860px' }}>
             {/* Headline */}
             <motion.h1 variants={fadeUpItem} className="font-display" style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', lineHeight: 1.05, marginBottom: '1.5rem' }}>
-              You pay for<br /><span className="text-[var(--orange)]">what you ask.</span>
+              We build websites and<br /><span className="text-[var(--orange)]">web apps people remember.</span>
             </motion.h1>
 
             {/* Subhead */}
-            <motion.p variants={fadeUpItem} style={{ fontFamily: 'var(--font-sans)', fontSize: '1.1rem', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '560px', marginBottom: '2.5rem' }}>
-              High-quality web design, scalable platforms, and fast interfaces. You pay strictly for what you request: zero hidden retainers, zero feature bloat.
+            <motion.p variants={fadeUpItem} style={{ fontFamily: 'var(--font-sans)', fontSize: '1.1rem', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '600px', marginBottom: '1rem' }}>
+              NorthStarDevs is a Colombo-based software studio building custom websites, web apps, and digital experiences for businesses that want something better than a template.
+            </motion.p>
+
+            {/* Supporting line */}
+            <motion.p variants={fadeUpItem} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--orange)', letterSpacing: '0.05em', marginBottom: '2.5rem', fontWeight: 700 }}>
+              Custom design. Clean code. Fast experiences. Built around your business.
             </motion.p>
 
             {/* CTAs */}
@@ -148,7 +154,7 @@ export default function Home() {
                 Start a Project <ArrowRightIcon className="w-4 h-4 ml-2" />
               </PillButton>
               <PillButton as="link" to="/projects" variant="neutral">
-                View Projects
+                See Our Work
               </PillButton>
             </motion.div>
           </div>
@@ -158,20 +164,20 @@ export default function Home() {
       {/* ── PANEL 2: TECH MARQUEE ── */}
       <LogoMarquee />
 
-      {/* ── PANEL 3: SERVICE HIGHLIGHT PILLS ── */}
+      {/* ── PANEL 3: WHAT WE BUILD ── */}
       <Section>
         <motion.div variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <motion.p variants={fadeUpItem} className="eyebrow mb-3">Core Capabilities</motion.p>
+          <motion.p variants={fadeUpItem} className="eyebrow mb-3">What we do</motion.p>
           <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-10 max-w-2xl">
-            What we deliver
+            What we build
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <motion.div variants={fadeUpItem}>
               <ServicePill
                 icon={<CodeIcon className="w-8 h-8" />}
-                label="Website Development"
-                description="We build your website from scratch using React. Every page is custom-designed, mobile-friendly, and fast to load."
+                label="Custom Interfaces"
+                description="We build reusable, maintainable interfaces instead of stitching together a template and calling it custom."
                 accent="orange"
                 className="h-full"
               />
@@ -179,8 +185,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill
                 icon={<BoltIcon className="w-8 h-8" />}
-                label="Landing Pages"
-                description="A clean, high-converting landing page to get your business or product online. Looks great, loads fast, built to your brief."
+                label="Smooth Motion"
+                description="Animations are designed to feel responsive without getting in the way of the experience."
                 accent="lime"
                 className="h-full"
               />
@@ -188,8 +194,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill
                 icon={<PaletteIcon className="w-8 h-8" />}
-                label="Logo & Brand Design"
-                description="Logo creation, colour palettes, and brand guidelines. We design something you'll actually want to use everywhere."
+                label="Clean Visual Design"
+                description="Strong typography, clear hierarchy and purposeful layouts. Nothing gets added just because it looks impressive."
                 accent="orange"
                 className="h-full"
               />
@@ -197,8 +203,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill
                 icon={<CloudIcon className="w-8 h-8" />}
-                label="Full Stack Apps"
-                description="Need a database, user logins, or an admin panel? We build React apps backed by Firebase/Firestore."
+                label="Web Applications"
+                description="From forms and dashboards to accounts, databases and custom workflows — we build the functionality behind the interface."
                 accent="lime"
                 className="h-full"
               />
@@ -206,8 +212,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill
                 icon={<ShieldIcon className="w-8 h-8" />}
-                label="Web Maintenance"
-                description="Ongoing monthly support — security updates, content changes, and keeping things running smoothly."
+                label="Clear Scope & Timelines"
+                description="You know what we're building, what it costs and when it's expected to be delivered before development begins."
                 accent="orange"
                 className="h-full"
               />
@@ -215,8 +221,8 @@ export default function Home() {
             <motion.div variants={fadeUpItem}>
               <ServicePill
                 icon={<StarIcon className="w-8 h-8" />}
-                label="Social Suits"
-                description="Social media content, post designs, and management. We handle it so you can focus on running the business."
+                label="Details That Matter"
+                description="Small interactions, transitions and visual details that make the product feel finished without turning it into a showcase of animations."
                 accent="lime"
                 className="h-full"
               />
@@ -234,10 +240,13 @@ export default function Home() {
             <div>
               <motion.p variants={fadeUpItem} className="eyebrow mb-3">How it works</motion.p>
               <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-4">
-                How we build a website
+                How we work with you
               </motion.h2>
-              <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] text-lg mb-8">
-                Four steps, clearly defined. You know what's happening and when at every stage.
+              <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] text-lg mb-4">
+                Four steps. You stay involved from the first conversation to launch.
+              </motion.p>
+              <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] mb-8">
+                You know what's happening and when at every stage.
               </motion.p>
               <motion.div variants={fadeUpItem}>
                 <PillButton as="link" to="/process" variant="neutral">
@@ -246,10 +255,10 @@ export default function Home() {
               </motion.div>
             </div>
             <div className="flex flex-col gap-8">
-              <ProcessStep num="01" title="Brief" desc="We start with a written brief. You tell us what you need, who it's for, and what you want it to look like. We ask the right questions." />
-              <ProcessStep num="02" title="Design" desc="We put together the layout and visuals for your approval before any code gets written. You see it first." />
-              <ProcessStep num="03" title="Build" desc="We build the site and share previews as we go. You can see progress without waiting until the end." />
-              <ProcessStep num="04" title="Launch" desc="We deploy the site, hand over the files, and explain how to update things. You own it completely after final payment." />
+              <ProcessStep num="01" title="Discover" desc="We understand your business, audience, goals and requirements before we start designing." />
+              <ProcessStep num="02" title="Design" desc="We turn the requirements into the structure, visual direction and key screens you'll actually see before development." />
+              <ProcessStep num="03" title="Build" desc="We develop the approved design, share working previews and keep you updated throughout the build." />
+              <ProcessStep num="04" title="Launch" desc="We test, deploy, hand over the project and help you get comfortable with what you've received." />
             </div>
           </div>
         </motion.div>
@@ -257,24 +266,52 @@ export default function Home() {
 
       <WaveDivider flip color="var(--bg-alt)" />
 
-      {/* ── PANEL 5: FEATURED PROJECT ── */}
+      {/* ── PANEL 5: WHAT YOU GET ── */}
       <Section>
         <motion.div variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <motion.p variants={fadeUpItem} className="eyebrow mb-3">Featured Work</motion.p>
+          <motion.p variants={fadeUpItem} className="eyebrow mb-3">Deliverables</motion.p>
           <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-10">
-            What we build
+            What you actually get
           </motion.h2>
 
-          {/* Asymmetric featured card */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: 'Custom Design', desc: 'A layout built around your brand, not a template with your logo dropped in.' },
+              { title: 'Responsive Build', desc: 'Works properly on phones, tablets and desktops — tested before it goes live.' },
+              { title: 'Clean Source Code', desc: 'Readable, organised code handed over at the end. No lock-in, no mystery.' },
+              { title: 'Launch Support', desc: 'We stay available after launch to handle anything that needs attention.' },
+            ].map((item, i) => (
+              <motion.div key={i} variants={fadeUpItem} className="bg-[var(--bg-alt)] p-6 rounded-2xl border border-[var(--border)]">
+                <div className="w-2 h-2 rounded-full bg-[var(--orange)] mb-4" />
+                <h3 className="font-display text-lg mb-2">{item.title}</h3>
+                <p className="font-sans text-sm text-[var(--text-muted)]">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </Section>
+
+      {/* ── PANEL 6: SELECTED WORK ── */}
+      <section style={{ background: 'var(--bg-alt)', padding: '5rem 0' }}>
+        <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <motion.p variants={fadeUpItem} className="eyebrow mb-3">Portfolio</motion.p>
+          <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-4">
+            Selected Work
+          </motion.h2>
+          <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] mb-10">
+            A few things we've built, designed and shipped.
+          </motion.p>
+
+          {/* Featured card */}
           <motion.div variants={fadeUpItem} className="bento-card-asym bg-[var(--bg)] border border-[var(--border)] hover:border-[var(--orange)] p-8 md:p-12 relative overflow-hidden group transition-all duration-300">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <span className="eyebrow text-[var(--orange)] mb-3 block">Web Application</span>
                 <h3 className="font-display text-3xl md:text-4xl mb-4">
-                  NorthStarDevs Platform
+                  NorthStarDevs Studio Site
                 </h3>
                 <p className="font-sans text-[var(--text-muted)] leading-relaxed mb-6">
-                  This site is our live case study. React 19 + Vite + Tailwind v4 + Firestore, full dark mode, and a Swiss-modern design system built from scratch in 7 days.
+                  This site itself. Built with React 19, Vite, Tailwind v4 and Framer Motion. Custom dark mode, full responsive layout and a design system built from scratch in 7 days.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-8">
                   {['React 19', 'Vite', 'Tailwind v4', 'Framer Motion'].map(t => (
@@ -288,7 +325,7 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Visual placeholder */}
+              {/* Visual placeholder grid */}
               <div className="bg-[var(--bg-alt)] rounded-[16px] p-6 min-h-[280px] grid grid-cols-4 gap-2">
                 {Array.from({ length: 16 }).map((_, i) => (
                   <div key={i} className="rounded-md aspect-square transition-all duration-500 group-hover:scale-[1.02]" style={{
@@ -299,142 +336,133 @@ export default function Home() {
               </div>
             </div>
           </motion.div>
-        </motion.div>
-      </Section>
 
-      {/* ── PANEL 6: PRICING PREVIEW ── */}
-      <section style={{ background: 'var(--bg-alt)', padding: '5rem 0', position: 'relative', overflow: 'hidden' }} ref={pricingRef}>
-        <CursorOrb containerRef={pricingRef} />
-
-        <motion.div className="section-container relative z-10" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <motion.p variants={fadeUpItem} className="eyebrow mb-3">Investment</motion.p>
-          <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-4">
-            Pricing plans
-          </motion.h2>
-          <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] mb-12">
-            Clear tiers. No hidden fees. LKR rates — straightforward and simple.
-          </motion.p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch pt-4">
-            <motion.div variants={fadeUpItem}>
-              <PricingPill
-                slug="basic-maker"
-                tier="Cheapest"
-                price="From Rs. 15,000"
-                desc="A very low-cost entry plan for basic website making and presence."
-                features={['1 Basic Page', 'Mobile Responsive', 'Template Design', '1 revision']}
-                accent="lime"
-                featured={true}
-                badgeText="Cheapest"
-                customStrokeColor="var(--lime)"
-              />
-            </motion.div>
-            <motion.div variants={fadeUpItem} className="md:-translate-y-4">
-              <PricingPill
-                slug="growth"
-                tier="Growth Plan"
-                price="From Rs. 160,000"
-                desc="The most affordable launchpad for startups. High-conversion landing page."
-                features={['Single-page layout', 'Mobile-responsive', 'Performance optimised', '2 revision rounds']}
-                accent="orange"
-                featured={true}
-                badgeText="Affordable"
-                customStrokeColor="#ff3333"
-              />
-            </motion.div>
-            <motion.div variants={fadeUpItem}>
-              <PricingPill
-                slug="full-launch"
-                tier="Full Platform"
-                price="From Rs. 480,000"
-                desc="Complete web application with a scalable backend and full brand system."
-                features={['Multi-page React app', 'Firestore backend', 'Dark/light mode', '4 revision rounds']}
-                accent="orange"
-                featured={true}
-                badgeText="Recommended"
-                customStrokeColor="var(--orange)"
-              />
-            </motion.div>
-          </div>
+          <motion.div variants={fadeUpItem} className="mt-8 text-center">
+            <PillButton as="link" to="/projects" variant="neutral">
+              See All Projects <ArrowRightIcon className="w-4 h-4 ml-2" />
+            </PillButton>
+          </motion.div>
         </motion.div>
       </section>
 
       <WaveDivider color="var(--bg-alt)" />
 
-      {/* ── PANEL 7: WORKING WITH US (Guarantees) ── */}
-      <Section>
-        <motion.div variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div>
-            <motion.p variants={fadeUpItem} className="eyebrow mb-3">Guarantees</motion.p>
-            <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-4">
-              What working with us looks like
-            </motion.h2>
-            <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] text-lg mb-8">
-              We rely on strict, contractual guarantees that protect your investment and ensure delivery.
-            </motion.p>
-          </div>
+      {/* ── PANEL 7: PRICING PREVIEW ── */}
+      <section style={{ padding: '5rem 0', position: 'relative', overflow: 'hidden' }} ref={pricingRef}>
 
-          <div className="flex flex-col gap-6">
-            {[
-              { title: "Direct WhatsApp Line", desc: "No ticketing systems or account managers. You speak directly to the engineers building your product." },
-              { title: "Fixed Price Before We Start", desc: "Scope is locked and priced before a single line of code is written. No surprise invoices." },
-              { title: "You Own 100% of the Code", desc: "Upon final payment, the entire codebase, assets, and IP are transferred to you without vendor lock-in." }
-            ].map((item, i) => (
-              <motion.div key={i} variants={fadeUpItem} className="flex gap-4 p-6 border border-[var(--border)] rounded-2xl bg-[var(--bg)] shadow-sm">
-                <div className="w-2 h-2 rounded-full bg-[var(--orange)] mt-2 flex-shrink-0" />
-                <div>
-                  <h3 className="font-display text-lg mb-2">{item.title}</h3>
-                  <p className="font-sans text-sm text-[var(--text-muted)]">{item.desc}</p>
-                </div>
+        <motion.div className="section-container relative z-10" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
+          <motion.p variants={fadeUpItem} className="eyebrow mb-3">Pricing</motion.p>
+          <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-4">
+            Straightforward pricing
+          </motion.h2>
+          <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] mb-12">
+            Starting prices in LKR. Final cost depends on scope — a written quote is provided before we start.
+          </motion.p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch pt-6">
+            {TIERS.slice(0, 3).map((tier, i) => (
+              <motion.div key={tier.slug} variants={fadeUpItem} className="flex">
+                <PricingPill
+                  slug={tier.slug}
+                  tier={tier.name}
+                  price={tier.lkr}
+                  desc={tier.tagline}
+                  features={tier.features}
+                  accent={tier.accent}
+                  accentHex={tier.accentHex}
+                  featured={tier.featured}
+                  badgeText={tier.badgeText}
+                />
               </motion.div>
             ))}
           </div>
-        </motion.div>
-      </Section>
 
-      {/* ── PANEL 8: WHY NORTHSTARDEVS ── */}
-      <section className="py-20 bg-[var(--bg-alt)] border-y border-[var(--border)]">
-        <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* Full-width bottom rectangle — view all pricing */}
+          <motion.div
+            variants={fadeUpItem}
+            className="mt-8 p-6 md:p-8 rounded-3xl border border-[var(--border)] bg-[var(--bg-alt)] flex flex-col sm:flex-row items-center justify-between gap-5"
+          >
             <div>
-              <motion.p variants={fadeUpItem} className="eyebrow mb-3">Why us</motion.p>
-              <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-6">
-                Built by engineers who design.
-              </motion.h2>
-              <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] text-lg leading-relaxed">
-                Most studios hand design off to developers who re-interpret it. We own both ends of the stack.
-                What you see in the mockup is what ships — pixel-identical, performance-verified, and accessible.
-              </motion.p>
+              <p className="font-mono text-[10px] uppercase tracking-widest font-bold text-[var(--orange)] mb-1">All Plans</p>
+              <p className="font-display text-xl md:text-2xl text-[var(--text)] mb-1">Not sure which plan fits?</p>
+              <p className="font-sans text-sm text-[var(--text-muted)]">
+                We have 6 tiers plus a custom enterprise plan. Compare them side by side on the full pricing page.
+              </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                { title: 'No translation loss', desc: 'Design and engineering under one roof. Mockup fidelity guaranteed.' },
-                { title: 'Written scope', desc: 'Every project has a defined scope document before work begins.' },
-                { title: 'Performance default', desc: 'Lighthouse audited on every build. Core Web Vitals are deliverables.' },
-                { title: 'Honest timelines', desc: 'We give you a realistic schedule and stick to it strictly.' },
-              ].map((item, i) => (
-                <motion.div key={i} variants={fadeUpItem} className="bg-[var(--bg)] p-6 rounded-2xl border border-[var(--border)]">
-                  <h3 className="font-display text-[0.95rem] mb-2">{item.title}</h3>
-                  <p className="font-sans text-[0.85rem] text-[var(--text-muted)]">{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+            <Link
+              to="/pricing"
+              className="flex-shrink-0 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest font-bold py-3 px-7 rounded-full transition-opacity"
+              style={{ background: 'var(--orange)', color: '#ffffff', textDecoration: 'none' }}
+              onMouseEnter={e => e.currentTarget.style.opacity = '0.82'}
+              onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+            >
+              See All Pricing <ArrowRightIcon className="w-4 h-4" />
+            </Link>
+          </motion.div>
+
         </motion.div>
       </section>
+
+
+      <WaveDivider color="var(--bg-alt)" />
+
+      {/* ── PANEL 8: WHY US ── */}
+      <section style={{ background: 'var(--bg-alt)', padding: '5rem 0' }}>
+        <div className="section-container">
+          <motion.div
+            variants={fadeUpContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="rounded-3xl border border-[var(--border)] bg-[var(--bg)] overflow-hidden"
+          >
+            {/* Header row */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              <div className="p-10 lg:p-14 lg:border-r border-[var(--border)]">
+                <motion.p variants={fadeUpItem} className="eyebrow mb-3">Why us</motion.p>
+                <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-4">
+                  Design and development under one roof.
+                </motion.h2>
+                <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] text-lg leading-relaxed">
+                  Performance is part of the build, not an afterthought. We test loading behaviour, responsiveness and common device sizes before launch.
+                </motion.p>
+              </div>
+              <div className="p-10 lg:p-14 flex flex-col justify-center gap-5">
+                {[
+                  { title: "You don't have to manage two teams.", desc: "We handle design and development together, so decisions don't get lost between a designer and a developer." },
+                  { title: "Clear scope.", desc: "Before development starts, you know what we're building and what it will cost." },
+                  { title: "You see the work.", desc: "Working previews keep you involved throughout the project." },
+                  { title: "You own the result.", desc: "After final payment, you receive the agreed source code, assets and project files. No vendor lock-in." }
+                ].map((item, i) => (
+                  <motion.div key={i} variants={fadeUpItem} className="flex gap-4">
+                    <div className="w-2 h-2 rounded-full bg-[var(--orange)] mt-2 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-display text-base mb-1">{item.title}</h3>
+                      <p className="font-sans text-sm text-[var(--text-muted)]">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <WaveDivider flip color="var(--bg-alt)" />
 
       {/* ── PANEL 9: FAQ PREVIEW ── */}
       <Section>
         <motion.div className="max-w-3xl mx-auto" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <motion.p variants={fadeUpItem} className="eyebrow mb-3 text-center">Common Questions</motion.p>
+          <motion.p variants={fadeUpItem} className="eyebrow mb-3 text-center">Common questions</motion.p>
           <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-12 text-center">
             Answered up front
           </motion.h2>
 
           <motion.div variants={fadeUpItem}>
-            <AccordionItem q="How long does a typical project take?" a="Landing pages: 5–7 business days. Full web applications: 3–5 weeks depending on scope. We define this in the written brief before any deposit is taken." />
-            <AccordionItem q="What do you need from me to start?" a="A brief covering your goals, target audience, and any existing brand assets. We send you a structured intake form — usually takes 15 minutes to fill in." />
-            <AccordionItem q="Do you offer ongoing support after launch?" a="Yes. Our Full Launch tier includes 30-day post-launch support. Custom Retainer clients get a dedicated monthly scope with priority response times defined in a written SLA." />
+            <AccordionItem q="How long does a typical project take?" a="A starter website takes 5–7 working days. A full multi-page business site takes 1–2 weeks. Web applications vary depending on scope — we give you a clear timeline in writing before anything starts." />
+            <AccordionItem q="What do you need from me to get started?" a="A brief covering your goals, who the site is for, and any brand assets you already have. We'll send you a short intake form — usually takes about 15 minutes to fill in." />
+            <AccordionItem q="Do you offer support after launch?" a="Yes. Every project includes post-launch support for bug fixes. Ongoing care plans start from LKR 10,000/month and cover content updates, technical checks and priority communication." />
+            <AccordionItem q="Who owns the code when the project is done?" a="You do. Once the project is paid for, you receive the source code, assets and project files. We don't hold anything back." />
           </motion.div>
 
           <motion.div variants={fadeUpItem} className="mt-8 text-center">
@@ -456,7 +484,6 @@ export default function Home() {
             className="text-center p-16 md:p-24 rounded-[var(--radius-curve)] relative overflow-hidden"
             style={{ backgroundColor: 'var(--orange)', color: '#fff' }}
           >
-            {/* Subtle glow behind text */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white rounded-full blur-[120px] opacity-20 pointer-events-none" />
 
             <div className="relative z-10">
@@ -464,11 +491,10 @@ export default function Home() {
                 Ready to build?
               </p>
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6 text-white">
-                Ready to start?
+                Let's start your project.
               </h2>
               <p className="font-sans text-white/90 mb-10 max-w-lg mx-auto text-lg">
-                Message us on WhatsApp for a response within the hour, or drop us an email.
-                We respond to every inquiry personally.
+                Message us on WhatsApp and we'll get back to you personally — usually within the hour during working hours.
               </p>
               <div className="flex gap-4 justify-center flex-wrap">
                 <a
@@ -488,7 +514,7 @@ export default function Home() {
                   <WhatsAppIcon className="w-5 h-5" /> WhatsApp Us
                 </a>
                 <PillButton as="link" to="/contact" variant="orange">
-                  Contact Form
+                  Send a Brief
                 </PillButton>
               </div>
             </div>

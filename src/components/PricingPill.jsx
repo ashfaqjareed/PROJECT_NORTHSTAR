@@ -3,88 +3,110 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckIcon } from '../icons';
 
+// Resolve accent to a concrete color
+function resolveAccent(accent, accentHex) {
+  if (accent === 'none' || (!accent && !accentHex)) return null; // no color
+  if (accentHex) return accentHex;
+  if (accent === 'orange') return 'var(--orange)';
+  if (accent === 'red')    return '#ef4444';
+  if (accent === 'lime')   return '#22c55e';
+  return null;
+}
+
 export default function PricingPill({ 
   slug,
   tier, 
-  price,    // lkr value
+  price,
   desc, 
   features, 
-  accent = 'lime', 
+  accent = 'none', 
+  accentHex = null,
   featured = false,
-  badgeText = 'Recommended',
-  customStrokeColor = null
+  badgeText,
 }) {
-  const accentColor = customStrokeColor || (accent === 'orange' ? 'var(--orange)' : 'var(--lime)');
-  const isCustom = price === "Let's talk" || price === 'Custom';
-  
+  const color = resolveAccent(accent, accentHex);
+  const borderColor = featured && color ? color : 'var(--border)';
+  const badgeColor  = color || 'var(--orange)';
+
   return (
     <motion.div
-      initial="initial"
-      className="relative flex flex-col h-full bg-[var(--bg)] border p-8"
+      className="relative flex flex-col w-full"
       style={{
-        borderRadius: '32px',
-        borderColor: featured ? accentColor : 'var(--border)',
-        boxShadow: featured ? `0 0 0 1px ${accentColor}` : 'none',
-        y: featured ? -12 : 0,
-        scale: featured ? 1.02 : 1,
+        background: 'var(--bg)',
+        border: `2px solid ${borderColor}`,
+        borderRadius: '28px',
+        boxShadow: featured && color ? `0 0 0 1px ${color}33` : 'none',
+        transform: featured ? 'translateY(-10px) scale(1.03)' : 'none',
         zIndex: featured ? 10 : 1,
       }}
     >
-      {/* Featured Badge */}
-      {featured && (
-        <div className="absolute -top-4 left-8">
-          <span className="font-mono text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full" style={{ background: accentColor, color: 'var(--white-locked)' }}>
+      {/* Badge bridging the top border — only shown when there's a badge */}
+      {badgeText && (
+        <div style={{
+          position: 'absolute',
+          top: '-15px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 20,
+        }}>
+          <span
+            className="font-mono text-[9px] uppercase tracking-widest font-bold px-4 py-1.5 rounded-full whitespace-nowrap"
+            style={{ background: badgeColor, color: '#ffffff' }}
+          >
             {badgeText}
           </span>
         </div>
       )}
 
-
-
-      <div className="relative z-10 flex flex-col h-full">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold mb-2">
+      <div className="relative z-10 flex flex-col h-full p-7 pt-9">
+        {/* Tier name */}
+        <p
+          className="font-mono text-[10px] uppercase tracking-widest font-bold mb-2"
+          style={{ color: color || 'var(--text-muted)' }}
+        >
           {tier}
         </p>
-        
-        {/* LKR Primary Price */}
-        <div className="mb-1">
-          <div className="font-display text-[1.6rem] leading-tight" style={{ color: accent === 'orange' ? 'var(--brand-orange)' : 'var(--text)' }}>
+
+        {/* Price */}
+        <div className="mb-4">
+          <div className="font-display leading-tight text-[var(--text)]" style={{ fontSize: '1.55rem' }}>
             {price}
-            {!isCustom && (
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest ml-2 align-middle" style={{ color: accentColor }}>
-                LKR
-              </span>
-            )}
           </div>
         </div>
 
-        <p className="font-sans text-[0.875rem] text-[var(--text-muted)] leading-relaxed mb-6 flex-1 mt-3">
+        {/* Description */}
+        <p className="font-sans text-[0.875rem] text-[var(--text-muted)] leading-relaxed mb-5">
           {desc}
         </p>
 
-        <ul className="flex flex-col gap-2 mb-8 list-none p-0 m-0">
+        {/* Features */}
+        <ul className="flex flex-col gap-2 mb-6 list-none p-0 m-0 flex-1">
           {features.map((f, i) => (
             <li key={i} className="flex items-start gap-2 font-sans text-[0.875rem]">
-              <CheckIcon className="w-4 h-4 flex-shrink-0 mt-1" style={{ color: accentColor }} />
+              <CheckIcon
+                className="w-4 h-4 flex-shrink-0 mt-0.5"
+                style={{ color: color || 'var(--text-muted)' }}
+              />
               <span className="text-[var(--text)]">{f}</span>
             </li>
           ))}
         </ul>
 
+        {/* CTA */}
         <Link
           to={`/pricing/${slug}`}
           className="flex items-center justify-center font-mono text-[10px] uppercase tracking-widest font-bold py-3 px-4 transition-opacity"
           style={{
-            background: featured ? accentColor : 'var(--bg-alt)',
-            color: featured ? 'var(--white-locked)' : 'var(--text)',
+            background: featured && color ? color : 'transparent',
+            color: featured && color ? '#ffffff' : (color || 'var(--text)'),
             borderRadius: '999px',
-            border: featured ? 'none' : '1px solid var(--border)',
+            border: `1.5px solid ${featured && color ? color : 'var(--border)'}`,
             textDecoration: 'none',
           }}
-          onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
+          onMouseEnter={e => e.currentTarget.style.opacity = '0.75'}
           onMouseLeave={e => e.currentTarget.style.opacity = '1'}
         >
-          See Full Details
+          See Full Details →
         </Link>
       </div>
     </motion.div>
