@@ -86,13 +86,15 @@ export default function Header({ onOpenSidebar }) {
               transition: 'height 0.4s ease',
               position: 'relative',
             }}>
-              {/* Spacer for mobile to push toggles right */}
-              <div className="hdr-spacer" style={{ width: '40px', flexShrink: 0 }}></div>
+              {/* Left spacer matching right actions width on mobile */}
+              <div className="hdr-spacer" style={{ width: '96px', flexShrink: 0 }}></div>
 
-              {/* Logo */}
-              <Link to="/" className="hdr-logo" style={{ textDecoration: 'none', flexShrink: 0, zIndex: 10 }}>
-                <Logo variant="header" />
-              </Link>
+              {/* Logo — strictly centered on mobile, left-aligned on desktop */}
+              <div className="hdr-logo-wrapper" style={{ display: 'flex', justifyContent: 'center', flex: 1, zIndex: 10 }}>
+                <Link to="/" className="hdr-logo" style={{ textDecoration: 'none', flexShrink: 0 }}>
+                  <Logo variant="header" />
+                </Link>
+              </div>
 
               {/* Desktop strictly centred nav */}
               <nav style={{
@@ -106,15 +108,17 @@ export default function Header({ onOpenSidebar }) {
                 <AnimatedTabs tabs={tabs} scrolled={scrolled} theme={theme} />
               </nav>
 
-              {/* Right side: theme toggle + menu */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0, zIndex: 10 }}>
+              {/* Right side: theme toggle + menu button (width ~96px) */}
+              <div className="hdr-actions" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', width: '96px', gap: '0.5rem', flexShrink: 0, zIndex: 10 }}>
                 <button
                   onClick={toggleTheme}
                   aria-label="Toggle theme"
                   style={{
                     background: 'none', border: 'none', cursor: 'pointer',
                     color: iconColor,
-                    display: 'flex', padding: '8px', borderRadius: '999px',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    padding: '8px', borderRadius: '999px',
+                    minWidth: '42px', minHeight: '42px',
                     transition: 'background 0.2s, color 0.4s',
                   }}
                   onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.08)'}
@@ -129,8 +133,9 @@ export default function Header({ onOpenSidebar }) {
                   style={{
                     background: 'none', border: 'none', cursor: 'pointer',
                     color: iconColor,
-                    display: 'flex', alignItems: 'center',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
                     padding: '8px', borderRadius: '999px',
+                    minWidth: '42px', minHeight: '42px',
                     transition: 'background 0.2s, color 0.4s',
                   }}
                   onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.08)'}
@@ -145,16 +150,10 @@ export default function Header({ onOpenSidebar }) {
       </motion.header>
 
       <style>{`
-        @media (max-width: 1023px) {
-          .hdr-logo {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-          }
-        }
         @media (min-width: 1024px) {
           .hdr-spacer { display: none !important; }
+          .hdr-logo-wrapper { justify-content: flex-start !important; flex: none !important; }
+          .hdr-actions { width: auto !important; }
           .hdr-nav { display: flex !important; }
         }
       `}</style>

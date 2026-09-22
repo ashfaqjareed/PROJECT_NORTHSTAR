@@ -80,16 +80,28 @@
 html { scroll-behavior: smooth; }
 
 body {
-  zoom: 0.9;
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
   line-height: 1.6;
   transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
   -webkit-font-smoothing: antialiased;
-  will-change: transform;
-  transform: translateZ(0);
 }
+
+/* 90% desktop scaling as requested for comfortable reading on laptops/desktops */
+@media (min-width: 1024px) {
+  body {
+    zoom: 0.9;
+  }
+}
+
+/* Ensure minimum touch target size for interactive controls on touch devices */
+@media (max-width: 768px) {
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+}
+
 
 
 

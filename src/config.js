@@ -6,5 +6,10 @@ export const PAGE_VISIBILITY = {
     services: true,
     projects: true,
     pricing: true,
-    about: false
+    about: true,
+    process: true,
+    testimonials: true,
+    faq: true,
+    support: true
 };
+

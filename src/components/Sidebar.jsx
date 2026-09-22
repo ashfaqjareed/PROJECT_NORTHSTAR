@@ -1,4 +1,4 @@
-// src/components/Sidebar.jsx — Original Sidebar Restored perfectly
+// src/components/Sidebar.jsx — Fixed TextRoll String Bug & Clean Navigation Drawer
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,68 +6,72 @@ import { XIcon, WhatsAppIcon, ArrowRightIcon } from '../icons';
 import { PAGE_VISIBILITY } from '../config';
 import { useTheme } from '../context/ThemeContext';
 
-const STAGGER = 0.012;
 const GOOGLE_FORM_URL = 'https://forms.gle/NFh3nKCzf8ER6ZMU7';
+const STAGGER = 0.012;
 
-// Original Letter-by-letter roll animation
-const TextRoll = ({ children, style = {} }) => (
-  <motion.span
-    initial="initial"
-    whileHover="hovered"
-    style={{ position: 'relative', display: 'inline-block', overflow: 'hidden', lineHeight: 1.15, ...style }}
-  >
-    {/* Original text — rolls UP on hover */}
-    <span style={{ display: 'block' }}>
-      {String(children).split('').map((l, i) => (
-        <motion.span
-          key={`a-${i}`}
-          variants={{ initial: { y: 0, opacity: 1 }, hovered: { y: '-40%', opacity: 0 } }}
-          transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.25, delay: STAGGER * i }}
-          style={{ display: 'inline-block' }}
-        >
-          {l === ' ' ? '\u00A0' : l}
-        </motion.span>
-      ))}
-    </span>
+// TextRoll animation — takes string `text` prop to prevent [object Object] coercion bugs
+const TextRoll = ({ text, style = {} }) => {
+  const str = typeof text === 'string' ? text : String(text || '');
+  return (
+    <motion.span
+      initial="initial"
+      whileHover="hovered"
+      style={{ position: 'relative', display: 'inline-block', overflow: 'hidden', lineHeight: 1.15, ...style }}
+    >
+      <span style={{ display: 'block' }}>
+        {str.split('').map((l, i) => (
+          <motion.span
+            key={`a-${i}`}
+            variants={{ initial: { y: 0, opacity: 1 }, hovered: { y: '-40%', opacity: 0 } }}
+            transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.25, delay: STAGGER * i }}
+            style={{ display: 'inline-block' }}
+          >
+            {l === ' ' ? '\u00A0' : l}
+          </motion.span>
+        ))}
+      </span>
 
-    {/* Orange clone — rolls IN from below */}
-    <span style={{ position: 'absolute', inset: 0 }}>
-      {String(children).split('').map((l, i) => (
-        <motion.span
-          key={`b-${i}`}
-          variants={{ initial: { y: '40%', opacity: 0 }, hovered: { y: 0, opacity: 1 } }}
-          transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.25, delay: STAGGER * i }}
-          style={{ display: 'inline-block', color: '#fe6b00' }}
-        >
-          {l === ' ' ? '\u00A0' : l}
-        </motion.span>
-      ))}
-    </span>
-  </motion.span>
-);
+      <span style={{ position: 'absolute', inset: 0 }}>
+        {str.split('').map((l, i) => (
+          <motion.span
+            key={`b-${i}`}
+            variants={{ initial: { y: '40%', opacity: 0 }, hovered: { y: 0, opacity: 1 } }}
+            transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.25, delay: STAGGER * i }}
+            style={{ display: 'inline-block', color: 'var(--orange)' }}
+          >
+            {l === ' ' ? '\u00A0' : l}
+          </motion.span>
+        ))}
+      </span>
+    </motion.span>
+  );
+};
 
 const NAV_ITEMS = [
-  { name: 'Home',     href: '/',        id: 'home'     },
-  { name: 'Services', href: '/services', id: 'services' },
-  { name: 'Projects', href: '/projects', id: 'projects' },
-  { name: 'Pricing',  href: '/pricing',  id: 'pricing'  },
-  { name: 'About Us', href: '/about',    id: 'about'    },
-  { name: 'Contact',  href: '/contact' },
-  { name: 'Privacy',  href: '/privacy' },
-  { name: 'Terms',    href: '/terms'   },
+  { name: 'Home', href: '/', id: 'home', subtext: 'Welcome & Core Highlights' },
+  { name: 'Services', href: '/services', id: 'services', subtext: 'Custom Web Apps & Software' },
+  { name: 'Projects', href: '/projects', id: 'projects', subtext: 'Portfolio & Completed Work' },
+  { name: 'Pricing', href: '/pricing', id: 'pricing', subtext: 'Transparent Packages & Tiering' },
+  { name: 'Process', href: '/process', id: 'process', subtext: 'Our 4-Step Engineering Workflow' },
+  { name: 'About Us', href: '/about', id: 'about', subtext: 'Our Story & Engineering Team' },
+  { name: 'Testimonials', href: '/testimonials', id: 'testimonials', subtext: 'Client Guarantees & Quality SLAs' },
+  { name: 'FAQ', href: '/faq', id: 'faq', subtext: 'Answers to Common Questions' },
+  { name: 'Support', href: '/support', id: 'support', subtext: 'Post-Launch Maintenance & Terms' },
+  { name: 'Contact', href: '/contact', id: 'contact', subtext: 'Start a Project or Send Inquiry' },
+  { name: 'Privacy Policy', href: '/privacy', id: 'privacy', subtext: 'Data Protection & Security' },
+  { name: 'Terms of Service', href: '/terms', id: 'terms', subtext: 'Legal Terms & Agreements' },
 ];
 
-// Stagger container for the link list
 const listVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.15 } },
-  exit:   { transition: { staggerChildren: 0.04, staggerDirection: -1 } },
+  visible: { transition: { staggerChildren: 0.03, delayChildren: 0.08 } },
+  exit: { transition: { staggerChildren: 0.02, staggerDirection: -1 } },
 };
 
 const itemVariants = {
-  hidden:   { opacity: 0, x: 40 },
-  visible:  { opacity: 1, x: 0, transition: { ease: [0.16, 1, 0.3, 1], duration: 0.5 } },
-  exit:     { opacity: 0, x: 40, transition: { ease: 'easeIn', duration: 0.2 } },
+  hidden: { opacity: 0, x: 20 },
+  visible: { opacity: 1, x: 0, transition: { ease: [0.16, 1, 0.3, 1], duration: 0.35 } },
+  exit: { opacity: 0, x: 20, transition: { ease: 'easeIn', duration: 0.15 } },
 };
 
 export default function Sidebar({ isOpen, onClose }) {
@@ -87,23 +91,32 @@ export default function Sidebar({ isOpen, onClose }) {
     };
   }, [isOpen, onClose]);
 
+  const visibleNavItems = NAV_ITEMS.filter(
+    item => !item.id || PAGE_VISIBILITY[item.id] !== false
+  );
+
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop — closes on click or touch anywhere */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              onClose();
+            }}
             aria-hidden="true"
             style={{
               position: 'fixed', inset: 0,
-              background: 'rgba(0,0,0,0.55)',
+              background: 'rgba(0, 0, 0, 0.65)',
               backdropFilter: 'blur(8px)',
               WebkitBackdropFilter: 'blur(8px)',
-              zIndex: 99,
+              zIndex: 9998,
+              cursor: 'pointer',
             }}
           />
 
@@ -112,93 +125,127 @@ export default function Sidebar({ isOpen, onClose }) {
             initial={{ x: '100%', opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: '100%', opacity: 0 }}
-            transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             role="dialog"
             aria-modal="true"
-            aria-label="Navigation"
+            aria-label="Navigation Menu"
             style={{
               position: 'fixed', top: 0, right: 0, bottom: 0,
-              width: 'min(90vw, 380px)',
+              width: 'min(90vw, 360px)',
               background: bgColor,
               borderLeft: '1px solid var(--border)',
-              zIndex: 100,
+              zIndex: 9999,
               display: 'flex', flexDirection: 'column',
-              boxShadow: '-16px 0 64px rgba(0,0,0,0.25)',
+              boxShadow: '-16px 0 64px rgba(0,0,0,0.3)',
             }}
           >
             {/* Header row */}
             <div style={{
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              padding: '1rem 1.25rem',
+              padding: '1.25rem 1.25rem',
               borderBottom: '1px solid var(--border)',
+              flexShrink: 0,
             }}>
-              <span style={{
-                fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 800,
-                textTransform: 'uppercase', letterSpacing: '0.16em', color: 'var(--text-muted)',
-              }}>Menu</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{
+                  width: 8, height: 8, borderRadius: '50%', background: 'var(--orange)'
+                }} />
+                <span style={{
+                  fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 800,
+                  textTransform: 'uppercase', letterSpacing: '0.16em', color: 'var(--text-muted)',
+                }}>Menu</span>
+              </div>
 
               <motion.button
                 onClick={onClose}
-                aria-label="Close"
+                aria-label="Close menu"
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
                 style={{
                   background: 'var(--bg-alt)', border: '1px solid var(--border)',
-                  borderRadius: '999px', padding: '6px',
-                  cursor: 'pointer', color: textColor, display: 'flex',
+                  borderRadius: '999px', padding: '8px', minWidth: '40px', minHeight: '40px',
+                  cursor: 'pointer', color: textColor, display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}
               >
                 <XIcon className="w-5 h-5" />
               </motion.button>
             </div>
 
-            {/* Links and CTAs in a single scrollable flow - Balanced Spacing */}
+            {/* Scrollable Nav List */}
             <nav style={{
               flex: 1, overflowY: 'auto',
               display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'flex-start',
-              padding: '1.5rem 1.5rem',
+              padding: '1rem 1rem 2rem 1rem',
+              gap: '1.25rem',
             }}>
-              {/* Navigation Links */}
               <motion.ul
                 variants={listVariants}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                style={{
-                  listStyle: 'none', margin: 0, padding: 0,
-                  display: 'flex', flexDirection: 'column',
-                  alignItems: 'center', gap: '0.2rem', width: '100%',
-                }}
+                style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}
               >
-                {NAV_ITEMS.filter(item => !item.id || PAGE_VISIBILITY[item.id] !== false).map((item) => (
-                  <motion.li key={item.href} variants={itemVariants} style={{ width: '100%', textAlign: 'center' }}>
+                {visibleNavItems.map((item) => (
+                  <motion.li key={item.href} variants={itemVariants}>
                     <NavLink
                       to={item.href}
                       onClick={onClose}
                       end={item.href === '/'}
-                      style={{ textDecoration: 'none', display: 'block', padding: '0.4rem 0' }}
+                      style={({ isActive }) => ({
+                        textDecoration: 'none',
+                        display: 'block',
+                        padding: '0.55rem 0.75rem',
+                        borderRadius: '12px',
+                        background: isActive ? (isDark ? 'rgba(254, 107, 0, 0.12)' : 'rgba(254, 107, 0, 0.08)') : 'transparent',
+                        border: isActive ? '1px solid rgba(254, 107, 0, 0.3)' : '1px solid transparent',
+                        transition: 'all 0.2s ease',
+                      })}
                     >
                       {({ isActive }) => (
-                        <TextRoll
-                          style={{
-                            fontFamily: 'var(--font-display)',
-                            fontWeight: 700,
-                            fontSize: 'clamp(1.5rem, 4.5vw, 2.2rem)', // kept large font!
-                            color: isActive ? '#fe6b00' : textColor,
-                          }}
-                        >
-                          {item.name}
-                        </TextRoll>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                          {/* Main Title */}
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <span style={{
+                              width: 6, height: 6, borderRadius: '50%',
+                              background: isActive ? 'var(--orange)' : 'var(--text-muted)',
+                              flexShrink: 0
+                            }} />
+                            <TextRoll
+                              text={item.name}
+                              style={{
+                                fontFamily: 'var(--font-display)',
+                                fontWeight: 800,
+                                fontSize: '1.1rem',
+                                color: isActive ? 'var(--orange)' : textColor,
+                                letterSpacing: '-0.01em',
+                              }}
+                            />
+                          </div>
+
+                          {/* Subtext Below */}
+                          <span style={{
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '0.78rem',
+                            color: 'var(--text-muted)',
+                            paddingLeft: '0.85rem',
+                            lineHeight: 1.3,
+                          }}>
+                            {item.subtext}
+                          </span>
+                        </div>
                       )}
                     </NavLink>
                   </motion.li>
                 ))}
               </motion.ul>
 
-              {/* CTAs placed immediately below the words - Balanced Spacing */}
-              <div style={{ width: '100%', marginTop: '0.6rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {/* Action Buttons at bottom of sidebar */}
+              <div style={{
+                marginTop: 'auto', paddingTop: '1rem',
+                borderTop: '1px solid var(--border)',
+                display: 'flex', flexDirection: 'column', gap: '0.75rem',
+              }}>
                 <motion.a
                   href="https://wa.me/94768325949"
                   target="_blank"
@@ -207,27 +254,17 @@ export default function Sidebar({ isOpen, onClose }) {
                   whileTap={{ scale: 0.97 }}
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem',
-                    padding: '0.85rem 1.5rem',
+                    padding: '0.85rem 1.25rem',
                     background: '#25D366',
                     borderRadius: '999px',
                     color: 'white',
                     textDecoration: 'none',
                     fontFamily: 'var(--font-sans)',
-                    fontSize: '0.95rem', fontWeight: 700,
+                    fontSize: '0.9rem', fontWeight: 700,
                     boxShadow: '0 4px 12px rgba(37,211,102,0.3)',
-                    width: '100%',
-                    overflow: 'hidden', position: 'relative',
+                    width: '100%', minHeight: '44px',
                   }}
                 >
-                  <motion.div
-                    initial={{ x: '-100%', opacity: 0 }}
-                    whileHover={{ x: '200%', opacity: 1, transition: { duration: 0.5 } }}
-                    style={{
-                      position: 'absolute', top: 0, left: 0, width: '50%', height: '100%',
-                      background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%)',
-                      pointerEvents: 'none',
-                    }}
-                  />
                   <WhatsAppIcon className="w-4 h-4" />
                   <span>Message on WhatsApp</span>
                   <ArrowRightIcon className="w-4 h-4" />
@@ -241,14 +278,14 @@ export default function Sidebar({ isOpen, onClose }) {
                   whileTap={{ scale: 0.97 }}
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem',
-                    padding: '0.85rem 1.5rem',
-                    background: '#4285F4', /* Google Blue */
+                    padding: '0.85rem 1.25rem',
+                    background: '#4285F4',
                     borderRadius: '999px',
                     color: '#ffffff',
                     textDecoration: 'none',
                     fontFamily: 'var(--font-sans)',
-                    fontSize: '0.95rem', fontWeight: 700,
-                    width: '100%',
+                    fontSize: '0.9rem', fontWeight: 700,
+                    width: '100%', minHeight: '44px',
                     boxShadow: '0 4px 12px rgba(66, 133, 244, 0.3)',
                   }}
                 >

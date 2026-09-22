@@ -9,6 +9,7 @@ export default function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const lastScrollY = useRef(0);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,10 +32,23 @@ export default function FloatingContact() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close when clicking/touching outside
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleClickOutside = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('pointerdown', handleClickOutside);
+    return () => document.removeEventListener('pointerdown', handleClickOutside);
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
+          ref={containerRef}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
