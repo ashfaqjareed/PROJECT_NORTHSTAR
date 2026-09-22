@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import {
-  StarIcon, ArrowRightIcon, WhatsAppIcon, PlusIcon, MinusIcon,
+  StarIcon, ArrowRightIcon, WhatsAppIcon,
   CodeIcon, BoltIcon, PaletteIcon, CloudIcon, ShieldIcon
 } from '../icons';
 import PillButton from '../components/PillButton';
@@ -98,24 +98,6 @@ const ProcessStep = ({ num, title, desc }) => (
   </motion.div>
 );
 
-const AccordionItem = ({ q, a }) => {
-  const [open, setOpen] = useState(false);
-  return (
-    <div style={{ borderBottom: '1px solid var(--border)' }}>
-      <button onClick={() => setOpen(!open)} style={{
-        width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '1.25rem 0', background: 'none', border: 'none', cursor: 'pointer',
-        color: 'var(--text)', textAlign: 'left',
-      }}>
-        <span className="font-display" style={{ fontSize: '1rem' }}>{q}</span>
-        {open ? <MinusIcon className="w-5 h-5 text-[var(--orange)]" /> : <PlusIcon className="w-5 h-5" />}
-      </button>
-      <div className={`accordion-content ${open ? 'open' : ''}`}>
-        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.7, paddingBottom: '1.25rem' }}>{a}</p>
-      </div>
-    </div>
-  );
-};
 
 /* ═══════════════════════════════════════════
    HOME PAGE
@@ -448,30 +430,6 @@ export default function Home() {
         </div>
       </section>
 
-      <WaveDivider flip color="var(--bg-alt)" />
-
-      {/* ── PANEL 9: FAQ PREVIEW ── */}
-      <Section>
-        <motion.div className="max-w-3xl mx-auto" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <motion.p variants={fadeUpItem} className="eyebrow mb-3 text-center">Common questions</motion.p>
-          <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-12 text-center">
-            Answered up front
-          </motion.h2>
-
-          <motion.div variants={fadeUpItem}>
-            <AccordionItem q="How long does a typical project take?" a="A starter website takes 5–7 working days. A full multi-page business site takes 1–2 weeks. Web applications vary depending on scope — we give you a clear timeline in writing before anything starts." />
-            <AccordionItem q="What do you need from me to get started?" a="A brief covering your goals, who the site is for, and any brand assets you already have. We'll send you a short intake form — usually takes about 15 minutes to fill in." />
-            <AccordionItem q="Do you offer support after launch?" a="Yes. Every project includes post-launch support for bug fixes. Ongoing care plans start from LKR 10,000/month and cover content updates, technical checks and priority communication." />
-            <AccordionItem q="Who owns the code when the project is done?" a="You do. Once the project is paid for, you receive the source code, assets and project files. We don't hold anything back." />
-          </motion.div>
-
-          <motion.div variants={fadeUpItem} className="mt-8 text-center">
-            <Link to="/faq" className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-widest text-[var(--text)] hover:text-[var(--orange)] transition-colors">
-              Read Full FAQ <ArrowRightIcon className="w-4 h-4" />
-            </Link>
-          </motion.div>
-        </motion.div>
-      </Section>
 
       {/* ── PANEL 10: FINAL CTA BAND ── */}
       <section className="pb-20 pt-10">

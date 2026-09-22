@@ -54,8 +54,7 @@ const NAV_ITEMS = [
   { name: 'Pricing', href: '/pricing', id: 'pricing', subtext: 'Transparent Packages & Tiering' },
   { name: 'Process', href: '/process', id: 'process', subtext: 'Our 4-Step Engineering Workflow' },
   { name: 'About Us', href: '/about', id: 'about', subtext: 'Our Story & Engineering Team' },
-  { name: 'Testimonials', href: '/testimonials', id: 'testimonials', subtext: 'Client Guarantees & Quality SLAs' },
-  { name: 'FAQ', href: '/faq', id: 'faq', subtext: 'Answers to Common Questions' },
+
   { name: 'Support', href: '/support', id: 'support', subtext: 'Post-Launch Maintenance & Terms' },
   { name: 'Contact', href: '/contact', id: 'contact', subtext: 'Start a Project or Send Inquiry' },
   { name: 'Privacy Policy', href: '/privacy', id: 'privacy', subtext: 'Data Protection & Security' },

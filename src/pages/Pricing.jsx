@@ -219,13 +219,13 @@ function TierBreakdownSection() {
 
 /* ---------- Comparison table (four tiers) ---------- */
 const COMPARISON_ROWS = [
-  { label: 'Landing page / Web presence', vals: [true,  true,  true,  true]  },
-  { label: 'Custom UI/UX Design',         vals: [true,  true,  true,  true]  },
-  { label: 'Multi-page architecture',     vals: [false, true,  true,  true]  },
-  { label: 'E-commerce (Cart & Checkout)',vals: [false, false, true,  true]  },
-  { label: 'Database & Backend API',      vals: [false, false, false, true]  },
-  { label: 'WhatsApp / Contact Forms',    vals: [true,  true,  true,  true]  },
-  { label: 'Post-launch support',         vals: ['Std', '30d', '30d', 'SLA'] },
+  { label: 'Landing page / Web presence', vals: [true, true, true, true] },
+  { label: 'Custom UI/UX Design', vals: [true, true, true, true] },
+  { label: 'Multi-page architecture', vals: [false, true, true, true] },
+  { label: 'E-commerce (Cart & Checkout)', vals: [false, false, true, true] },
+  { label: 'Database & Backend API', vals: [false, false, false, true] },
+  { label: 'WhatsApp / Contact Forms', vals: [true, true, true, true] },
+  { label: 'Post-launch support', vals: ['Std', '30d', '30d', 'SLA'] },
 ];
 
 const FAQS = [
@@ -243,7 +243,7 @@ export default function Pricing() {
         <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
           <motion.p variants={fadeUpItem} className="eyebrow mb-3">Investment</motion.p>
           <motion.h1 variants={fadeUpItem} className="font-display text-4xl md:text-5xl lg:text-[4.5rem] leading-[1.1] mb-5 max-w-3xl text-[var(--text)]">
-            Straightforward pricing.
+            Pricing Plans
           </motion.h1>
           <motion.p variants={fadeUpItem} className="font-sans text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
             Starting prices in LKR. No hidden fees or surprise markup. The final cost depends on the exact scope of your project, which we will put in writing before you agree to anything.
@@ -260,7 +260,7 @@ export default function Pricing() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {TIERS.filter(t => t.slug !== 'custom-sprints').map((tier, i) => (
               <motion.div key={tier.name} variants={fadeUpItem}>
-                <PricingPill 
+                <PricingPill
                   slug={tier.slug}
                   tier={tier.name}
                   price={tier.lkr}
@@ -285,7 +285,7 @@ export default function Pricing() {
                   position: 'relative', overflow: 'hidden'
                 }}>
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.03) 50%, transparent 70%)', pointerEvents: 'none' }} />
-                  
+
                   <div className="flex flex-col md:flex-row gap-8 justify-between items-start md:items-center relative z-10">
                     <div className="max-w-xl">
                       <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--orange)] font-bold mb-3">Enterprise / Retainer</p>
@@ -302,7 +302,7 @@ export default function Pricing() {
                         ))}
                       </ul>
                     </div>
-                    
+
                     <div className="flex-shrink-0 w-full md:w-auto p-8 rounded-2xl text-center" style={{ background: 'var(--bg-alt)', border: '1px solid var(--border)' }}>
                       <p className="font-mono text-[10px] uppercase tracking-widest font-bold mb-3 text-[var(--text-muted)]">Starts At</p>
                       <p className="font-display text-4xl text-[var(--orange)] mb-6">{customPlan.lkr}</p>
@@ -338,7 +338,7 @@ export default function Pricing() {
           <motion.h2 variants={fadeUpItem} className="font-display text-3xl md:text-4xl mb-10">
             What's in each tier
           </motion.h2>
-          
+
           <motion.div variants={fadeUpItem} className="overflow-x-auto bg-[var(--bg)] border border-[var(--border)] rounded-2xl">
             <table className="w-full border-collapse min-w-[800px]">
               <thead>
@@ -359,7 +359,7 @@ export default function Pricing() {
                       <td key={j} className="p-4 text-center">
                         {v === true ? <CheckIcon className="w-5 h-5 text-[var(--orange)] mx-auto" />
                           : v === false ? <span className="text-[var(--border)]">—</span>
-                          : <span className="font-mono text-[11px] font-bold">{v}</span>}
+                            : <span className="font-mono text-[11px] font-bold">{v}</span>}
                       </td>
                     ))}
                   </tr>
@@ -389,7 +389,7 @@ export default function Pricing() {
           <motion.div variants={fadeUpItem}>
             <p className="eyebrow mb-1">Currency note</p>
             <p className="font-sans text-[0.9rem] text-[var(--text-muted)] max-w-3xl">
-              All prices are quoted in <strong>Sri Lankan Rupees (LKR)</strong> as standard. 
+              All prices are quoted in <strong>Sri Lankan Rupees (LKR)</strong> as standard.
             </p>
           </motion.div>
           <motion.p variants={fadeUpItem} className="font-mono text-[11px] text-[var(--text-muted)] flex-shrink-0">

@@ -9,9 +9,8 @@ import Projects from './pages/Projects';
 import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import About from './pages/About';
-import Testimonials from './pages/Testimonials';
 import Support from './pages/Support';
-import Faq from './pages/Faq';
+
 import Process from './pages/Process';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
@@ -40,9 +39,9 @@ function App() {
             <Route path="pricing/:slug" element={PAGE_VISIBILITY.pricing ? <PricingDetail /> : <Navigate to="/" replace />} />
             <Route path="contact" element={<Contact />} />
             <Route path="about" element={<About />} />
-            <Route path="testimonials" element={<Testimonials />} />
+            <Route path="testimonials" element={<Navigate to="/" replace />} />
+            <Route path="faq" element={<Navigate to="/" replace />} />
             <Route path="support" element={<Support />} />
-            <Route path="faq" element={<Faq />} />
             <Route path="process" element={<Process />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />
