@@ -23,6 +23,7 @@ const devProjects  = PROJECTS.filter(p => p.underDevelopment);
 const PALETTES = [
   ['#0f1b2d', '#183352', '#1e4080'],
   ['#1a0a00', '#3d1600', '#6b2800'],
+  ['#001a12', '#003d28', '#006644'],
 ];
 
 /* ─── Live Project Card ─── */

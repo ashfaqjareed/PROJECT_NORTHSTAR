@@ -5,7 +5,7 @@ import { WhatsAppIcon, MailIcon, ArrowRightIcon } from '../icons';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
 const container = {
@@ -14,7 +14,7 @@ const container = {
 };
 
 export default function Contact() {
-  const [form, setForm]   = useState({ name: '', email: '', service: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', service: '', message: '' });
   const [status, setStatus] = useState('idle');
 
   const handleChange = (e) => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
@@ -115,7 +115,7 @@ export default function Contact() {
                 </div>
               </div>
               <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
-                Fastest response — typically within the hour during working hours (GMT+5:30).
+                Fastest Response, Typically within the hour during working hours (GMT+5:30).
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#25D366' }}>
                 Message now <ArrowRightIcon className="w-4 h-4" />
@@ -145,12 +145,12 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-display" style={{ fontSize: '1.25rem', marginBottom: '0.2rem' }}>Project Brief (Google Form)</p>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text-muted)' }}>Structured Client Intake</p>
+                  <p className="font-display" style={{ fontSize: '1.25rem', marginBottom: '0.2rem' }}>NorthStarDevs (Google Form)</p>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text-muted)' }}>Let us know your Requirements!</p>
                 </div>
               </div>
               <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
-                Fill out our quick project questionnaire covering your goals, timeline, and scope for a fast quote.
+                Fill out our Quick Questionnaire form covering your Goals, Timeline, and Scope for a Fast Quote.
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#3b82f6' }}>
                 Open Google Form <ArrowRightIcon className="w-4 h-4" />
@@ -191,9 +191,9 @@ export default function Contact() {
             {/* Response times */}
             <motion.div variants={fadeUp} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', padding: '1.5rem', background: 'var(--bg-alt)', borderRadius: '20px', border: '1px solid var(--border)' }}>
               {[
-                { label: 'WhatsApp', time: '≤ 1h'  },
-                { label: 'Email',    time: '≤ 24h' },
-                { label: 'Form',     time: '≤ 24h' },
+                { label: 'WhatsApp', time: '≤ 1h' },
+                { label: 'Email', time: '≤ 24h' },
+                { label: 'Form', time: '≤ 24h' },
               ].map(c => (
                 <div key={c.label} style={{ textAlign: 'center' }}>
                   <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.35rem', fontWeight: 900, color: 'var(--orange)' }}>{c.time}</p>
@@ -215,7 +215,7 @@ export default function Contact() {
             {status === 'sent' ? (
               <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
                 <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(254,107,0,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', color: 'var(--orange)' }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                 </div>
                 <h3 className="font-display" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Message received!</h3>
                 <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.7 }}>
@@ -226,8 +226,8 @@ export default function Contact() {
               <form onSubmit={handleSubmit}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   {[
-                    { id: 'name',    label: 'Your name',    type: 'text',  placeholder: 'Full name'         },
-                    { id: 'email',   label: 'Email address', type: 'email', placeholder: 'you@company.com'  },
+                    { id: 'name', label: 'Your name', type: 'text', placeholder: 'Full name' },
+                    { id: 'email', label: 'Email address', type: 'email', placeholder: 'you@company.com' },
                   ].map(f => (
                     <div key={f.id}>
                       <label style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, marginBottom: '0.5rem' }}>{f.label}</label>
@@ -297,7 +297,7 @@ export default function Contact() {
                       transition: 'transform 0.2s, box-shadow 0.2s',
                       position: 'relative', overflow: 'hidden',
                     }}
-                    onMouseEnter={e => { if (status !== 'sending') { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(254,107,0,0.35)'; }}}
+                    onMouseEnter={e => { if (status !== 'sending') { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(254,107,0,0.35)'; } }}
                     onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
                   >
                     {status === 'sending' ? 'Sending…' : 'Send Brief'}

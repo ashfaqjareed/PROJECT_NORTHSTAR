@@ -338,7 +338,7 @@ export default function Home() {
             Straightforward pricing
           </motion.h2>
           <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] mb-12">
-            Starting prices in LKR. Final cost depends on scope — a written quote is provided before we start.
+            Starting prices in LKR. Final cost depends on scope, A written quote is provided before we start.
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch pt-6">

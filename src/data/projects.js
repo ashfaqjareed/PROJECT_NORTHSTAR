@@ -1,5 +1,5 @@
 // src/data/projects.js
-// Only 2 live published projects. All others are closed / under development.
+// 3 live published projects. All others are closed / under development.
 
 export const PROJECTS = [
   // ── LIVE ──────────────────────────────────────────────────────────────
@@ -11,7 +11,7 @@ export const PROJECTS = [
     liveUrl: 'https://aj-vantage-ecom.web.app/',
     github: null,
     status: 'Live',
-    type: 'Client Project',
+    type: 'Personal Build',
     tags: ['E-Commerce', 'React', 'Firebase', 'Mobile-First'],
     year: '2025',
     client: 'AJ Vantage',
@@ -31,6 +31,22 @@ export const PROJECTS = [
     tags: ['E-Commerce', 'React', 'Firebase', 'Grocery'],
     year: '2025',
     client: 'Multi Super',
+    role: 'Design & Full-Stack Engineering',
+    featured: true,
+    underDevelopment: false,
+  },
+  {
+    slug: 'ordera',
+    name: 'Ordera',
+    description: 'An AI-powered restaurant ordering platform. Customers browse the menu, place orders, and track them in real-time — all through a clean, fast web interface.',
+    fullDescription: 'Ordera is a personal build exploring AI-assisted restaurant ordering. The platform features a dynamic menu, real-time order tracking, and a smooth mobile-first experience. Built to demonstrate how a modern ordering flow can be both fast and intuitive without a native app.',
+    liveUrl: 'https://ordera-ai.netlify.app/',
+    github: null,
+    status: 'Live',
+    type: 'Personal Build',
+    tags: ['React', 'AI', 'Netlify', 'Real-Time'],
+    year: '2025',
+    client: 'Personal Build',
     role: 'Design & Full-Stack Engineering',
     featured: true,
     underDevelopment: false,
@@ -57,16 +73,7 @@ export const PROJECTS = [
     year: '2026',
     underDevelopment: true,
   },
-  {
-    slug: 'ordera',
-    name: 'Ordera POS',
-    description: 'Restaurant ordering and POS system for small eateries featuring real-time kitchen tickets and table management.',
-    status: 'Under Development',
-    type: 'Client Project',
-    tags: ['React', 'Node.js', 'WebSocket'],
-    year: '2026',
-    underDevelopment: true,
-  },
+
   {
     slug: 'learnloop',
     name: 'LearnLoop',
