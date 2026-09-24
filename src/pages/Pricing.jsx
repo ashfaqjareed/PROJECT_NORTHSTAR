@@ -258,7 +258,7 @@ export default function Pricing() {
       <section className="bg-[var(--bg-alt)] py-20">
         <motion.div className="section-container" variants={fadeUpContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {TIERS.filter(t => t.slug !== 'custom-sprints').map((tier, i) => (
+            {TIERS.filter(t => t.slug !== 'retainer').map((tier, i) => (
               <motion.div key={tier.name} variants={fadeUpItem}>
                 <PricingPill
                   slug={tier.slug}
@@ -274,8 +274,8 @@ export default function Pricing() {
           </div>
 
           {/* Enlarged Custom Plan */}
-          {TIERS.find(t => t.slug === 'custom-sprints') && (() => {
-            const customPlan = TIERS.find(t => t.slug === 'custom-sprints');
+          {TIERS.find(t => t.slug === 'retainer') && (() => {
+            const customPlan = TIERS.find(t => t.slug === 'retainer');
             return (
               <motion.div variants={fadeUpItem} className="mt-12">
                 <div style={{

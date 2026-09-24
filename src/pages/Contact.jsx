@@ -66,7 +66,7 @@ export default function Contact() {
           }}>
             <span style={{ fontSize: '1rem' }}>🎉</span>
             <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: 700, color: 'var(--orange)' }}>
-              Free Consultation Service — We reply within 24 hours of submitting the form!
+              Free Consultation Service | We reply within 24 hours of submitting the form!
             </span>
           </motion.div>
         </motion.div>
