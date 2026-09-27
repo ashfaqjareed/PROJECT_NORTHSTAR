@@ -9,8 +9,6 @@ import Projects from './pages/Projects';
 import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import About from './pages/About';
-import Support from './pages/Support';
-
 import Process from './pages/Process';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
@@ -41,7 +39,6 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="testimonials" element={<Navigate to="/" replace />} />
             <Route path="faq" element={<Navigate to="/" replace />} />
-            <Route path="support" element={<Support />} />
             <Route path="process" element={<Process />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />

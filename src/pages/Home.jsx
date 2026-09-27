@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import {
-  StarIcon, ArrowRightIcon, WhatsAppIcon,
+  StarIcon, ArrowRightIcon, WhatsAppIcon, CheckIcon,
   CodeIcon, BoltIcon, PaletteIcon, CloudIcon, ShieldIcon
 } from '../icons';
 import PillButton from '../components/PillButton';
@@ -386,7 +386,49 @@ export default function Home() {
       </section>
 
 
-      <WaveDivider color="var(--bg-alt)" />
+      {/* ── STUDENT OFFER ── */}
+      <section className="bg-[var(--bg)] pb-10">
+        <div className="section-container">
+          <motion.div
+            variants={fadeUpItem}
+            className="p-8 md:p-12 rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-alt)] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--lime)] rounded-full blur-[80px] opacity-10 pointer-events-none translate-x-1/2 -translate-y-1/2" />
+            
+            <div className="relative z-10 max-w-2xl">
+              <span className="eyebrow text-[var(--lime)] mb-3 block">University Student Offer</span>
+              <h3 className="font-display text-3xl md:text-4xl mb-4 text-[var(--text)]">
+                Special discounts for Sri Lankan students.
+              </h3>
+              <p className="font-sans text-[var(--text-muted)] leading-relaxed mb-6">
+                Are you a student at a Government, Semi-Government, or Private University in Sri Lanka looking to build your portfolio, startup, or society website? We offer exceptional, heavily discounted pricing specifically for students.
+              </p>
+              <ul className="flex flex-col gap-2 list-none p-0 m-0 text-sm font-sans text-[var(--text)] font-medium">
+                <li className="flex items-center gap-2"><CheckIcon className="w-4 h-4 text-[var(--lime)]" /> Valid Student ID required</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-4 h-4 text-[var(--lime)]" /> For portfolios, uni societies &amp; student startups</li>
+              </ul>
+            </div>
+
+            <div className="relative z-10 w-full md:w-auto">
+              <a
+                href="https://wa.me/94768325949?text=Hi! I am a university student interested in the Student Plan."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center font-mono text-[11px] uppercase tracking-widest font-bold py-4 px-8 rounded-full transition-opacity w-full whitespace-nowrap"
+                style={{
+                  background: 'var(--text)',
+                  color: 'var(--bg)',
+                  textDecoration: 'none',
+                }}
+                onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
+                onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+              >
+                Claim Student Offer <ArrowRightIcon className="w-4 h-4 ml-2" />
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>      <WaveDivider color="var(--bg-alt)" />
 
       {/* ── PANEL 8: WHY US ── */}
       <section style={{ background: 'var(--bg-alt)', padding: '5rem 0' }}>

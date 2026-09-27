@@ -247,8 +247,15 @@ export default function Process() {
         num="03"
         eyebrow="Engineering"
         title="Build"
-        description="Component-driven React build with continuous preview deploys on Vercel. You can see the work live every day — no waiting for a formal presentation. Accessibility, performance, and dark mode are built in from the first component, not added at the end."
+        description="Component-driven React build with continuous preview deploys on Vercel. You can see the work live every day — no waiting for a formal presentation. Accessibility, performance, and dark mode are built in from the first component, not added at the end. All Meta services integrations (WhatsApp, Instagram, Messenger) are connected natively here."
         bullets={[
+          'Component-driven architecture using React and Tailwind',
+          'Meta integrations (WhatsApp, Instagram, Messenger) implemented',
+          'Continuous deployment with live preview URLs',
+          'Strict performance profiling and Lighthouse scoring',
+          'Full-site dark mode support built natively',
+          'Third payment invoice issued (25% project milestone)',
+        ]}        bullets={[
           'Live Vercel preview URL shared from day one',
           'Weekly async progress updates via email or WhatsApp',
           'Component-level code reviews and clean git history',

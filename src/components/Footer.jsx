@@ -16,7 +16,6 @@ const NAV_LINKS = [
 const LEGAL = [
   { to: '/privacy', label: 'Privacy Policy' },
   { to: '/terms', label: 'Terms of Service' },
-  { to: '/contact', label: 'Support' },
 ];
 
 const SOCIALS = [
