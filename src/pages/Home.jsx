@@ -9,6 +9,7 @@ import PillButton from '../components/PillButton';
 import LogoMarquee from '../components/LogoMarquee';
 import ServicePill from '../components/ServicePill';
 import PricingPill from '../components/PricingPill';
+import CurrencyToggle from '../components/CurrencyToggle';
 import { TIERS } from '../data/pricing';
 
 /* ─── SHARED COMPONENTS ─── */
@@ -337,9 +338,12 @@ export default function Home() {
           <motion.h2 variants={fadeUpItem} className="font-display text-4xl md:text-5xl mb-4">
             Straightforward pricing
           </motion.h2>
-          <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] mb-12">
-            Starting prices in LKR. Final cost depends on scope, A written quote is provided before we start.
+          <motion.p variants={fadeUpItem} className="font-sans text-[var(--text-muted)] mb-8">
+            Final cost depends on scope, A written quote is provided before we start.
           </motion.p>
+          <motion.div variants={fadeUpItem} className="mb-12">
+            <CurrencyToggle />
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch pt-6">
             {TIERS.slice(0, 3).map((tier, i) => (
@@ -347,7 +351,9 @@ export default function Home() {
                 <PricingPill
                   slug={tier.slug}
                   tier={tier.name}
-                  price={tier.lkr}
+                  priceLKR={tier.lkr}
+                  priceUSD={tier.usd}
+                  priceINR={tier.inr}
                   desc={tier.tagline}
                   features={tier.features}
                   accent={tier.accent}

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckIcon } from '../icons';
+import { useCurrency } from '../contexts/CurrencyContext';
 
 // Resolve accent to a concrete color
 function resolveAccent(accent, accentHex) {
@@ -16,7 +17,9 @@ function resolveAccent(accent, accentHex) {
 export default function PricingPill({ 
   slug,
   tier, 
-  price,
+  priceLKR,
+  priceUSD,
+  priceINR,
   desc, 
   features, 
   accent = 'none', 
@@ -27,6 +30,12 @@ export default function PricingPill({
   const color = resolveAccent(accent, accentHex);
   const borderColor = featured && color ? color : 'var(--border)';
   const badgeColor  = color || 'var(--orange)';
+  
+  const { currency } = useCurrency();
+  
+  let displayPrice = priceLKR;
+  if (currency === 'USD') displayPrice = priceUSD || priceLKR;
+  if (currency === 'INR') displayPrice = priceINR || priceLKR;
 
   return (
     <motion.div
@@ -68,9 +77,9 @@ export default function PricingPill({
         </p>
 
         {/* Price */}
-        <div className="mb-4">
+        <div className="mb-4 flex flex-col gap-1">
           <div className="font-display leading-tight text-[var(--text)]" style={{ fontSize: '1.55rem' }}>
-            {price}
+            {displayPrice}
           </div>
         </div>
 

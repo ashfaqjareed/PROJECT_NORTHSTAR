@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckIcon, ArrowRightIcon, PlusIcon, MinusIcon, WhatsAppIcon } from '../icons';
 import PricingPill from '../components/PricingPill';
 import PillButton from '../components/PillButton';
+import CurrencyToggle from '../components/CurrencyToggle';
+import { useCurrency } from '../contexts/CurrencyContext';
 import { TIERS } from '../data/pricing';
 
 const fadeUpContainer = {
@@ -45,6 +47,11 @@ function TierBreakdownSection() {
   const tier = TIERS.find(t => t.slug === selectedSlug);
   const accentColor = tier.accent === 'orange' ? 'var(--orange)' : 'var(--lime)';
   const isCustom = tier.lkr === "Let's talk";
+  
+  const { currency } = useCurrency();
+  let displayPrice = tier.lkr;
+  if (currency === 'USD') displayPrice = tier.usd || tier.lkr;
+  if (currency === 'INR') displayPrice = tier.inr || tier.lkr;
 
   return (
     <section className="py-20 border-y border-[var(--border)]">
@@ -142,10 +149,10 @@ function TierBreakdownSection() {
         >
           <div className="rounded-2xl px-6 py-4" style={{ background: 'var(--bg)', border: `1px solid ${accentColor}`, boxShadow: `0 0 0 1px ${accentColor}22` }}>
             <p className="font-mono text-[9px] uppercase tracking-widest font-bold mb-1" style={{ color: accentColor }}>
-              Price (LKR)
+              Price
             </p>
             <p className="font-display text-2xl" style={{ color: accentColor }}>
-              {tier.lkr}
+              {displayPrice}
             </p>
           </div>
           <div className="rounded-2xl px-6 py-4" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
@@ -236,6 +243,8 @@ const FAQS = [
 ];
 
 export default function Pricing() {
+  const { currency } = useCurrency();
+
   return (
     <div>
       {/* Panel 1 */}
@@ -246,10 +255,10 @@ export default function Pricing() {
             Pricing Plans
           </motion.h1>
           <motion.p variants={fadeUpItem} className="font-sans text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
-            Starting prices in LKR. No hidden fees or surprise markup. The final cost depends on the exact scope of your project, which we will put in writing before you agree to anything.
+            No hidden fees or surprise markup. The final cost depends on the exact scope of your project, which we will put in writing before you agree to anything.
           </motion.p>
-          <motion.div variants={fadeUpItem} className="mt-4 inline-flex items-center gap-2 rounded-full px-4 py-2" style={{ background: 'var(--orange)', color: 'var(--white-locked)' }}>
-            <span className="font-mono text-[10px] font-bold uppercase tracking-widest">All prices shown in LKR</span>
+          <motion.div variants={fadeUpItem} className="mt-6">
+            <CurrencyToggle />
           </motion.div>
         </motion.div>
       </section>
@@ -263,7 +272,9 @@ export default function Pricing() {
                 <PricingPill
                   slug={tier.slug}
                   tier={tier.name}
-                  price={tier.lkr}
+                  priceLKR={tier.lkr}
+                  priceUSD={tier.usd}
+                  priceINR={tier.inr}
                   desc={tier.tagline}
                   features={[...tier.features, `Timeline: ${tier.timeline}`]}
                   accent={tier.accent}
@@ -305,7 +316,9 @@ export default function Pricing() {
 
                     <div className="flex-shrink-0 w-full md:w-auto p-8 rounded-2xl text-center" style={{ background: 'var(--bg-alt)', border: '1px solid var(--border)' }}>
                       <p className="font-mono text-[10px] uppercase tracking-widest font-bold mb-3 text-[var(--text-muted)]">Starts At</p>
-                      <p className="font-display text-4xl text-[var(--orange)] mb-6">{customPlan.lkr}</p>
+                      <p className="font-display text-4xl text-[var(--orange)] mb-6">
+                        {currency === 'USD' ? (customPlan.usd || customPlan.lkr) : currency === 'INR' ? (customPlan.inr || customPlan.lkr) : customPlan.lkr}
+                      </p>
                       <Link
                         to={`/pricing/${customPlan.slug}`}
                         className="inline-flex items-center justify-center font-mono text-[11px] uppercase tracking-widest font-bold py-4 px-8 rounded-full transition-opacity w-full"

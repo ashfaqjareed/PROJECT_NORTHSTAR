@@ -7,6 +7,8 @@ export const TIERS = [
     tagline: 'Your first step online.',
     description: 'A clean, no-fluff starting point for getting your business on the internet without breaking the bank.',
     lkr: 'From Rs. 15,000',
+    usd: 'From $50',
+    inr: 'From ₹4,100',
     timeline: '2–3 weeks',
     features: [
       '1 page, built from scratch',
@@ -37,6 +39,8 @@ export const TIERS = [
     tagline: 'The complete product.',
     description: 'A full-stack web application with a scalable backend, custom brand system, and everything your business needs to operate online.',
     lkr: 'From Rs. 100,000+',
+    usd: 'From $330+',
+    inr: 'From ₹27,500+',
     timeline: '4–6 weeks',
     features: [
       'Multi-page React application',
@@ -68,6 +72,8 @@ export const TIERS = [
     tagline: 'Built to convert from day one.',
     description: 'A high-impact landing page engineered to make a first impression and drive action — fast to ship, hard to ignore.',
     lkr: 'From Rs. 60,000',
+    usd: 'From $200',
+    inr: 'From ₹16,500',
     timeline: '5–7 days',
     features: [
       'Multi-section landing page',
@@ -98,6 +104,8 @@ export const TIERS = [
     tagline: 'Simple, solid presence.',
     description: 'A professionally designed website for small businesses that need more than a landing page but don\'t need a full application.',
     lkr: 'From Rs. 12,000',
+    usd: 'From $40',
+    inr: 'From ₹3,300',
     timeline: '3–5 days',
     features: [
       'Up to 4 pages',
@@ -125,6 +133,8 @@ export const TIERS = [
     tagline: 'Custom design, zero templates.',
     description: 'A bespoke single landing page — every pixel designed for your brand with form integrations and conversion-focused layout.',
     lkr: 'From Rs. 112,000',
+    usd: 'From $370',
+    inr: 'From ₹31,000',
     timeline: '5–7 days',
     features: [
       'Single landing page',
@@ -152,6 +162,8 @@ export const TIERS = [
     tagline: 'Complex requirements, clean delivery.',
     description: 'For projects that go beyond a website — complex architecture, multiple integrations, and custom-built workflows that scale.',
     lkr: 'From Rs. 200,000+',
+    usd: 'From $660+',
+    inr: 'From ₹55,000+',
     timeline: '6–8 weeks',
     features: [
       'Advanced multi-page architecture',
@@ -180,6 +192,8 @@ export const TIERS = [
     tagline: 'Ongoing builds & priority access.',
     description: 'For businesses that need continuous development, architecture scaling, or priority support — handled on a monthly retainer with a written SLA.',
     lkr: "Let's talk",
+    usd: "Let's talk",
+    inr: "Let's talk",
     timeline: 'Ongoing',
     features: [
       'Monthly feature builds',
